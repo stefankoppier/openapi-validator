@@ -1,0 +1,10 @@
+[versions]
+kotlin = "1.8.21"
+
+[libraries]
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version = "1.8.21"}
+swagger-parser = { module = "io.swagger.parser.v3:swagger-parser", version = "2.1.14" }
+assertj-core = { module = "org.assertj:assertj-core", version = "3.24.2" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
