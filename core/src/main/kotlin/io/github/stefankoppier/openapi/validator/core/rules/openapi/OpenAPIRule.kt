@@ -3,7 +3,9 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
-import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableStringRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ComponentsRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.PathsRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.TagsRule
 import io.swagger.v3.oas.models.OpenAPI
 
 class OpenAPIRule(group: RuleGroup =  RuleGroup.unknown()) : ValidationRule<OpenAPI>(group) {
@@ -23,7 +25,7 @@ class OpenAPIRule(group: RuleGroup =  RuleGroup.unknown()) : ValidationRule<Open
 
     fun paths(description: String = "", rule: PathsRule.() -> PathsRule): OpenAPIRule {
         add {
-            rule(PathsRule(RuleGroup.named("paths", description, RuleGroupCategory.OBJECT, group))).validate(it.paths)
+            rule(PathsRule(RuleGroup.named("paths", description, RuleGroupCategory.OBJECT, group))).validate(it.paths.toList())
         }
         return this
     }
@@ -39,9 +41,9 @@ class OpenAPIRule(group: RuleGroup =  RuleGroup.unknown()) : ValidationRule<Open
 
     // security
 
-    fun tags(description: String = "", rule: IterableTagRule.() -> IterableTagRule): OpenAPIRule {
+    fun tags(description: String = "", rule: TagsRule.() -> TagsRule): OpenAPIRule {
         add {
-            rule(IterableTagRule(RuleGroup.named("tags", description, RuleGroupCategory.OBJECT, group))).validate(it.tags)
+            rule(TagsRule(RuleGroup.named("tags", description, RuleGroupCategory.OBJECT, group))).validate(it.tags)
         }
         return this
     }

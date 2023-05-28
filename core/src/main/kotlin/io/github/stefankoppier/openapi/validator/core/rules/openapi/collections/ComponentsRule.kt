@@ -1,4 +1,4 @@
-package io.github.stefankoppier.openapi.validator.core.rules.openapi
+package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule

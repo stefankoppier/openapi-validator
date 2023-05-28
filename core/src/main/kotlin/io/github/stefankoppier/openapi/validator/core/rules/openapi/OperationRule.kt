@@ -3,6 +3,9 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ParametersRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ResponsesRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ServersRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.BooleanRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableStringRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
@@ -51,7 +54,7 @@ class OperationRule(group: RuleGroup) : ValidationRule<Operation>(group) {
 
     fun responses(description: String = "", rule: ResponsesRule.() -> ResponsesRule): OperationRule {
         add {
-            rule(ResponsesRule(RuleGroup.named("responses", description, RuleGroupCategory.FIELD, group))).validate(it.responses)
+            rule(ResponsesRule(RuleGroup.named("responses", description, RuleGroupCategory.FIELD, group))).validate(it.responses.toList())
         }
         return this
     }

@@ -5,11 +5,11 @@ import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-class PathItemRuleTest {
+class PathRuleTest {
 
     @Test
     fun `path with all properties failing`() {
-        val result = PathItemRule()
+        val result = PathRule()
             .summary { required() }
             .description { required() }
             .validate(PathItem())
@@ -20,7 +20,7 @@ class PathItemRuleTest {
 
     @Test
     fun `summary required with a summary`() {
-        val result = PathItemRule()
+        val result = PathRule()
             .summary { required() }
             .validate(PathItem().summary("Summary"))
 
@@ -29,7 +29,7 @@ class PathItemRuleTest {
 
     @Test
     fun `summary required without a summary`() {
-        val result = PathItemRule()
+        val result = PathRule()
             .summary { required() }
             .validate(PathItem())
 
@@ -39,7 +39,7 @@ class PathItemRuleTest {
 
     @Test
     fun `summary required and lowercase with a summary`() {
-        val result = PathItemRule()
+        val result = PathRule()
             .summary { required(); lowercase() }
             .validate(PathItem().summary("Summary"))
 
