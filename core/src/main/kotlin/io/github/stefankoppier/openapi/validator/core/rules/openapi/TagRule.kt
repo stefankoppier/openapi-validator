@@ -8,9 +8,27 @@ import io.swagger.v3.oas.models.tags.Tag
 
 class TagRule(group : RuleGroup) : ValidationRule<Tag>(group) {
 
-    fun TagRule.name(description: String = "", rule: StringRule.() -> StringRule): TagRule {
+    init {
+        name { required() }
+    }
+
+    fun name(description: String = "", rule: StringRule.() -> StringRule): TagRule {
         add {
-            rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group))).validate(it.name)
+            rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group))).validate(it?.name)
+        }
+        return this
+    }
+
+    fun description(description: String = "", rule: StringRule.() -> StringRule): TagRule {
+        add {
+            rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group))).validate(it?.description)
+        }
+        return this
+    }
+
+    fun externalDocs(description: String = "", rule: ExternalDocumentationRule.() -> ExternalDocumentationRule): TagRule {
+        add {
+            rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", description, RuleGroupCategory.OBJECT, group))).validate(it?.externalDocs)
         }
         return this
     }

@@ -5,6 +5,7 @@ kotlin = "1.8.21"
 kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version = "1.8.21"}
 swagger-models = { module = "io.swagger.core.v3:swagger-models", version = "2.2.10" }
 swagger-parser = { module = "io.swagger.parser.v3:swagger-parser", version = "2.1.14" }
+kotlinpoet = { module = "com.squareup:kotlinpoet", version = "1.13.2" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.9.3" }
 assertj-core = { module = "org.assertj:assertj-core", version = "3.24.2" }
 

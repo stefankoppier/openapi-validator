@@ -2,7 +2,6 @@ package io.github.stefankoppier.openapi.validator.core.rules
 
 import io.github.stefankoppier.openapi.validator.core.internal.RoseTree
 
-
 class ValidationResult internal constructor(val failures: MutableList<ValidationFailure>) {
 
     val isSuccess: Boolean

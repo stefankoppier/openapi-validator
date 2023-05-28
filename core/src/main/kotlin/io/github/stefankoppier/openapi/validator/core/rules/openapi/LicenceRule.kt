@@ -15,21 +15,21 @@ class LicenceRule(group: RuleGroup) : ValidationRule<License>(group) {
 
     fun name(description: String = "", rule: StringRule.() -> StringRule): LicenceRule {
         add {
-            rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group))).validate(it.name)
+            rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group))).validate(it?.name)
         }
         return this
     }
 
     fun identifier(description: String = "", rule: StringRule.() -> StringRule): LicenceRule {
         add {
-            rule(StringRule(RuleGroup.named("identifier", description, RuleGroupCategory.FIELD, group))).validate(it.identifier)
+            rule(StringRule(RuleGroup.named("identifier", description, RuleGroupCategory.FIELD, group))).validate(it?.identifier)
         }
         return this
     }
 
     fun url(description: String = "", rule: URLRule.() -> URLRule): LicenceRule {
         add {
-            rule(URLRule(RuleGroup.named("url", description, RuleGroupCategory.FIELD, group))).validate(it.url)
+            rule(URLRule(RuleGroup.named("url", description, RuleGroupCategory.FIELD, group))).validate(it?.url)
         }
         return this
     }

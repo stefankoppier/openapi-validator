@@ -12,7 +12,7 @@ abstract class IterableValidationRule<T>(group: RuleGroup) : ValidationRule<Iter
         add {
             val message = "All were supposed to match '$description' but not all did"
             ValidationResult.condition(ValidationFailure(group, message)) {
-                it.all(predicate)
+                it?.all(predicate) ?: true
             }
         }
         return this
@@ -22,7 +22,7 @@ abstract class IterableValidationRule<T>(group: RuleGroup) : ValidationRule<Iter
         add {
             val message = "At least one was supposed to match '$description' but none did"
             ValidationResult.condition(ValidationFailure(group, message)) {
-                it.any(predicate)
+                it?.any(predicate) ?: false
             }
         }
         return this

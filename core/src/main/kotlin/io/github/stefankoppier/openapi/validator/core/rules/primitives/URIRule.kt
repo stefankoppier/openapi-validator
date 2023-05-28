@@ -4,16 +4,16 @@ import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationFailure
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationResult
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
-import java.net.URL
+import java.net.URI
 
-class URLRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<URL>(group) {
+class URIRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<URI>(group) {
 
     fun validate(fixture: String?): ValidationResult {
         return if (fixture != null) {
-            runCatching { URL(fixture) }
+            runCatching { URI(fixture) }
                 .map { super.validate(it) }
                 .getOrElse {
-                    val message = "Was required to be in the form of a URL but was '$fixture'"
+                    val message = "Was required to be in the form of a URI but was '$fixture'"
                     ValidationResult.failure(ValidationFailure(group, message))
                 }
         } else {

@@ -5,7 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRul
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.URLRule
 import io.swagger.v3.oas.models.info.Contact
 
-class ContactRule(group: RuleGroup) : ValidationRule<Contact?>(group) {
+class ContactRule(group: RuleGroup) : ValidationRule<Contact>(group) {
 
     init {
         required()

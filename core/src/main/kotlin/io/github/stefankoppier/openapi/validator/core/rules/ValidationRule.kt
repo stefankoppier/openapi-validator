@@ -1,14 +1,14 @@
 package io.github.stefankoppier.openapi.validator.core.rules
 
-abstract class ValidationRule<T>(val group: RuleGroup) {
+abstract class ValidationRule<T : Any>(val group: RuleGroup) {
 
-    private var preconditions = { _: T -> true }
+    private var preconditions = { _: T? -> true }
 
     private var rules = unit()
 
-    fun validate(fixture: T) = if (preconditions(fixture)) rules(fixture) else unit()(fixture)
+    fun validate(fixture: T?) = if (preconditions(fixture)) rules(fixture) else unit()(fixture)
 
-    fun <R : ValidationRule<T>> given(precondition: (T) -> Boolean, rule: () -> R): R {
+    fun <R : ValidationRule<T>> given(precondition: (T?) -> Boolean, rule: () -> R): R {
         val copy = preconditions
         preconditions = { fixture -> precondition(fixture) && copy(fixture) }
         return rule()
@@ -24,7 +24,7 @@ abstract class ValidationRule<T>(val group: RuleGroup) {
         return this
     }
 
-    fun <R : ValidationRule<T>> R.exactly(value: T): R {
+    fun <R : ValidationRule<T>> R.exactly(value: T?): R {
         add {
             val message = "Was supposed to be '$value' but is '$it'"
             ValidationResult.condition(ValidationFailure(group, message)) {
@@ -34,11 +34,11 @@ abstract class ValidationRule<T>(val group: RuleGroup) {
         return this
     }
 
-    protected fun add(rule: (T) -> ValidationResult): ValidationRule<T> {
+    protected fun add(rule: (T?) -> ValidationResult): ValidationRule<T> {
         val copy = rules
         rules = { fixture -> copy(fixture) merge rule(fixture) }
         return this
     }
 
-    private fun unit(): (T) -> ValidationResult = { ValidationResult.success() }
+    private fun unit(): (T?) -> ValidationResult = { ValidationResult.success() }
 }
