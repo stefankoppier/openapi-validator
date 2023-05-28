@@ -13,23 +13,23 @@ class LicenceRule(group: RuleGroup) : ValidationRule<License>(group) {
         name { required() }
     }
 
-    fun name(rule: StringRule.() -> StringRule): LicenceRule {
+    fun name(description: String = "", rule: StringRule.() -> StringRule): LicenceRule {
         add {
-            rule(StringRule(RuleGroup.named("name", RuleGroupCategory.FIELD, group))).validate(it.name)
+            rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group))).validate(it.name)
         }
         return this
     }
 
-    fun identifier(rule: StringRule.() -> StringRule): LicenceRule {
+    fun identifier(description: String = "", rule: StringRule.() -> StringRule): LicenceRule {
         add {
-            rule(StringRule(RuleGroup.named("identifier", RuleGroupCategory.FIELD, group))).validate(it.identifier)
+            rule(StringRule(RuleGroup.named("identifier", description, RuleGroupCategory.FIELD, group))).validate(it.identifier)
         }
         return this
     }
 
-    fun url(rule: URLRule.() -> URLRule): LicenceRule {
+    fun url(description: String = "", rule: URLRule.() -> URLRule): LicenceRule {
         add {
-            rule(URLRule(RuleGroup.named("url", RuleGroupCategory.FIELD, group))).validate(it.url)
+            rule(URLRule(RuleGroup.named("url", description, RuleGroupCategory.FIELD, group))).validate(it.url)
         }
         return this
     }

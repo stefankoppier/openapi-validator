@@ -9,6 +9,6 @@ class PathsRule(group: RuleGroup) : ValidationRule<Paths>(group) {
 
 }
 
-fun OpenAPIRule.paths(rule: PathsRule.() -> PathsRule): PathsRule {
-    return rule(PathsRule(RuleGroup.named("paths", RuleGroupCategory.OBJECT, group)))
+fun OpenAPIRule.paths(description: String = "", rule: PathsRule.() -> PathsRule): PathsRule {
+    return rule(PathsRule(RuleGroup.named("paths", description, RuleGroupCategory.OBJECT, group)))
 }

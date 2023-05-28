@@ -9,7 +9,7 @@ class StringRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<String
 
     fun required(): StringRule {
         add {
-            val message = "Was required but is '$it'"
+            val message = "Was required but is not given"
             ValidationResult.condition(ValidationFailure(group, message)) {
                 it != null
             }

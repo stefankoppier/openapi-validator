@@ -12,7 +12,7 @@ class OpenAPIValidationExtensionTest(private val document: OpenAPI) {
 
     @Test
     fun `test extension`() {
-        assertDocumentIsValidFor(document, openAPI {
+        assertDocumentIsValidFor(document, openAPI("My specification") {
             given( { Instant.now().isAfter(Instant.MAX) } ) {
                 info { title { exactly("OpenAPI Peatstore") } }
             }

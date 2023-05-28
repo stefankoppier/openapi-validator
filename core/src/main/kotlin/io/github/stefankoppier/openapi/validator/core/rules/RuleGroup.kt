@@ -7,15 +7,20 @@ enum class RuleGroupCategory {
     MESSAGE,
 }
 
-data class RuleGroup internal constructor(val parent: RuleGroup?, val name: String, val category: RuleGroupCategory) {
+data class RuleGroup internal constructor(
+    val parent: RuleGroup?,
+    val name: String,
+    val description: String,
+    val category: RuleGroupCategory)
+{
 
     companion object {
-        fun named(name: String, category: RuleGroupCategory, parent: RuleGroup? = null): RuleGroup {
-            return RuleGroup(parent, name, category)
+        fun named(name: String, description: String, category: RuleGroupCategory, parent: RuleGroup? = null): RuleGroup {
+            return RuleGroup(parent, name, description, category)
         }
 
         fun unknown(): RuleGroup {
-            return RuleGroup(null, "", RuleGroupCategory.UNKNOWN)
+            return RuleGroup(null, "", "", RuleGroupCategory.UNKNOWN)
         }
     }
 }

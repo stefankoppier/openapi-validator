@@ -8,91 +8,91 @@ import io.swagger.v3.oas.models.PathItem
 
 class PathItemRule(group: RuleGroup) : ValidationRule<PathItem>(group) {
 
-    fun summary(rule: StringRule.() -> StringRule): PathItemRule {
+    fun summary(description: String = "", rule: StringRule.() -> StringRule): PathItemRule {
         add {
-            rule(StringRule(RuleGroup.named("summary", RuleGroupCategory.FIELD, group))).validate(it.summary)
+            rule(StringRule(RuleGroup.named("summary", description, RuleGroupCategory.FIELD, group))).validate(it.summary)
         }
         return this
     }
 
-    fun description(rule: StringRule.() -> StringRule): PathItemRule {
+    fun description(description: String = "", rule: StringRule.() -> StringRule): PathItemRule {
         add {
-            rule(StringRule(RuleGroup.named("description", RuleGroupCategory.FIELD, group))).validate(it.description)
+            rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group))).validate(it.description)
         }
         return this
     }
 
-    fun get(rule: OperationRule.() -> OperationRule): PathItemRule {
+    fun get(description: String = "", rule: OperationRule.() -> OperationRule): PathItemRule {
         add {
-            rule(OperationRule(RuleGroup.named("get", RuleGroupCategory.OBJECT, group))).validate(it.get)
+            rule(OperationRule(RuleGroup.named("get", description, RuleGroupCategory.OBJECT, group))).validate(it.get)
         }
         return this
     }
 
-    fun put(rule: OperationRule.() -> OperationRule): PathItemRule {
+    fun put(description: String = "", rule: OperationRule.() -> OperationRule): PathItemRule {
         add {
-            rule(OperationRule(RuleGroup.named("put", RuleGroupCategory.OBJECT, group))).validate(it.put)
+            rule(OperationRule(RuleGroup.named("put", description, RuleGroupCategory.OBJECT, group))).validate(it.put)
         }
         return this
     }
 
-    fun post(rule: OperationRule.() -> OperationRule): PathItemRule {
+    fun post(description: String = "", rule: OperationRule.() -> OperationRule): PathItemRule {
         add {
-            rule(OperationRule(RuleGroup.named("post", RuleGroupCategory.OBJECT, group))).validate(it.post)
+            rule(OperationRule(RuleGroup.named("post", description, RuleGroupCategory.OBJECT, group))).validate(it.post)
         }
         return this
     }
 
-    fun delete(rule: OperationRule.() -> OperationRule): PathItemRule {
+    fun delete(description: String = "", rule: OperationRule.() -> OperationRule): PathItemRule {
         add {
-            rule(OperationRule(RuleGroup.named("delete", RuleGroupCategory.OBJECT, group))).validate(it.delete)
+            rule(OperationRule(RuleGroup.named("delete", description, RuleGroupCategory.OBJECT, group))).validate(it.delete)
         }
         return this
     }
 
-    fun options(rule: OperationRule.() -> OperationRule): PathItemRule {
+    fun options(description: String = "", rule: OperationRule.() -> OperationRule): PathItemRule {
         add {
-            rule(OperationRule(RuleGroup.named("options", RuleGroupCategory.OBJECT, group))).validate(it.options)
+            rule(OperationRule(RuleGroup.named("options", description, RuleGroupCategory.OBJECT, group))).validate(it.options)
         }
         return this
     }
 
-    fun head(rule: OperationRule.() -> OperationRule): PathItemRule {
+    fun head(description: String = "", rule: OperationRule.() -> OperationRule): PathItemRule {
         add {
-            rule(OperationRule(RuleGroup.named("head", RuleGroupCategory.OBJECT, group))).validate(it.head)
+            rule(OperationRule(RuleGroup.named("head", description, RuleGroupCategory.OBJECT, group))).validate(it.head)
         }
         return this
     }
 
-    fun patch(rule: OperationRule.() -> OperationRule): PathItemRule {
+    fun patch(description: String = "", rule: OperationRule.() -> OperationRule): PathItemRule {
         add {
-            rule(OperationRule(RuleGroup.named("patch", RuleGroupCategory.OBJECT, group))).validate(it.patch)
+            rule(OperationRule(RuleGroup.named("patch", description, RuleGroupCategory.OBJECT, group))).validate(it.patch)
         }
         return this
     }
 
-    fun trace(rule: OperationRule.() -> OperationRule): PathItemRule {
+    fun trace(description: String = "", rule: OperationRule.() -> OperationRule): PathItemRule {
         add {
-            rule(OperationRule(RuleGroup.named("trace", RuleGroupCategory.OBJECT, group))).validate(it.trace)
+            rule(OperationRule(RuleGroup.named("trace", description, RuleGroupCategory.OBJECT, group))).validate(it.trace)
         }
         return this
     }
 
-    fun servers(rule: ServersRule.() -> ServersRule): PathItemRule {
+    fun servers(description: String = "", rule: ServersRule.() -> ServersRule): PathItemRule {
         add {
-            rule(ServersRule(RuleGroup.named("servers", RuleGroupCategory.OBJECT, group))).validate(it.servers)
+            rule(ServersRule(RuleGroup.named("servers", description, RuleGroupCategory.OBJECT, group))).validate(it.servers)
         }
         return this
     }
 
-    fun parameters(rule: ParametersRule.() -> ParametersRule): PathItemRule {
+    fun parameters(description: String = "", rule: ParametersRule.() -> ParametersRule): PathItemRule {
         add {
-            rule(ParametersRule(RuleGroup.named("parameters", RuleGroupCategory.OBJECT, group))).validate(it.parameters)
+            rule(ParametersRule(RuleGroup.named("parameters", description, RuleGroupCategory.OBJECT, group))).validate(it.parameters)
         }
         return this
     }
 }
 
-fun PathsRule.path(rule: PathItemRule.() -> PathItemRule): PathItemRule {
-    return rule(PathItemRule(RuleGroup.named("path", RuleGroupCategory.OBJECT, group)))
+fun PathsRule.path(description: String = "", rule: PathItemRule.() -> PathItemRule): PathItemRule {
+    return rule(PathItemRule(RuleGroup.named("path", description, RuleGroupCategory.OBJECT, group)))
 }

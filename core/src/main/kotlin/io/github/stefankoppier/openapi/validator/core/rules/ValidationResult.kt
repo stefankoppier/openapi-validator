@@ -23,10 +23,10 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
                 builder.apply {
                     append((0 until level).joinToString(separator = "") { "    " })
                     append(when (it.category) {
-                        RuleGroupCategory.OBJECT -> "For object ${it.message}:"
-                        RuleGroupCategory.FIELD -> "Field ${it.message} does not comply:"
-                        RuleGroupCategory.MESSAGE -> "- ${it.message}"
-                        RuleGroupCategory.UNKNOWN -> it.message
+                        RuleGroupCategory.OBJECT -> "For object ${it.content}:"
+                        RuleGroupCategory.FIELD -> "Field ${it.content} does not comply:"
+                        RuleGroupCategory.MESSAGE -> "- ${it.content}"
+                        RuleGroupCategory.UNKNOWN -> it.content
                     })
                     appendLine()
                 }
@@ -56,12 +56,17 @@ data class ValidationFailure(val group: RuleGroup, val message: String) {
     // TODO: can use some refactoring
     private fun construct(current: RuleGroup, parents: List<RuleGroup>): RoseTree<ValidationNode> {
         return if (current.parent == null) {
-            val root = RoseTree(ValidationNode(current.name, current.category))
+            val rootContent = current.name + if (current.description.isNullOrBlank()) "" else " (${current.description})"
+            val root = RoseTree(ValidationNode(rootContent, current.category))
             parents.foldRight(root) { parent, it ->
-                val child = RoseTree(ValidationNode(parent.name, parent.category))
+                val content = parent.name + if (parent.description.isNullOrBlank()) "" else " (${parent.description})"
+                val child = RoseTree(ValidationNode(content, parent.category))
                 it.apply { children.add(child) }
                 child
-            }.apply { children.add(RoseTree(ValidationNode(message, RuleGroupCategory.MESSAGE))) }
+            }.apply {
+                val content = message + if (group.description.isNullOrBlank()) "" else " (${group.description})"
+                children.add(RoseTree(ValidationNode(content, RuleGroupCategory.MESSAGE)))
+            }
             root
         } else {
             construct(current.parent, parents.toMutableList().apply { add(current) })
@@ -70,6 +75,6 @@ data class ValidationFailure(val group: RuleGroup, val message: String) {
 }
 
 data class ValidationNode(
-    val message: String,
+    val content: String,
     val category: RuleGroupCategory,
 )

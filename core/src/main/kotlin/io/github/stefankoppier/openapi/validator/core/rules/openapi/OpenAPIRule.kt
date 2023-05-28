@@ -7,28 +7,28 @@ import io.swagger.v3.oas.models.OpenAPI
 
 class OpenAPIRule(group: RuleGroup) : ValidationRule<OpenAPI>(group) {
 
-    fun info(rule: InfoRule.() -> InfoRule): OpenAPIRule {
+    fun info(description: String = "", rule: InfoRule.() -> InfoRule): OpenAPIRule {
         add {
-            rule(InfoRule(RuleGroup.named("info", RuleGroupCategory.OBJECT, group))).validate(it.info)
+            rule(InfoRule(RuleGroup.named("info", description, RuleGroupCategory.OBJECT, group))).validate(it.info)
         }
         return this
     }
 
-    fun paths(rule: PathsRule.() -> PathsRule): OpenAPIRule {
+    fun paths(description: String = "", rule: PathsRule.() -> PathsRule): OpenAPIRule {
         add {
-            rule(PathsRule(RuleGroup.named("paths", RuleGroupCategory.OBJECT, group))).validate(it.paths)
+            rule(PathsRule(RuleGroup.named("paths", description, RuleGroupCategory.OBJECT, group))).validate(it.paths)
         }
         return this
     }
 
-    fun components(rule: ComponentsRule.() -> ComponentsRule): OpenAPIRule {
+    fun components(description: String = "", rule: ComponentsRule.() -> ComponentsRule): OpenAPIRule {
         add {
-            rule(ComponentsRule(RuleGroup.named("components", RuleGroupCategory.OBJECT, group))).validate(it.components)
+            rule(ComponentsRule(RuleGroup.named("components", description, RuleGroupCategory.OBJECT, group))).validate(it.components)
         }
         return this
     }
 }
 
-fun openAPI(rule: OpenAPIRule.() -> OpenAPIRule): OpenAPIRule {
-    return rule(OpenAPIRule(RuleGroup.named("document", RuleGroupCategory.OBJECT)))
+fun openAPI(description: String = "", rule: OpenAPIRule.() -> OpenAPIRule): OpenAPIRule {
+    return rule(OpenAPIRule(RuleGroup.named("document", description, RuleGroupCategory.OBJECT)))
 }
