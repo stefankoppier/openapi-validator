@@ -8,7 +8,7 @@ abstract class ValidationRule<T>(val group: RuleGroup) {
 
     fun validate(fixture: T) = if (preconditions(fixture)) rules(fixture) else unit()(fixture)
 
-    fun <R : ValidationRule<T>> R.given(precondition: (T) -> Boolean, rule: () -> R): R {
+    fun <R : ValidationRule<T>> given(precondition: (T) -> Boolean, rule: () -> R): R {
         val copy = preconditions
         preconditions = { fixture -> precondition(fixture) && copy(fixture) }
         return rule()

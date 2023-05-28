@@ -16,6 +16,8 @@ class OpenAPIValidationExtensionTest(private val document: OpenAPI) {
             given( { Instant.now().isAfter(Instant.MAX) } ) {
                 info { title { exactly("OpenAPI Peatstore") } }
             }
+
+            info { summary { required() } }
         })
     }
 }
