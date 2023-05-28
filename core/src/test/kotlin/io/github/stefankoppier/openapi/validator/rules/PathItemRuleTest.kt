@@ -1,6 +1,5 @@
 package io.github.stefankoppier.openapi.validator.rules
 
-import io.github.stefankoppier.openapi.validator.rules.openapi.OpenAPIRule
 import io.github.stefankoppier.openapi.validator.rules.openapi.PathItemRule
 import io.github.stefankoppier.openapi.validator.rules.openapi.path
 import io.swagger.v3.oas.models.PathItem

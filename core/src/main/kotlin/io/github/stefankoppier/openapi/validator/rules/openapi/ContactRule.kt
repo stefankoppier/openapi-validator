@@ -1,34 +1,45 @@
 package io.github.stefankoppier.openapi.validator.rules.openapi
 
-import io.github.stefankoppier.openapi.validator.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.rules.ValidationRule
-import io.github.stefankoppier.openapi.validator.rules.primitives.OptionalStringRule
+import io.github.stefankoppier.openapi.validator.rules.*
+import io.github.stefankoppier.openapi.validator.rules.primitives.StringRule
 import io.github.stefankoppier.openapi.validator.rules.primitives.URLRule
 import io.swagger.v3.oas.models.info.Contact
 
-class ContactRule(group: RuleGroup) : ValidationRule<Contact>(group) {
+class ContactRule(group: RuleGroup) : ValidationRule<Contact?>(group) {
 
-    fun name(rule: OptionalStringRule.() -> OptionalStringRule): ContactRule {
+    init {
+        required()
+    }
+
+    fun required(): ContactRule {
         add {
-            rule(OptionalStringRule(RuleGroup.named("name", group))).validate(it.name)
+            val message = "Was required but is '$it'"
+            ValidationResult.condition(ValidationFailure(group, message)) {
+                it != null
+            }
         }
         return this
     }
 
-//    fun url(rule: URLRule.() -> URLRule): ContactRule {
-//        add {
-//            rule(URLRule(RuleGroup.named("url", group))).validate(it.url)
-//        }
-//        return this
-//    }
+    fun name(rule: StringRule.() -> StringRule): ContactRule {
+        add {
+            rule(StringRule(RuleGroup.named("name",  RuleGroupCategory.FIELD, group))).validate(it?.name)
+        }
+        return this
+    }
+
+    fun url(rule: URLRule.() -> URLRule): ContactRule {
+        add {
+            rule(URLRule(RuleGroup.named("url", RuleGroupCategory.FIELD, group))).validate(it?.url)
+        }
+        return this
+    }
 
     // TODO: stricter email validation
-    fun email(rule: OptionalStringRule.() -> OptionalStringRule): ContactRule {
+    fun email(rule: StringRule.() -> StringRule): ContactRule {
         add {
-            rule(OptionalStringRule(RuleGroup.named("email", group))).validate(it.email)
+            rule(StringRule(RuleGroup.named("email", RuleGroupCategory.FIELD, group))).validate(it?.email)
         }
         return this
     }
 }
-
-//fun

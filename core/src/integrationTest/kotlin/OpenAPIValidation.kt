@@ -14,6 +14,9 @@ class OpenAPIValidation {
             info {
                 title { exactly("OpenAPI Petstore") }
                 version { exactly("1.0.0") }
+                contact {
+                    url { required() }
+                }
             }
         }
 
@@ -22,6 +25,6 @@ class OpenAPIValidation {
             .getOrThrow()
         val result = Validator(rule).validate(openAPI)
 
-        assertThat(result.isSuccess).isTrue()
+        assertThat(result.failures).isEmpty()
     }
 }
