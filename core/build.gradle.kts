@@ -21,5 +21,7 @@ tasks.check {
 }
 
 dependencies {
+    api(libs.swagger.models)
+
     implementation(libs.swagger.parser)
 }

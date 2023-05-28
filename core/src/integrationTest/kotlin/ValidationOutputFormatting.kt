@@ -1,7 +1,7 @@
 import com.google.common.io.Resources
-import io.github.stefankoppier.openapi.validator.Parser
-import io.github.stefankoppier.openapi.validator.Validator
-import io.github.stefankoppier.openapi.validator.rules.openapi.openAPI
+import io.github.stefankoppier.openapi.validator.core.Parser
+import io.github.stefankoppier.openapi.validator.core.Validator
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.openAPI
 import org.assertj.core.api.Assertions.assertThat
 import java.nio.charset.StandardCharsets
 import kotlin.test.Test
