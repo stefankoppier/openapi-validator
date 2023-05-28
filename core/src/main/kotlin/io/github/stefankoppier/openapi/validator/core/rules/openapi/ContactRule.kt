@@ -11,16 +11,6 @@ class ContactRule(group: RuleGroup) : ValidationRule<Contact?>(group) {
         required()
     }
 
-    fun required(): ContactRule {
-        add {
-            val message = "Was required but is '$it'"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it != null
-            }
-        }
-        return this
-    }
-
     fun name(description: String = "", rule: StringRule.() -> StringRule): ContactRule {
         add {
             rule(StringRule(RuleGroup.named("name", description,  RuleGroupCategory.FIELD, group))).validate(it?.name)

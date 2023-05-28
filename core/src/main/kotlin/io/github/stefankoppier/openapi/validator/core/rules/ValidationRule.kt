@@ -14,6 +14,26 @@ abstract class ValidationRule<T>(val group: RuleGroup) {
         return rule()
     }
 
+    fun <R : ValidationRule<T>> R.required(): R {
+        add {
+            val message = "Was required but is not given"
+            ValidationResult.condition(ValidationFailure(group, message)) {
+                it != null
+            }
+        }
+        return this
+    }
+
+    fun <R : ValidationRule<T>> R.exactly(value: T): R {
+        add {
+            val message = "Was supposed to be '$value' but is '$it'"
+            ValidationResult.condition(ValidationFailure(group, message)) {
+                it == value
+            }
+        }
+        return this
+    }
+
     protected fun add(rule: (T) -> ValidationResult): ValidationRule<T> {
         val copy = rules
         rules = { fixture -> copy(fixture) merge rule(fixture) }

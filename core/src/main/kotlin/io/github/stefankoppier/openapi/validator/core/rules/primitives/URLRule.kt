@@ -20,14 +20,4 @@ class URLRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<URL?>(gro
             super.validate(null)
         }
     }
-
-    fun required(): URLRule {
-        add {
-            val message = "Was required but is '$it'"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it != null
-            }
-        }
-        return this
-    }
 }

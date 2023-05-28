@@ -7,26 +7,6 @@ import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 
 class StringRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<String?>(group) {
 
-    fun required(): StringRule {
-        add {
-            val message = "Was required but is not given"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it != null
-            }
-        }
-        return this
-    }
-
-    fun exactly(value: String): StringRule {
-        add {
-            val message = "Was supposed to be '$value' but is '$it'"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it == value
-            }
-        }
-        return this
-    }
-
     fun lowercase(): StringRule {
         add {
             val message = "Was supposed to be lowercase but is '$it'"
