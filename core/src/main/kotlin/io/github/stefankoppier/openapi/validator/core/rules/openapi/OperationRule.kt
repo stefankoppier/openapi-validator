@@ -4,10 +4,18 @@ import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.BooleanRule
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableStringRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.Operation
 
 class OperationRule(group: RuleGroup) : ValidationRule<Operation>(group) {
+
+    fun tags(description: String = "", rule: IterableStringRule.() -> IterableStringRule): OperationRule {
+        add {
+            rule(IterableStringRule(RuleGroup.named("tags", description, RuleGroupCategory.FIELD, group))).validate(it.tags)
+        }
+        return this
+    }
 
     fun summary(description: String = "", rule: StringRule.() -> StringRule): OperationRule {
         add {

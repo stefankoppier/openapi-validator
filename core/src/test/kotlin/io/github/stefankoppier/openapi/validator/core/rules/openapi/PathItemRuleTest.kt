@@ -1,6 +1,5 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.swagger.v3.oas.models.PathItem
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
@@ -10,7 +9,7 @@ class PathItemRuleTest {
 
     @Test
     fun `path with all properties failing`() {
-        val result = PathItemRule(RuleGroup.unknown())
+        val result = PathItemRule()
             .summary { required() }
             .description { required() }
             .validate(PathItem())
@@ -21,7 +20,7 @@ class PathItemRuleTest {
 
     @Test
     fun `summary required with a summary`() {
-        val result = PathItemRule(RuleGroup.unknown())
+        val result = PathItemRule()
             .summary { required() }
             .validate(PathItem().summary("Summary"))
 
@@ -30,7 +29,7 @@ class PathItemRuleTest {
 
     @Test
     fun `summary required without a summary`() {
-        val result = PathItemRule(RuleGroup.unknown())
+        val result = PathItemRule()
             .summary { required() }
             .validate(PathItem())
 
@@ -40,7 +39,7 @@ class PathItemRuleTest {
 
     @Test
     fun `summary required and lowercase with a summary`() {
-        val result = PathItemRule(RuleGroup.unknown())
+        val result = PathItemRule()
             .summary { required(); lowercase() }
             .validate(PathItem().summary("Summary"))
 

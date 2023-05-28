@@ -6,7 +6,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.PathItem
 
-class PathItemRule(group: RuleGroup) : ValidationRule<PathItem>(group) {
+class PathItemRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem>(group) {
 
     fun summary(description: String = "", rule: StringRule.() -> StringRule): PathItemRule {
         add {
