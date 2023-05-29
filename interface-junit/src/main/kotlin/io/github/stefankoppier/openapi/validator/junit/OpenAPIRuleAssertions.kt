@@ -1,6 +1,6 @@
 package io.github.stefankoppier.openapi.validator.junit
 
-import io.github.stefankoppier.openapi.validator.core.rules.ValidationResult
+import io.github.stefankoppier.openapi.validator.core.ValidationResult
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.OpenAPIRule
 import io.swagger.v3.oas.models.OpenAPI
 import org.junit.jupiter.api.fail

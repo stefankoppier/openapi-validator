@@ -1,6 +1,8 @@
-package io.github.stefankoppier.openapi.validator.core.rules
+package io.github.stefankoppier.openapi.validator.core
 
 import io.github.stefankoppier.openapi.validator.core.internal.RoseTree
+import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
+import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 
 class ValidationResult internal constructor(val failures: MutableList<ValidationFailure>) {
 

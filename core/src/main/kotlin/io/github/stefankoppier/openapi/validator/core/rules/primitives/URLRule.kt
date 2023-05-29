@@ -1,8 +1,8 @@
 package io.github.stefankoppier.openapi.validator.core.rules.primitives
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.ValidationFailure
-import io.github.stefankoppier.openapi.validator.core.rules.ValidationResult
+import io.github.stefankoppier.openapi.validator.core.ValidationFailure
+import io.github.stefankoppier.openapi.validator.core.ValidationResult
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import java.net.URL
 

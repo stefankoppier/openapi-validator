@@ -1,5 +1,8 @@
 package io.github.stefankoppier.openapi.validator.core.rules
 
+import io.github.stefankoppier.openapi.validator.core.ValidationFailure
+import io.github.stefankoppier.openapi.validator.core.ValidationResult
+
 abstract class ValidationRule<T : Any>(val group: RuleGroup) {
 
     private var preconditions = { _: T? -> true }
@@ -14,36 +17,26 @@ abstract class ValidationRule<T : Any>(val group: RuleGroup) {
         return rule()
     }
 
-    fun <R : ValidationRule<T>> R.holds(predicate: (T?) -> Boolean): R {
+    fun <R : ValidationRule<T>> R.holds(message: (T?) -> String = { "Was supposed to hold for '$it' but did not" }, predicate: (T?) -> Boolean): R {
         add {
-            val message = "Was supposed to hold for '$it' but did not"
-            ValidationResult.condition(ValidationFailure(group, message)) {
+            ValidationResult.condition(ValidationFailure(group, message(it))) {
                 predicate(it)
             }
         }
         return this
     }
 
-    // TODO: cool to have, if we have a ValidationRule which is nullable, after required, we can return
-    // a non nullable ValidationRule
+    // TODO: cool to have, if we have a ValidationRule which is nullable, after required, we can return a non nullable ValidationRule
     fun <R : ValidationRule<T>> R.required(): R {
-        add {
-            val message = "Was required but is not given"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it != null
-            }
+        return holds( { "Was required but is not given" } ) {
+            it != null
         }
-        return this
     }
 
     fun <R : ValidationRule<T>> R.exactly(value: T?): R {
-        add {
-            val message = "Was supposed to be '$value' but is '$it'"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it == value
-            }
+        return holds( { "Was supposed to be '$value' but is '$it'" } ) {
+            it == value
         }
-        return this
     }
 
     protected fun add(rule: (T?) -> ValidationResult): ValidationRule<T> {

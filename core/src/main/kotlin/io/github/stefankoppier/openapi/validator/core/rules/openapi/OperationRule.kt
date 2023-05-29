@@ -5,6 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ParametersRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ResponsesRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.SecurityRequirementsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ServersRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.BooleanRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableStringRule
@@ -40,7 +41,7 @@ class OperationRule(group: RuleGroup) : ValidationRule<Operation>(group) {
     fun externalDocs(description: String = "", rule: ExternalDocumentationRule.() -> ExternalDocumentationRule) =
         apply {
             add {
-                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", description, RuleGroupCategory.FIELD, group)))
+                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", description, RuleGroupCategory.OBJECT, group)))
                     .validate(it?.externalDocs)
             }
         }
@@ -56,17 +57,23 @@ class OperationRule(group: RuleGroup) : ValidationRule<Operation>(group) {
     fun parameters(description: String = "", rule: ParametersRule.() -> ParametersRule) =
         apply {
             add {
-                rule(ParametersRule(RuleGroup.named("parameters", description, RuleGroupCategory.FIELD, group)))
+                rule(ParametersRule(RuleGroup.named("parameters", description, RuleGroupCategory.OBJECT, group)))
                     .validate(it?.parameters)
             }
         }
 
-    // requestBody
+    fun requestBody(description: String = "", rule: RequestBodyRule.() -> RequestBodyRule) =
+        apply {
+            add {
+                rule(RequestBodyRule(RuleGroup.named("requestBody", description, RuleGroupCategory.OBJECT, group)))
+                    .validate(it?.requestBody)
+            }
+        }
 
     fun responses(description: String = "", rule: ResponsesRule.() -> ResponsesRule) =
         apply {
             add {
-                rule(ResponsesRule(RuleGroup.named("responses", description, RuleGroupCategory.FIELD, group)))
+                rule(ResponsesRule(RuleGroup.named("responses", description, RuleGroupCategory.OBJECT, group)))
                     .validate(it?.responses?.toList())
             }
         }
@@ -81,12 +88,18 @@ class OperationRule(group: RuleGroup) : ValidationRule<Operation>(group) {
             }
         }
 
-    // security
+    fun security(description: String = "", rule: SecurityRequirementsRule.() -> SecurityRequirementsRule) =
+        apply {
+            add {
+                rule(SecurityRequirementsRule(RuleGroup.named("security", description, RuleGroupCategory.OBJECT, group)))
+                    .validate(it?.security)
+            }
+        }
 
     fun servers(description: String = "", rule: ServersRule.() -> ServersRule) =
         apply {
             add {
-                rule(ServersRule(RuleGroup.named("servers", description, RuleGroupCategory.FIELD, group)))
+                rule(ServersRule(RuleGroup.named("servers", description, RuleGroupCategory.OBJECT, group)))
                     .validate(it?.servers)
             }
         }

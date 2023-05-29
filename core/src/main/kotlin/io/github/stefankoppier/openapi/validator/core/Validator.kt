@@ -1,6 +1,5 @@
 package io.github.stefankoppier.openapi.validator.core
 
-import io.github.stefankoppier.openapi.validator.core.rules.ValidationResult
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.swagger.v3.oas.models.OpenAPI
 

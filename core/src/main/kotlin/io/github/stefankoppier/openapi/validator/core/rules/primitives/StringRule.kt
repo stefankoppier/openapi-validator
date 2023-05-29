@@ -1,90 +1,47 @@
 package io.github.stefankoppier.openapi.validator.core.rules.primitives
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.ValidationFailure
-import io.github.stefankoppier.openapi.validator.core.rules.ValidationResult
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 
 class StringRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<String>(group) {
 
-    fun matches(regex: Regex): StringRule {
-        add {
-            val message = "Was supposed to match '$regex'"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it == null || regex.matches(it)
-            }
+    fun matches(regex: Regex) =
+        holds( { "Was supposed to match '$regex' but is '$it'" } ) {
+            it == null || regex.matches(it)
         }
-        return this
-    }
 
-    fun lowercase(): StringRule {
-        add {
-            val message = "Was supposed to be lowercase but is '$it'"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it == null || it.all { c -> c.isLowerCase() }
-            }
+    fun lowercase() =
+        holds( { "Was supposed to be lowercase but is '$it'" } ) {
+            it == null || it.all { c -> c.isLowerCase() }
         }
-        return this
-    }
 
-    fun uppercase(): StringRule {
-        add {
-            val message = "Was supposed to be uppercase but is '$it'"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it == null || it.all { c -> c.isUpperCase() }
-            }
+    fun uppercase() =
+        holds( { "Was supposed to be uppercase but is '$it'" } ) {
+            it == null || it.all { c -> c.isUpperCase() }
         }
-        return this
-    }
 
-    fun alpha(): StringRule {
-        add {
-            val message = "Was supposed to be alphanumeric but is '$it'"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it == null || it.all { c -> c.isLetter() }
-            }
+    fun alpha() =
+        holds( { "Was supposed to be alphabetic but is '$it'" } ) {
+            it == null || it.all { c -> c.isLetter() }
         }
-        return this
-    }
 
-    fun numeric(): StringRule {
-        add {
-            val message = "Was supposed to be alphanumeric but is '$it'"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it == null || it.all { c -> c.isDigit() }
-            }
+    fun numeric() =
+        holds( { "Was supposed to be numeric but is '$it'" } ) {
+            it == null || it.all { c -> c.isDigit() }
         }
-        return this
-    }
 
-    fun alphanumeric(): StringRule {
-        add {
-            val message = "Was supposed to be alphanumeric but is '$it'"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it == null || it.all { c -> c.isLetterOrDigit() }
-            }
+    fun alphanumeric() =
+        holds( { "Was supposed to be alphanumeric but is '$it'" } ) {
+            it == null || it.all { c -> c.isLetterOrDigit() }
         }
-        return this
-    }
 
-
-    fun kebabcase(): StringRule {
-        add {
-            val message = "Was supposed to be alphanumeric but is '$it'"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it == null || it.all { c -> c.isLetterOrDigit() || c == '-' }
-            }
+    fun kebabcase() =
+        holds( { "Was supposed to be kebab case but is '$it'" } ) {
+            it == null || it.all { c -> c.isLetterOrDigit() || c == '-' }
         }
-        return this
-    }
 
-    fun snakecase(): StringRule {
-        add {
-            val message = "Was supposed to be alphanumeric but is '$it'"
-            ValidationResult.condition(ValidationFailure(group, message)) {
-                it == null || it.all { c -> c.isLetterOrDigit() || c == '_' }
-            }
+    fun snakecase() =
+        holds( { "Was supposed to be snake case but is '$it'" } ) {
+            it == null || it.all { c -> c.isLetterOrDigit() || c == '_' }
         }
-        return this
-    }
 }
