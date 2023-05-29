@@ -27,4 +27,14 @@ abstract class IterableValidationRule<T>(group: RuleGroup) : ValidationRule<Iter
         }
         return this
     }
+
+    fun <R : IterableValidationRule<T>> R.none(description: String = "", predicate: (T) -> Boolean): R {
+        add {
+            val message = "None were supposed to match '$description' but at least one did"
+            ValidationResult.condition(ValidationFailure(group, message)) {
+                it?.none(predicate) ?: true
+            }
+        }
+        return this
+    }
 }
