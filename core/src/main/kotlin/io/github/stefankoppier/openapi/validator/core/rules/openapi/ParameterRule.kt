@@ -23,8 +23,8 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun `in`(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group)))
-                    .validate(it?.name)
+                rule(StringRule(RuleGroup.named("in", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.`in`)
             }
         }
 
