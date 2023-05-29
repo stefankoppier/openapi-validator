@@ -13,24 +13,27 @@ class LicenceRule(group: RuleGroup) : ValidationRule<License>(group) {
         name { required() }
     }
 
-    fun name(description: String = "", rule: StringRule.() -> StringRule): LicenceRule {
-        add {
-            rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group))).validate(it?.name)
+    fun name(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.name)
+            }
         }
-        return this
-    }
 
-    fun identifier(description: String = "", rule: StringRule.() -> StringRule): LicenceRule {
-        add {
-            rule(StringRule(RuleGroup.named("identifier", description, RuleGroupCategory.FIELD, group))).validate(it?.identifier)
+    fun identifier(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("identifier", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.identifier)
+            }
         }
-        return this
-    }
 
-    fun url(description: String = "", rule: URLRule.() -> URLRule): LicenceRule {
-        add {
-            rule(URLRule(RuleGroup.named("url", description, RuleGroupCategory.FIELD, group))).validate(it?.url)
+    fun url(description: String = "", rule: URLRule.() -> URLRule) =
+        apply {
+            add {
+                rule(URLRule(RuleGroup.named("url", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.url)
+            }
         }
-        return this
-    }
 }

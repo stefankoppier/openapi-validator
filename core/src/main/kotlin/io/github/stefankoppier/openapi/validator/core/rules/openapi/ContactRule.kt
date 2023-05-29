@@ -11,25 +11,28 @@ class ContactRule(group: RuleGroup) : ValidationRule<Contact>(group) {
         required()
     }
 
-    fun name(description: String = "", rule: StringRule.() -> StringRule): ContactRule {
-        add {
-            rule(StringRule(RuleGroup.named("name", description,  RuleGroupCategory.FIELD, group))).validate(it?.name)
+    fun name(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("name", description,  RuleGroupCategory.FIELD, group)))
+                    .validate(it?.name)
+            }
         }
-        return this
-    }
 
-    fun url(description: String = "", rule: URLRule.() -> URLRule): ContactRule {
-        add {
-            rule(URLRule(RuleGroup.named("url", description, RuleGroupCategory.FIELD, group))).validate(it?.url)
+    fun url(description: String = "", rule: URLRule.() -> URLRule) =
+        apply {
+            add {
+                rule(URLRule(RuleGroup.named("url", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.url)
+            }
         }
-        return this
-    }
 
     // TODO: stricter email validation
-    fun email(description: String = "", rule: StringRule.() -> StringRule): ContactRule {
-        add {
-            rule(StringRule(RuleGroup.named("email", description, RuleGroupCategory.FIELD, group))).validate(it?.email)
+    fun email(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("email", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.email)
+            }
         }
-        return this
-    }
 }

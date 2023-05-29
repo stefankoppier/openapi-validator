@@ -11,95 +11,109 @@ import io.swagger.v3.oas.models.parameters.Parameter
 
 class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
 
-    fun name(description: String = "", rule: StringRule.() -> StringRule): ParameterRule {
-        add {
-            rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group))).validate(it?.name)
+    fun name(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.name)
+            }
         }
-        return this
-    }
 
     // TODO: check if a different name can used so we don't need quotes.
-    fun `in`(description: String = "", rule: StringRule.() -> StringRule): ParameterRule {
-        add {
-            rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group))).validate(it?.name)
+    fun `in`(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.name)
+            }
         }
-        return this
-    }
 
-    fun description(description: String = "", rule: StringRule.() -> StringRule): ParameterRule {
-        add {
-            rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group))).validate(it?.description)
+    fun description(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.description)
+            }
         }
-        return this
-    }
 
-    fun required(description: String = "", rule: BooleanRule.() -> BooleanRule): ParameterRule {
-        add {
-            rule(BooleanRule(RuleGroup.named("required", description, RuleGroupCategory.FIELD, group))).validate(it?.required)
+    fun required(description: String = "", rule: BooleanRule.() -> BooleanRule) =
+        apply {
+            add {
+                rule(BooleanRule(RuleGroup.named("required", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.required)
+            }
         }
-        return this
-    }
 
-    fun deprecated(description: String = "", rule: BooleanRule.() -> BooleanRule): ParameterRule {
-        add {
-            rule(BooleanRule(RuleGroup.named("deprecated", description, RuleGroupCategory.FIELD, group))).validate(it?.deprecated)
+    fun deprecated(description: String = "", rule: BooleanRule.() -> BooleanRule) =
+        apply {
+            add {
+                rule(BooleanRule(RuleGroup.named("deprecated", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.deprecated)
+            }
         }
-        return this
-    }
 
-    fun allowEmptyValue(description: String = "", rule: BooleanRule.() -> BooleanRule): ParameterRule {
-        add {
-            rule(BooleanRule(RuleGroup.named("allowEmptyValue", description, RuleGroupCategory.FIELD, group))).validate(it?.allowEmptyValue)
+    fun allowEmptyValue(description: String = "", rule: BooleanRule.() -> BooleanRule) =
+        apply {
+            add {
+                rule(BooleanRule(RuleGroup.named("allowEmptyValue", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.allowEmptyValue)
+            }
         }
-        return this
-    }
 
-//    fun style(description: String = "", rule: BooleanRule.() -> BooleanRule): ParameterRule {
-//        add {
-//            rule(BooleanRule(RuleGroup.named("style", description, RuleGroupCategory.FIELD, group))).validate(it?.style)
+//    fun style(description: String = "", rule: BooleanRule.() -> BooleanRule) =
+//        apply {
+//    add {
+//            rule(BooleanRule(RuleGroup.named("style", description, RuleGroupCategory.FIELD, group)))
+//            .validate(it?.style)
 //        }
-//        return this
+//        
 //    }
 
-    fun explode(description: String = "", rule: BooleanRule.() -> BooleanRule): ParameterRule {
-        add {
-            rule(BooleanRule(RuleGroup.named("explode", description, RuleGroupCategory.FIELD, group))).validate(it?.explode)
+    fun explode(description: String = "", rule: BooleanRule.() -> BooleanRule) =
+        apply {
+            add {
+                rule(BooleanRule(RuleGroup.named("explode", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.explode)
+            }
         }
-        return this
+
+    fun allowReserved(description: String = "", rule: BooleanRule.() -> BooleanRule) =
+        apply {
+            add {
+                rule(BooleanRule(RuleGroup.named("allowReserved", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.allowReserved)
+            }
+        }
+
+    fun schema(description: String = "", rule: SchemaRule<Any>.() -> SchemaRule<Any>) =
+        apply {
+            add {
+                rule(SchemaRule(RuleGroup.named("schema", description, RuleGroupCategory.OBJECT, group)))
+                    .validate(it?.schema)
+            }
+        }
+
+    fun example(description: String = "", rule: AnyRule.() -> AnyRule) =
+        apply {
+            add {
+                rule(AnyRule(RuleGroup.named("example", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.example)
+        }
     }
 
-    fun allowReserved(description: String = "", rule: BooleanRule.() -> BooleanRule): ParameterRule {
-        add {
-            rule(BooleanRule(RuleGroup.named("allowReserved", description, RuleGroupCategory.FIELD, group))).validate(it?.allowReserved)
+    fun examples(description: String = "", rule: ExamplesRule.() -> ExamplesRule) =
+        apply {
+            add {
+                rule(ExamplesRule(RuleGroup.named("examples", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.examples?.toList())
+            }
         }
-        return this
-    }
 
-    fun schema(description: String = "", rule: SchemaRule<Any>.() -> SchemaRule<Any>): ParameterRule {
-        add {
-            rule(SchemaRule(RuleGroup.named("schema", description, RuleGroupCategory.OBJECT, group))).validate(it?.schema)
+    fun content(description: String = "", rule: ContentRule.() -> ContentRule) =
+        apply {
+            add {
+                rule(ContentRule(RuleGroup.named("content", description, RuleGroupCategory.OBJECT, group)))
+                    .validate(it?.content?.toList())
+            }
         }
-        return this
-    }
-
-    fun example(description: String = "", rule: AnyRule.() -> AnyRule): ParameterRule {
-        add {
-            rule(AnyRule(RuleGroup.named("example", description, RuleGroupCategory.FIELD, group))).validate(it?.example)
-        }
-        return this
-    }
-
-    fun examples(description: String = "", rule: ExamplesRule.() -> ExamplesRule): ParameterRule {
-        add {
-            rule(ExamplesRule(RuleGroup.named("examples", description, RuleGroupCategory.FIELD, group))).validate(it?.examples?.toList())
-        }
-        return this
-    }
-
-    fun content(description: String = "", rule: ContentRule.() -> ContentRule): ParameterRule {
-        add {
-            rule(ContentRule(RuleGroup.named("content", description, RuleGroupCategory.OBJECT, group))).validate(it?.content?.toList())
-        }
-        return this
-    }
 }

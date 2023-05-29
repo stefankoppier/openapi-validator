@@ -10,31 +10,35 @@ import io.swagger.v3.oas.models.examples.Example
 
 class ExampleRule(group: RuleGroup) : ValidationRule<Example>(group) {
 
-    fun summary(description: String = "", rule: StringRule.() -> StringRule): ExampleRule {
-        add {
-            rule(StringRule(RuleGroup.named("summary", description, RuleGroupCategory.FIELD, group))).validate(it?.summary)
+    fun summary(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("summary", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.summary)
+            }
         }
-        return this
-    }
 
-    fun description(description: String = "", rule: StringRule.() -> StringRule): ExampleRule {
-        add {
-            rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group))).validate(it?.description)
+    fun description(description: String = "", rule: StringRule.() -> StringRule) = 
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.description)
+            }
         }
-        return this
-    }
 
-    fun value(description: String = "", rule: AnyRule.() -> AnyRule): ExampleRule {
-        add {
-            rule(AnyRule(RuleGroup.named("value", description, RuleGroupCategory.FIELD, group))).validate(it?.value)
+    fun value(description: String = "", rule: AnyRule.() -> AnyRule) =
+        apply {
+            add {
+                rule(AnyRule(RuleGroup.named("value", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.value)
+            }
         }
-        return this
-    }
 
-    fun externalValue(description: String = "", rule: URIRule.() -> URIRule): ExampleRule {
-        add {
-            rule(URIRule(RuleGroup.named("externalValue", description, RuleGroupCategory.FIELD, group))).validate(it?.externalValue)
+    fun externalValue(description: String = "", rule: URIRule.() -> URIRule) =
+        apply {
+            add {
+                rule(URIRule(RuleGroup.named("externalValue", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.externalValue)
+            }
         }
-        return this
-    }
 }

@@ -14,6 +14,18 @@ abstract class ValidationRule<T : Any>(val group: RuleGroup) {
         return rule()
     }
 
+    fun <R : ValidationRule<T>> R.holds(predicate: (T?) -> Boolean): R {
+        add {
+            val message = "Was supposed to hold for '$it' but did not"
+            ValidationResult.condition(ValidationFailure(group, message)) {
+                predicate(it)
+            }
+        }
+        return this
+    }
+
+    // TODO: cool to have, if we have a ValidationRule which is nullable, after required, we can return
+    // a non nullable ValidationRule
     fun <R : ValidationRule<T>> R.required(): R {
         add {
             val message = "Was required but is not given"

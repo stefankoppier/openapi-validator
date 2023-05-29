@@ -13,17 +13,19 @@ class ExternalDocumentationRule(group: RuleGroup) : ValidationRule<ExternalDocum
         url { required() }
     }
 
-    fun description(description: String = "", rule: StringRule.() -> StringRule): ExternalDocumentationRule {
-        add {
-            rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group))).validate(it?.description)
+    fun description(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.description)
+            }
         }
-        return this
-    }
 
-    fun url(description: String = "", rule: URLRule.() -> URLRule): ExternalDocumentationRule {
-        add {
-            rule(URLRule(RuleGroup.named("url", description, RuleGroupCategory.FIELD, group))).validate(it?.url)
+    fun url(description: String = "", rule: URLRule.() -> URLRule) =
+        apply {
+            add {
+                rule(URLRule(RuleGroup.named("url", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.url)
+            }
         }
-        return this
-    }
 }

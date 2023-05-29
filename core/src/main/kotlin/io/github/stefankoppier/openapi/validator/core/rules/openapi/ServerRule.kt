@@ -3,20 +3,22 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ServerVariablesRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
-import io.swagger.v3.oas.models.tags.Tag
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.URLRule
+import io.swagger.v3.oas.models.servers.Server
 
-class TagRule(group : RuleGroup) : ValidationRule<Tag>(group) {
+class ServerRule(group: RuleGroup) : ValidationRule<Server>(group) {
 
     init {
-        name { required() }
+        url { required() }
     }
 
-    fun name(description: String = "", rule: StringRule.() -> StringRule) =
+    fun url(description: String = "", rule: URLRule.() -> URLRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group)))
-                    .validate(it?.name)
+                rule(URLRule(RuleGroup.named("url", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.url)
             }
         }
 
@@ -28,11 +30,11 @@ class TagRule(group : RuleGroup) : ValidationRule<Tag>(group) {
             }
         }
 
-    fun externalDocs(description: String = "", rule: ExternalDocumentationRule.() -> ExternalDocumentationRule) =
+    fun variables(description: String = "", rule: ServerVariablesRule.() -> ServerVariablesRule) =
         apply {
             add {
-                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", description, RuleGroupCategory.OBJECT, group)))
-                    .validate(it?.externalDocs)
+                rule(ServerVariablesRule(RuleGroup.named("variables", description, RuleGroupCategory.OBJECT, group)))
+                    .validate(it?.variables?.toList())
             }
         }
 }

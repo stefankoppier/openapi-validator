@@ -13,67 +13,81 @@ import io.swagger.v3.oas.models.Operation
 
 class OperationRule(group: RuleGroup) : ValidationRule<Operation>(group) {
 
-    fun tags(description: String = "", rule: IterableStringRule.() -> IterableStringRule): OperationRule {
-        add {
-            rule(IterableStringRule(RuleGroup.named("tags", description, RuleGroupCategory.FIELD, group))).validate(it?.tags)
+    fun tags(description: String = "", rule: IterableStringRule.() -> IterableStringRule) =
+        apply {
+            add {
+                rule(IterableStringRule(RuleGroup.named("tags", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.tags)
+            }
         }
-        return this
+
+    fun summary(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+            rule(StringRule(RuleGroup.named("summary", description, RuleGroupCategory.FIELD, group)))
+                .validate(it?.summary)
+        }
     }
 
-    fun summary(description: String = "", rule: StringRule.() -> StringRule): OperationRule {
-        add {
-            rule(StringRule(RuleGroup.named("summary", description, RuleGroupCategory.FIELD, group))).validate(it?.summary)
+    fun description(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.description)
+            }
         }
-        return this
-    }
 
-    fun description(description: String = "", rule: StringRule.() -> StringRule): OperationRule {
-        add {
-            rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group))).validate(it?.description)
+    fun externalDocs(description: String = "", rule: ExternalDocumentationRule.() -> ExternalDocumentationRule) =
+        apply {
+            add {
+                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.externalDocs)
+            }
         }
-        return this
-    }
 
-    // externalDocs
-
-    fun operationId(description: String = "", rule: StringRule.() -> StringRule): OperationRule {
-        add {
-            rule(StringRule(RuleGroup.named("operationId", description, RuleGroupCategory.FIELD, group))).validate(it?.operationId)
+    fun operationId(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("operationId", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.operationId)
+            }
         }
-        return this
-    }
 
-    fun parameters(description: String = "", rule: ParametersRule.() -> ParametersRule): OperationRule {
-        add {
-            rule(ParametersRule(RuleGroup.named("parameters", description, RuleGroupCategory.FIELD, group))).validate(it?.parameters)
+    fun parameters(description: String = "", rule: ParametersRule.() -> ParametersRule) =
+        apply {
+            add {
+                rule(ParametersRule(RuleGroup.named("parameters", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.parameters)
+            }
         }
-        return this
-    }
 
     // requestBody
 
-    fun responses(description: String = "", rule: ResponsesRule.() -> ResponsesRule): OperationRule {
-        add {
-            rule(ResponsesRule(RuleGroup.named("responses", description, RuleGroupCategory.FIELD, group))).validate(it?.responses?.toList())
+    fun responses(description: String = "", rule: ResponsesRule.() -> ResponsesRule) =
+        apply {
+            add {
+                rule(ResponsesRule(RuleGroup.named("responses", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.responses?.toList())
+            }
         }
-        return this
-    }
 
     // callbacks
 
-    fun deprecated(description: String = "", rule: BooleanRule.() -> BooleanRule): OperationRule {
-        add {
-            rule(BooleanRule(RuleGroup.named("deprecated", description, RuleGroupCategory.FIELD, group))).validate(it?.deprecated)
+    fun deprecated(description: String = "", rule: BooleanRule.() -> BooleanRule) =
+        apply {
+            add {
+                rule(BooleanRule(RuleGroup.named("deprecated", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.deprecated)
+            }
         }
-        return this
-    }
 
     // security
 
-    fun servers(description: String = "", rule: ServersRule.() -> ServersRule): OperationRule {
-        add {
-            rule(ServersRule(RuleGroup.named("servers", description, RuleGroupCategory.FIELD, group))).validate(it?.servers)
+    fun servers(description: String = "", rule: ServersRule.() -> ServersRule) =
+        apply {
+            add {
+                rule(ServersRule(RuleGroup.named("servers", description, RuleGroupCategory.FIELD, group)))
+                    .validate(it?.servers)
+            }
         }
-        return this
-    }
 }
