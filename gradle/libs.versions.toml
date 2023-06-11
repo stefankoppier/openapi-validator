@@ -2,12 +2,17 @@
 kotlin = "1.8.21"
 
 [libraries]
-kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version = "1.8.21"}
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 swagger-models = { module = "io.swagger.core.v3:swagger-models", version = "2.2.10" }
 swagger-parser = { module = "io.swagger.parser.v3:swagger-parser", version = "2.1.14" }
 kotlinpoet = { module = "com.squareup:kotlinpoet", version = "1.13.2" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.9.3" }
 assertj-core = { module = "org.assertj:assertj-core", version = "3.24.2" }
+guava = { module = "com.google.guava:guava", version = "32.0.1-jre" }
+
+[bundles]
+testing = ["kotlin-test", "assertj-core"]
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

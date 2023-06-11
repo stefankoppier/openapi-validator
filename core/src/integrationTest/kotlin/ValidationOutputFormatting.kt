@@ -3,8 +3,8 @@ import io.github.stefankoppier.openapi.validator.core.Parser
 import io.github.stefankoppier.openapi.validator.core.Validator
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.openAPI
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import java.nio.charset.StandardCharsets
-import kotlin.test.Test
 
 class ValidationOutputFormatting {
 

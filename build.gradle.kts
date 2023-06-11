@@ -11,21 +11,46 @@ allprojects {
     }
 
     plugins.withId("org.jetbrains.kotlin.jvm") {
+        apply(plugin = "jvm-test-suite")
+
         kotlin {
             jvmToolchain {
                 languageVersion.set(JavaLanguageVersion.of(17))
             }
         }
 
-        tasks.test {
-            useJUnitPlatform()
+        dependencies {
+            implementation(libs.kotlin.stdlib)
         }
 
-        dependencies {
-            implementation(libs.kotlin.stdlib.jdk8)
+        testing {
+            suites {
+                withType(JvmTestSuite::class).configureEach {
+                    useJUnitJupiter()
 
-            testImplementation(kotlin("test"))
-            testImplementation(libs.assertj.core)
+                    dependencies {
+                        implementation.bundle(libs.bundles.testing)
+                    }
+                }
+
+                val test by getting(JvmTestSuite::class)
+
+                register<JvmTestSuite>("integrationTest") {
+                    dependencies {
+                        implementation(project())
+                    }
+
+                    targets {
+                        all {
+                            testTask.configure { shouldRunAfter(test) }
+                        }
+                    }
+                }
+            }
+        }
+
+        tasks.check {
+            dependsOn(testing.suites.named("integrationTest"))
         }
     }
 }
