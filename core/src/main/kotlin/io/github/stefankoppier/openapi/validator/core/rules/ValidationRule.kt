@@ -2,6 +2,7 @@ package io.github.stefankoppier.openapi.validator.core.rules
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
 import io.github.stefankoppier.openapi.validator.core.ValidationResult
+import java.time.LocalDate
 
 abstract class ValidationRule<T : Any>(val group: RuleGroup) {
 
@@ -24,7 +25,9 @@ abstract class ValidationRule<T : Any>(val group: RuleGroup) {
             }
         }
 
-    // TODO: cool to have, if we have a ValidationRule which is nullable, after required, we can return a non nullable ValidationRule
+    fun <R : ValidationRule<T>> since(date: LocalDate, rule: () -> R) =
+        given( {_ -> LocalDate.now().isAfter(date) }, rule)
+
     fun <R : ValidationRule<T>> R.required() =
         holds( { "Was required but is not given" } ) { it != null }
 

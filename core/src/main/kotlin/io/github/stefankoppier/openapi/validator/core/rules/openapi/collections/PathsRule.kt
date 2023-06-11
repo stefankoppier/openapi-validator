@@ -18,7 +18,3 @@ class PathsRule(group: RuleGroup) : IterableValidationRule<Pair<String, PathItem
             }
         }
 }
-
-fun OpenAPIRule.paths(description: String = "", rule: PathsRule.() -> PathsRule): PathsRule {
-    return rule(PathsRule(RuleGroup.named("paths", description, RuleGroupCategory.OBJECT, group)))
-}

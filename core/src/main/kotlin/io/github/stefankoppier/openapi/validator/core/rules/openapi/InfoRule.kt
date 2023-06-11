@@ -69,7 +69,3 @@ class InfoRule(group: RuleGroup) : ValidationRule<Info>(group) {
             }
         }
 }
-
-fun InfoRule.info(description: String = "", rule: InfoRule.() -> InfoRule) : InfoRule {
-    return rule(InfoRule(RuleGroup.named("info", description, RuleGroupCategory.OBJECT, group)))
-}

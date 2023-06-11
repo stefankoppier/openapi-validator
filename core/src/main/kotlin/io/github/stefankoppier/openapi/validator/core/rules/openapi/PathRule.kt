@@ -106,7 +106,3 @@ class PathRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem
             }
         }
 }
-
-fun PathsRule.path(description: String = "", rule: PathRule.() -> PathRule): PathRule {
-    return rule(PathRule(RuleGroup.named("path", description, RuleGroupCategory.OBJECT, group)))
-}

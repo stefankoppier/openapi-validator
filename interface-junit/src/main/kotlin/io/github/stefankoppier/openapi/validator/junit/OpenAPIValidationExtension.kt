@@ -6,7 +6,6 @@ import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.api.extension.ParameterContext
 import org.junit.jupiter.api.extension.ParameterResolutionException
 import org.junit.jupiter.api.extension.ParameterResolver
-import java.net.URI
 import java.nio.file.Paths
 import kotlin.jvm.optionals.getOrNull
 
@@ -22,8 +21,8 @@ class OpenAPIValidationExtension : ParameterResolver {
             ?: throw ParameterResolutionException("Could not find element")
 
         val annotation = element
-            .getAnnotation(OpenAPIValidationDocument::class.java)
-            ?: throw ParameterResolutionException("Please annotate class '${element.name}' with '@${OpenAPIValidationDocument::class.simpleName}")
+            .getAnnotation(OpenAPITest::class.java)
+            ?: throw ParameterResolutionException("Please annotate class '${element.name}' with '@${OpenAPITest::class.simpleName}")
 
         val uri = runCatching { Paths.get(annotation.relativeUrl).toUri() }
             .getOrElse { throw ParameterResolutionException("Could not parse uri '${annotation.relativeUrl}'", it) }

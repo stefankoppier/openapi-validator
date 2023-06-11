@@ -7,7 +7,7 @@ import java.time.Instant
 import kotlin.test.Test
 
 @ExtendWith(OpenAPIValidationExtension::class)
-@OpenAPIValidationDocument(relativeUrl = "src/test/resources/petstore.yaml")
+@OpenAPITest(relativeUrl = "src/test/resources/petstore.yaml")
 class OpenAPIValidationExtensionTest(private val document: OpenAPI) {
 
     @Test
