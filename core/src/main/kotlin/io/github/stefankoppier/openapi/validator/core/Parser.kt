@@ -2,6 +2,7 @@ package io.github.stefankoppier.openapi.validator.core
 
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.parser.OpenAPIV3Parser
+import io.swagger.v3.parser.core.models.ParseOptions
 import java.net.URI
 
 class Parser {
@@ -16,7 +17,10 @@ class Parser {
     }
 
     fun parse(yaml: String): Result<OpenAPI> {
-        val openAPI: OpenAPI? = OpenAPIV3Parser().readContents(yaml)?.openAPI
+        val options = ParseOptions().apply { isResolve = true }
+        val openAPI: OpenAPI? = OpenAPIV3Parser()
+            .readContents(yaml, emptyList(), options)
+            ?.openAPI
         return if (openAPI != null)  {
             Result.success(openAPI)
         } else {

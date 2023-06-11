@@ -6,10 +6,19 @@ import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ExamplesRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.AnyRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.BooleanRule
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.EnumRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.parameters.Parameter
 
 class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
+
+    init {
+        name { required() }
+        `in` { required() }
+        given( { it == null || it.`in` == "path" } ) {
+            required { required() }
+        }
+    }
 
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
@@ -19,7 +28,6 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
             }
         }
 
-    // TODO: check if a different name can used so we don't need quotes.
     fun `in`(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
@@ -60,14 +68,13 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
             }
         }
 
-//    fun style(description: String = "", rule: BooleanRule.() -> BooleanRule) =
-//        apply {
-//    add {
-//            rule(BooleanRule(RuleGroup.named("style", description, RuleGroupCategory.FIELD, group)))
-//            .validate(it?.style)
-//        }
-//        
-//    }
+    fun style(description: String = "", rule: EnumRule<Parameter.StyleEnum>.() -> EnumRule<Parameter.StyleEnum>) =
+        apply {
+            add {
+                rule(EnumRule(RuleGroup.named("style", description, RuleGroupCategory.FIELD)))
+                    .validate(it?.style)
+            }
+        }
 
     fun explode(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
@@ -85,7 +92,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
             }
         }
 
-    fun schema(description: String = "", rule: SchemaRule<Any>.() -> SchemaRule<Any>) =
+    fun schema(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
                 rule(SchemaRule(RuleGroup.named("schema", description, RuleGroupCategory.OBJECT, group)))

@@ -24,8 +24,7 @@ class OperationRule(group: RuleGroup) : ValidationRule<Operation>(group) {
 
     fun summary(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
-            add {
-            rule(StringRule(RuleGroup.named("summary", description, RuleGroupCategory.FIELD, group)))
+            add { rule(StringRule(RuleGroup.named("summary", description, RuleGroupCategory.FIELD, group)))
                 .validate(it?.summary)
         }
     }

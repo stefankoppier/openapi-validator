@@ -1,7 +1,9 @@
 import com.google.common.io.Resources
 import io.github.stefankoppier.openapi.validator.core.Parser
 import io.github.stefankoppier.openapi.validator.core.Validator
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.PathsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.openAPI
+import io.swagger.v3.oas.models.parameters.Parameter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.nio.charset.StandardCharsets
@@ -25,18 +27,20 @@ class OpenAPIValidation {
                 }
             }
             tags {
-                contains {
-                    name { exactly("pet") }
+                tag(named = "pet") {
                     description { exactly("Everything about your Pets") }
                 }
-                contains {
-                    name { exactly("store") }
+                tag(named = "store") {
                     description { exactly("Access to Petstore orders") }
                 }
-                contains {
-                    name { exactly("user") }
+                tag(named = "user") {
                     description { exactly("Operations about user") }
                 }
+            }
+            paths {
+                `path pet`()
+                `path user login`()
+                `path pet findByStatus`()
             }
         }
 
@@ -45,6 +49,92 @@ class OpenAPIValidation {
             .getOrThrow()
         val result = Validator(rule).validate(openAPI)
 
-        assertThat(result.failures).isEmpty()
+        assertThat(result.failures)
+            .withFailMessage { result.summarize() }
+            .isEmpty()
     }
+
+    private fun PathsRule.`path pet`() =
+        path(named = "/pet") {
+            post {
+//              tags { any { it == "Add a new pet to the store" } }
+                summary { exactly("Add a new pet to the store") }
+                description { required(); exactly("") }
+                operationId { exactly("addPet") }
+                responses {
+                    response(named = "200") {
+                        description { exactly("successful operation") }
+                        content {
+                            mediaType(named = "application/json") {
+                                schema {
+                                    ref { exactly("#/components/schemas/Pet") }
+                                }
+                            }
+                        }
+                    }
+                    response(named = "405") {
+                        description { exactly("Invalid input") }
+                    }
+                }
+            }
+
+            put {
+//              tags { any { it == "pet" } }
+                summary { exactly("Update an existing pet") }
+                description { exactly("") }
+                operationId { exactly("updatePet") }
+                externalDocs {
+                    url { exactly("http://petstore.swagger.io/v2/doc/updatePet") }
+                    description { exactly("API documentation for the updatePet operation") }
+                }
+                responses {
+                    response(named = "200") {
+                        description { exactly("successful operation") }
+                        content {
+                            mediaType(named = "application/xml") {
+                                schema {
+                                    ref { exactly("#/components/schemas/Pet") }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    private fun PathsRule.`path pet findByStatus`() =
+        path(named = "/pet/findByStatus") {
+            get {
+                parameters {
+                    parameter(named = "status") {
+                        style { exactly(Parameter.StyleEnum.FORM) }
+                        explode { exactly(false) }
+                        deprecated { exactly(true) }
+                        schema {
+                            type { exactly("array") }
+                            items {
+                                type { exactly("string") }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    private fun PathsRule.`path user login`() =
+        path(named = "/user/login") {
+            get {
+                parameters {
+                    parameter(named = "username") {
+                        `in` { exactly("query") }
+                        description { exactly("The user name for login") }
+                        required { exactly(true) }
+                        schema {
+                            type { exactly("string") }
+                            pattern { exactly("^[a-zA-Z0-9]+[a-zA-Z0-9\\.\\-_]*[a-zA-Z0-9]+\$") }
+                        }
+                    }
+                }
+            }
+        }
 }

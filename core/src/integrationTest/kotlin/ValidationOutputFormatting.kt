@@ -26,12 +26,12 @@ class ValidationOutputFormatting {
 
         assertThat(result.failures).isNotEmpty()
         assertThat(result.summarize()).isEqualTo("""
-            |For object document:
-            |    For object info:
-            |        Field title does not comply:
+            |For document:
+            |    For info:
+            |        Field 'title' does not comply:
             |            - Was supposed to be 'Different title' but is 'OpenAPI Petstore'
-            |        For object contact:
-            |            Field name does not comply:
+            |        For contact:
+            |            Field 'name' does not comply:
             |                - Was supposed to be 'Different name' but is 'Swagger'
             |""".trimMargin())
     }

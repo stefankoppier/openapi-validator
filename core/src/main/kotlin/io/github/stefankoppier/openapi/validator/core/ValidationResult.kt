@@ -24,8 +24,8 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
                 builder.apply {
                     append((0 until level).joinToString(separator = "") { "    " })
                     append(when (it.category) {
-                        RuleGroupCategory.OBJECT -> "For object ${it.content}:"
-                        RuleGroupCategory.FIELD -> "Field ${it.content} does not comply:"
+                        RuleGroupCategory.OBJECT -> "For ${it.content}:"
+                        RuleGroupCategory.FIELD -> "Field '${it.content}' does not comply:"
                         RuleGroupCategory.MESSAGE -> "- ${it.content}"
                         RuleGroupCategory.UNKNOWN -> it.content
                     })
