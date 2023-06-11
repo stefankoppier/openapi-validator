@@ -14,7 +14,7 @@ class ContactRule(group: RuleGroup) : ValidationRule<Contact>(group) {
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("name", description,  RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group)))
                     .validate(it?.name)
             }
         }

@@ -28,7 +28,7 @@ abstract class ValidationRule<T : Any>(val group: RuleGroup) {
     fun <R : ValidationRule<T>> R.required() =
         holds( { "Was required but is not given" } ) { it != null }
 
-    fun <R : ValidationRule<T>> R.exactly(value: T?) =
+    fun <R : ValidationRule<T>> R.exactly(value: T) =
         holds( { "Was supposed to be '$value' but is '$it'" } ) { it == value }
 
     protected fun add(rule: (T?) -> ValidationResult): ValidationRule<T> {

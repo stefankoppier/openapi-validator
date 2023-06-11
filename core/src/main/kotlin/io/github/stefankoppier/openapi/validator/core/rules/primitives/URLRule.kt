@@ -20,4 +20,9 @@ class URLRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<URL>(grou
             super.validate(null)
         }
     }
+
+    fun <R : ValidationRule<URL>> R.exactly(value: String) =
+        holds( { "Was supposed to be '$value' but is '$it'" } ) {
+            it == run { URL(value) }
+        }
 }

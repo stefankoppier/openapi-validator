@@ -2,7 +2,6 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.tags.Tag
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 import kotlin.test.assertTrue

@@ -3,8 +3,7 @@ package io.github.stefankoppier.openapi.validator.core.rules.primitives
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 
-// TODO: add variants where we can pass rules instead of predicates
-abstract class IterableValidationRule<T>(group: RuleGroup) : ValidationRule<Iterable<T>>(group) {
+abstract class IterableValidationRule<T : Any>(group: RuleGroup) : ValidationRule<Iterable<T>>(group) {
 
     fun <R : IterableValidationRule<T>> R.all(description: String = "", predicate: (T) -> Boolean): R =
         holds( { "All were supposed to match '$description' but not all did" } ) {
