@@ -1,7 +1,6 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.*
 import io.swagger.v3.oas.models.media.Schema
@@ -11,7 +10,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("name", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.name)
             }
         }
@@ -19,7 +18,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun title(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("title", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("title", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.title)
             }
         }
@@ -27,7 +26,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun multipleOf(description: String = "", rule: BigDecimalRule.() -> BigDecimalRule) =
         apply {
             add {
-                rule(BigDecimalRule(RuleGroup.named("multipleOf", description, RuleGroupCategory.FIELD, group)))
+                rule(BigDecimalRule(RuleGroup.named("multipleOf", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.multipleOf)
             }
         }
@@ -35,7 +34,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun maximum(description: String = "", rule: BigDecimalRule.() -> BigDecimalRule) =
         apply {
             add {
-                rule(BigDecimalRule(RuleGroup.named("maximum", description, RuleGroupCategory.FIELD, group)))
+                rule(BigDecimalRule(RuleGroup.named("maximum", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.maximum)
             }
         }
@@ -43,7 +42,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun exclusiveMaximum(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("exclusiveMaximum", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("exclusiveMaximum", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.exclusiveMaximum)
             }
         }
@@ -51,7 +50,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun minimum(description: String = "", rule: BigDecimalRule.() -> BigDecimalRule) =
         apply {
             add {
-                rule(BigDecimalRule(RuleGroup.named("minimum", description, RuleGroupCategory.FIELD, group)))
+                rule(BigDecimalRule(RuleGroup.named("minimum", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.minimum)
             }
         }
@@ -59,7 +58,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun exclusiveMinimum(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("exclusiveMinimum", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("exclusiveMinimum", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.exclusiveMinimum)
             }
         }
@@ -67,7 +66,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun maxLength(description: String = "", rule: IntegerRule.() -> IntegerRule) =
         apply {
             add {
-                rule(IntegerRule(RuleGroup.named("maxLength", description, RuleGroupCategory.FIELD, group)))
+                rule(IntegerRule(RuleGroup.named("maxLength", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.maxLength)
             }
         }
@@ -75,7 +74,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun minLength(description: String = "", rule: IntegerRule.() -> IntegerRule) =
         apply {
             add {
-                rule(IntegerRule(RuleGroup.named("minLength", description, RuleGroupCategory.FIELD, group)))
+                rule(IntegerRule(RuleGroup.named("minLength", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.minLength)
             }
         }
@@ -83,7 +82,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun pattern(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("pattern", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("pattern", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.pattern)
             }
         }
@@ -91,7 +90,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun maxItems(description: String = "", rule: IntegerRule.() -> IntegerRule) =
         apply {
             add {
-                rule(IntegerRule(RuleGroup.named("maxItems", description, RuleGroupCategory.FIELD, group)))
+                rule(IntegerRule(RuleGroup.named("maxItems", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.maxItems)
             }
         }
@@ -99,7 +98,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun minItems(description: String = "", rule: IntegerRule.() -> IntegerRule) =
         apply {
             add {
-                rule(IntegerRule(RuleGroup.named("minItems", description, RuleGroupCategory.FIELD, group)))
+                rule(IntegerRule(RuleGroup.named("minItems", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.minItems)
             }
         }
@@ -107,7 +106,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun uniqueItems(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("uniqueItems", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("uniqueItems", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.uniqueItems)
             }
         }
@@ -115,7 +114,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun maxProperties(description: String = "", rule: IntegerRule.() -> IntegerRule) =
         apply {
             add {
-                rule(IntegerRule(RuleGroup.named("maxProperties", description, RuleGroupCategory.FIELD, group)))
+                rule(IntegerRule(RuleGroup.named("maxProperties", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.maxProperties)
             }
         }
@@ -123,7 +122,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun minProperties(description: String = "", rule: IntegerRule.() -> IntegerRule) =
         apply {
             add {
-                rule(IntegerRule(RuleGroup.named("minProperties", description, RuleGroupCategory.FIELD, group)))
+                rule(IntegerRule(RuleGroup.named("minProperties", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.minProperties)
             }
         }
@@ -131,7 +130,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun required(description: String = "", rule: IterableStringRule.() -> IterableStringRule) =
         apply {
             add {
-                rule(IterableStringRule(RuleGroup.named("required", description, RuleGroupCategory.FIELD, group)))
+                rule(IterableStringRule(RuleGroup.named("required", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.required)
             }
         }
@@ -139,7 +138,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun type(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("type", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("type", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.type)
             }
         }
@@ -147,7 +146,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
 //    fun enum(description: String = "", rule: IterableValidationRule<*>.() -> IterableValidationRule<*>) =
 //        apply {
 //            add {
-//                rule(IterableValidationRule<*>(RuleGroup.named("enum", description, RuleGroupCategory.FIELD, group)))
+//                rule(IterableValidationRule<*>(RuleGroup.named("enum", description, RuleGroup.Category.FIELD, group)))
 //                    .validate(it?.enum)
 //            }
 //        }
@@ -162,7 +161,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.description)
             }
         }
@@ -170,7 +169,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun format(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("format", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("format", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.format)
             }
         }
@@ -178,7 +177,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun ref(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("title", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("title", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.`$ref`)
             }
         }
@@ -186,7 +185,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun nullable(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("nullable", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("nullable", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.nullable)
             }
         }
@@ -194,7 +193,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun readOnly(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("readOnly", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("readOnly", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.readOnly)
             }
         }
@@ -202,7 +201,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun writeOnly(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("writeOnly", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("writeOnly", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.writeOnly)
             }
         }
@@ -210,7 +209,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun externalDocs(description: String = "", rule: ExternalDocumentationRule.() -> ExternalDocumentationRule) =
         apply {
             add {
-                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", description, RuleGroupCategory.OBJECT, group)))
+                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.externalDocs)
             }
         }
@@ -218,7 +217,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun deprecated(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("deprecated", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("deprecated", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.deprecated)
             }
         }
@@ -226,7 +225,7 @@ class SchemaRule(group: RuleGroup) : ValidationRule<Schema<*>>(group) {
     fun items(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
-                rule(SchemaRule(RuleGroup.named("items", description, RuleGroupCategory.FIELD, group)))
+                rule(SchemaRule(RuleGroup.named("items", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.items)
             }
         }

@@ -1,7 +1,6 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.BooleanRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
@@ -16,7 +15,7 @@ class RequestBodyRule(group: RuleGroup) : ValidationRule<RequestBody>(group) {
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.description)
             }
         }
@@ -24,7 +23,7 @@ class RequestBodyRule(group: RuleGroup) : ValidationRule<RequestBody>(group) {
     fun content(description: String = "", rule: ContentRule.() -> ContentRule) =
         apply {
             add {
-                rule(ContentRule(RuleGroup.named("content", description, RuleGroupCategory.FIELD, group)))
+                rule(ContentRule(RuleGroup.named("content", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.content?.toList())
             }
         }
@@ -32,7 +31,7 @@ class RequestBodyRule(group: RuleGroup) : ValidationRule<RequestBody>(group) {
     fun required(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("required", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("required", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.required)
             }
         }

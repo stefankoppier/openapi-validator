@@ -1,7 +1,6 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ComponentsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.PathsRule
@@ -18,7 +17,7 @@ class OpenAPIRule(group: RuleGroup =  RuleGroup.unknown()) : ValidationRule<Open
     fun openapi(description: String = "", rule: StringRule.() -> StringRule) =
         apply { 
             add {
-                rule(StringRule(RuleGroup.named("info", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("info", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.openapi)
             }
         }
@@ -26,7 +25,7 @@ class OpenAPIRule(group: RuleGroup =  RuleGroup.unknown()) : ValidationRule<Open
     fun info(description: String = "", rule: InfoRule.() -> InfoRule) =
         apply { 
             add {
-                rule(InfoRule(RuleGroup.named("info", description, RuleGroupCategory.OBJECT, group)))
+                rule(InfoRule(RuleGroup.named("info", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.info)
             }
         }
@@ -38,7 +37,7 @@ class OpenAPIRule(group: RuleGroup =  RuleGroup.unknown()) : ValidationRule<Open
     fun paths(description: String = "", rule: PathsRule.() -> PathsRule) =
         apply { 
             add {
-                rule(PathsRule(RuleGroup.named("paths", description, RuleGroupCategory.OBJECT, group)))
+                rule(PathsRule(RuleGroup.named("paths", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.paths?.toList())
             }
         }
@@ -48,7 +47,7 @@ class OpenAPIRule(group: RuleGroup =  RuleGroup.unknown()) : ValidationRule<Open
     fun components(description: String = "", rule: ComponentsRule.() -> ComponentsRule) =
         apply { 
             add {
-                rule(ComponentsRule(RuleGroup.named("components", description, RuleGroupCategory.OBJECT, group)))
+                rule(ComponentsRule(RuleGroup.named("components", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.components)
             }
         }
@@ -58,7 +57,7 @@ class OpenAPIRule(group: RuleGroup =  RuleGroup.unknown()) : ValidationRule<Open
     fun tags(description: String = "", rule: TagsRule.() -> TagsRule) =
         apply { 
             add {
-                rule(TagsRule(RuleGroup.named("tags", description, RuleGroupCategory.OBJECT, group)))
+                rule(TagsRule(RuleGroup.named("tags", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.tags)
             }
         }
@@ -66,12 +65,12 @@ class OpenAPIRule(group: RuleGroup =  RuleGroup.unknown()) : ValidationRule<Open
     fun externalDocs(description: String = "", rule: ExternalDocumentationRule.() -> ExternalDocumentationRule) =
         apply { 
             add {
-                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", description, RuleGroupCategory.OBJECT, group)))
+                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.externalDocs)
             }
         }
 }
 
 fun openAPI(description: String = "", rule: OpenAPIRule.() -> OpenAPIRule) : OpenAPIRule {
-    return rule(OpenAPIRule(RuleGroup.named("document", description, RuleGroupCategory.OBJECT)))
+    return rule(OpenAPIRule(RuleGroup.named("document", description, RuleGroup.Category.OBJECT)))
 }

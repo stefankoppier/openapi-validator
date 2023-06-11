@@ -14,7 +14,7 @@ class ContactRule(group: RuleGroup) : ValidationRule<Contact>(group) {
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("name", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.name)
             }
         }
@@ -22,7 +22,7 @@ class ContactRule(group: RuleGroup) : ValidationRule<Contact>(group) {
     fun url(description: String = "", rule: URLRule.() -> URLRule) =
         apply {
             add {
-                rule(URLRule(RuleGroup.named("url", description, RuleGroupCategory.FIELD, group)))
+                rule(URLRule(RuleGroup.named("url", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.url)
             }
         }
@@ -31,7 +31,7 @@ class ContactRule(group: RuleGroup) : ValidationRule<Contact>(group) {
     fun email(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("email", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("email", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.email)
             }
         }

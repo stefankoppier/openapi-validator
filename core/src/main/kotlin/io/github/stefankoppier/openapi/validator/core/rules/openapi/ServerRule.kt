@@ -1,7 +1,6 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ServerVariablesRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
@@ -17,7 +16,7 @@ class ServerRule(group: RuleGroup) : ValidationRule<Server>(group) {
     fun url(description: String = "", rule: URLRule.() -> URLRule) =
         apply {
             add {
-                rule(URLRule(RuleGroup.named("url", description, RuleGroupCategory.FIELD, group)))
+                rule(URLRule(RuleGroup.named("url", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.url)
             }
         }
@@ -25,7 +24,7 @@ class ServerRule(group: RuleGroup) : ValidationRule<Server>(group) {
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.description)
             }
         }
@@ -33,7 +32,7 @@ class ServerRule(group: RuleGroup) : ValidationRule<Server>(group) {
     fun variables(description: String = "", rule: ServerVariablesRule.() -> ServerVariablesRule) =
         apply {
             add {
-                rule(ServerVariablesRule(RuleGroup.named("variables", description, RuleGroupCategory.OBJECT, group)))
+                rule(ServerVariablesRule(RuleGroup.named("variables", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.variables?.toList())
             }
         }

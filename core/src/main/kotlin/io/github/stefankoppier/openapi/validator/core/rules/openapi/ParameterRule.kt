@@ -1,7 +1,6 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ExamplesRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.AnyRule
@@ -23,7 +22,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("name", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("name", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.name)
             }
         }
@@ -31,7 +30,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun `in`(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("in", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("in", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.`in`)
             }
         }
@@ -39,7 +38,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.description)
             }
         }
@@ -47,7 +46,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun required(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("required", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("required", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.required)
             }
         }
@@ -55,7 +54,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun deprecated(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("deprecated", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("deprecated", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.deprecated)
             }
         }
@@ -63,7 +62,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun allowEmptyValue(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("allowEmptyValue", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("allowEmptyValue", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.allowEmptyValue)
             }
         }
@@ -71,7 +70,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun style(description: String = "", rule: EnumRule<Parameter.StyleEnum>.() -> EnumRule<Parameter.StyleEnum>) =
         apply {
             add {
-                rule(EnumRule(RuleGroup.named("style", description, RuleGroupCategory.FIELD)))
+                rule(EnumRule(RuleGroup.named("style", description, RuleGroup.Category.FIELD)))
                     .validate(it?.style)
             }
         }
@@ -79,7 +78,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun explode(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("explode", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("explode", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.explode)
             }
         }
@@ -87,7 +86,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun allowReserved(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("allowReserved", description, RuleGroupCategory.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("allowReserved", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.allowReserved)
             }
         }
@@ -95,7 +94,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun schema(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
-                rule(SchemaRule(RuleGroup.named("schema", description, RuleGroupCategory.OBJECT, group)))
+                rule(SchemaRule(RuleGroup.named("schema", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.schema)
             }
         }
@@ -103,7 +102,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun example(description: String = "", rule: AnyRule.() -> AnyRule) =
         apply {
             add {
-                rule(AnyRule(RuleGroup.named("example", description, RuleGroupCategory.FIELD, group)))
+                rule(AnyRule(RuleGroup.named("example", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.example)
         }
     }
@@ -111,7 +110,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun examples(description: String = "", rule: ExamplesRule.() -> ExamplesRule) =
         apply {
             add {
-                rule(ExamplesRule(RuleGroup.named("examples", description, RuleGroupCategory.FIELD, group)))
+                rule(ExamplesRule(RuleGroup.named("examples", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.examples?.toList())
             }
         }
@@ -119,7 +118,7 @@ class ParameterRule(group: RuleGroup) : ValidationRule<Parameter>(group) {
     fun content(description: String = "", rule: ContentRule.() -> ContentRule) =
         apply {
             add {
-                rule(ContentRule(RuleGroup.named("content", description, RuleGroupCategory.OBJECT, group)))
+                rule(ContentRule(RuleGroup.named("content", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.content?.toList())
             }
         }

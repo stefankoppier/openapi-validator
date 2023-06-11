@@ -1,7 +1,6 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.info.Info
@@ -16,7 +15,7 @@ class InfoRule(group: RuleGroup) : ValidationRule<Info>(group) {
     fun title(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("title", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("title", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.title)
             }
         }
@@ -24,7 +23,7 @@ class InfoRule(group: RuleGroup) : ValidationRule<Info>(group) {
     fun summary(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("summary", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("summary", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.summary)
             }
         }
@@ -32,7 +31,7 @@ class InfoRule(group: RuleGroup) : ValidationRule<Info>(group) {
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.description)
             }
         }
@@ -40,7 +39,7 @@ class InfoRule(group: RuleGroup) : ValidationRule<Info>(group) {
     fun termsOfService(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("Terms of Service", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("Terms of Service", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.termsOfService)
             }
         }
@@ -48,7 +47,7 @@ class InfoRule(group: RuleGroup) : ValidationRule<Info>(group) {
     fun contact(description: String = "", rule: ContactRule.() -> ContactRule) =
         apply {
             add {
-                rule(ContactRule(RuleGroup.named("contact", description, RuleGroupCategory.OBJECT, group)))
+                rule(ContactRule(RuleGroup.named("contact", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.contact)
             }
         }
@@ -56,7 +55,7 @@ class InfoRule(group: RuleGroup) : ValidationRule<Info>(group) {
     fun licence(description: String = "", rule: LicenceRule.() -> LicenceRule) =
         apply {
             add {
-                rule(LicenceRule(RuleGroup.named("licence", description, RuleGroupCategory.OBJECT, group)))
+                rule(LicenceRule(RuleGroup.named("licence", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.license)
             }
         }
@@ -64,7 +63,7 @@ class InfoRule(group: RuleGroup) : ValidationRule<Info>(group) {
     fun version(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("version", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("version", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.version)
             }
         }

@@ -1,10 +1,8 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ParametersRule
-import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.PathsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ServersRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.PathItem
@@ -14,14 +12,14 @@ class PathRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem
     fun summary(description: String = "", rule: StringRule.() -> StringRule) = 
         apply {
             add {
-                rule(StringRule(RuleGroup.named("summary", description, RuleGroupCategory.FIELD, group))).validate(it?.summary)
+                rule(StringRule(RuleGroup.named("summary", description, RuleGroup.Category.FIELD, group))).validate(it?.summary)
             }
         }
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) = 
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.description)
             }
         }
@@ -29,7 +27,7 @@ class PathRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem
     fun get(description: String = "", rule: OperationRule.() -> OperationRule) = 
         apply {
             add {
-                rule(OperationRule(RuleGroup.named("get", description, RuleGroupCategory.OBJECT, group)))
+                rule(OperationRule(RuleGroup.named("get", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.get)
             }
         }
@@ -37,7 +35,7 @@ class PathRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem
     fun put(description: String = "", rule: OperationRule.() -> OperationRule) = 
         apply {
             add {
-                rule(OperationRule(RuleGroup.named("put", description, RuleGroupCategory.OBJECT, group)))
+                rule(OperationRule(RuleGroup.named("put", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.put)
             }
         }
@@ -45,7 +43,7 @@ class PathRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem
     fun post(description: String = "", rule: OperationRule.() -> OperationRule) = 
         apply {
             add {
-                rule(OperationRule(RuleGroup.named("post", description, RuleGroupCategory.OBJECT, group)))
+                rule(OperationRule(RuleGroup.named("post", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.post)
             }
         }
@@ -53,7 +51,7 @@ class PathRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem
     fun delete(description: String = "", rule: OperationRule.() -> OperationRule) = 
         apply {
             add {
-                rule(OperationRule(RuleGroup.named("delete", description, RuleGroupCategory.OBJECT, group)))
+                rule(OperationRule(RuleGroup.named("delete", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.delete)
             }
         }
@@ -61,7 +59,7 @@ class PathRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem
     fun options(description: String = "", rule: OperationRule.() -> OperationRule) = 
         apply {
             add {
-                rule(OperationRule(RuleGroup.named("options", description, RuleGroupCategory.OBJECT, group)))
+                rule(OperationRule(RuleGroup.named("options", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.options)
             }
         }
@@ -69,7 +67,7 @@ class PathRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem
     fun head(description: String = "", rule: OperationRule.() -> OperationRule) = 
         apply {
             add {
-                rule(OperationRule(RuleGroup.named("head", description, RuleGroupCategory.OBJECT, group)))
+                rule(OperationRule(RuleGroup.named("head", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.head)
             }
         }
@@ -77,7 +75,7 @@ class PathRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem
     fun patch(description: String = "", rule: OperationRule.() -> OperationRule) = 
         apply {
             add {
-                rule(OperationRule(RuleGroup.named("patch", description, RuleGroupCategory.OBJECT, group)))
+                rule(OperationRule(RuleGroup.named("patch", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.patch)
             }
         }
@@ -85,7 +83,7 @@ class PathRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem
     fun trace(description: String = "", rule: OperationRule.() -> OperationRule) = 
         apply {
             add {
-                rule(OperationRule(RuleGroup.named("trace", description, RuleGroupCategory.OBJECT, group)))
+                rule(OperationRule(RuleGroup.named("trace", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.trace)
             }
         }
@@ -93,7 +91,7 @@ class PathRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem
     fun servers(description: String = "", rule: ServersRule.() -> ServersRule) = 
         apply {
             add {
-                rule(ServersRule(RuleGroup.named("servers", description, RuleGroupCategory.OBJECT, group)))
+                rule(ServersRule(RuleGroup.named("servers", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.servers)
             }
         }
@@ -101,7 +99,7 @@ class PathRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem
     fun parameters(description: String = "", rule: ParametersRule.() -> ParametersRule) = 
         apply {
             add {
-                rule(ParametersRule(RuleGroup.named("parameters", description, RuleGroupCategory.OBJECT, group)))
+                rule(ParametersRule(RuleGroup.named("parameters", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.parameters)
             }
         }

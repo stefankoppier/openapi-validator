@@ -1,7 +1,6 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableStringRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
@@ -19,7 +18,7 @@ class ServerVariableRule(group: RuleGroup) : ValidationRule<ServerVariable>(grou
     fun enum(description: String = "", rule: IterableStringRule.() -> IterableStringRule) =
         apply {
             add {
-                rule(IterableStringRule(RuleGroup.named("enum", description, RuleGroupCategory.FIELD, group)))
+                rule(IterableStringRule(RuleGroup.named("enum", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.enum)
             }
         }
@@ -27,7 +26,7 @@ class ServerVariableRule(group: RuleGroup) : ValidationRule<ServerVariable>(grou
     fun default(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("default", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("default", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.default)
             }
         }
@@ -35,7 +34,7 @@ class ServerVariableRule(group: RuleGroup) : ValidationRule<ServerVariable>(grou
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroupCategory.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.description)
             }
         }

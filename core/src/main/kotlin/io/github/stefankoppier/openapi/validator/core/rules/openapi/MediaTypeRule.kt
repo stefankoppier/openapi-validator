@@ -1,7 +1,6 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.EncodingRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ExamplesRule
@@ -13,7 +12,7 @@ class MediaTypeRule(group: RuleGroup) : ValidationRule<MediaType>(group) {
     fun schema(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
-                rule(SchemaRule(RuleGroup.named("schema", description, RuleGroupCategory.OBJECT, group)))
+                rule(SchemaRule(RuleGroup.named("schema", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.schema)
             }
         }
@@ -21,7 +20,7 @@ class MediaTypeRule(group: RuleGroup) : ValidationRule<MediaType>(group) {
     fun example(description: String = "", rule: AnyRule.() -> AnyRule) =
         apply {
             add {
-                rule(AnyRule(RuleGroup.named("example", description, RuleGroupCategory.FIELD, group)))
+                rule(AnyRule(RuleGroup.named("example", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.example)
             }
         }
@@ -29,7 +28,7 @@ class MediaTypeRule(group: RuleGroup) : ValidationRule<MediaType>(group) {
     fun examples(description: String = "", rule: ExamplesRule.() -> ExamplesRule) =
         apply {
             add {
-                rule(ExamplesRule(RuleGroup.named("examples", description, RuleGroupCategory.OBJECT, group)))
+                rule(ExamplesRule(RuleGroup.named("examples", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.examples?.toList())
             }
         }
@@ -37,7 +36,7 @@ class MediaTypeRule(group: RuleGroup) : ValidationRule<MediaType>(group) {
     fun encoding(description: String = "", rule: EncodingRule.() -> EncodingRule) =
         apply {
             add {
-                rule(EncodingRule(RuleGroup.named("encoding", description, RuleGroupCategory.OBJECT, group)))
+                rule(EncodingRule(RuleGroup.named("encoding", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.encoding?.toList())
             }
         }

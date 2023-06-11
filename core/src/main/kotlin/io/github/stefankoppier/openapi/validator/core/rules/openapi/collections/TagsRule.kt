@@ -1,8 +1,6 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
-import io.github.stefankoppier.openapi.validator.core.rules.openapi.PathRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.TagRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
 import io.swagger.v3.oas.models.tags.Tag
@@ -13,7 +11,7 @@ class TagsRule(group: RuleGroup) : IterableValidationRule<Tag>(group) {
         apply {
             add { tags ->
                 val tag = tags?.find { it.name == named }
-                rule(TagRule(RuleGroup.named("tag '$named'", description, RuleGroupCategory.OBJECT, group)))
+                rule(TagRule(RuleGroup.named("tag '$named'", description, RuleGroup.Category.OBJECT, group)))
                     .validate(tag)
             }
         }

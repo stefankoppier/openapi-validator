@@ -2,7 +2,6 @@ package io.github.stefankoppier.openapi.validator.core
 
 import io.github.stefankoppier.openapi.validator.core.internal.RoseTree
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroupCategory
 
 class ValidationResult internal constructor(val failures: MutableList<ValidationFailure>) {
 
@@ -24,10 +23,10 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
                 builder.apply {
                     append((0 until level).joinToString(separator = "") { "    " })
                     append(when (it.category) {
-                        RuleGroupCategory.OBJECT -> "For ${it.content}:"
-                        RuleGroupCategory.FIELD -> "Field '${it.content}' does not comply:"
-                        RuleGroupCategory.MESSAGE -> "- ${it.content}"
-                        RuleGroupCategory.UNKNOWN -> it.content
+                        RuleGroup.Category.OBJECT -> "For ${it.content}:"
+                        RuleGroup.Category.FIELD -> "Field '${it.content}' does not comply:"
+                        RuleGroup.Category.MESSAGE -> "- ${it.content}"
+                        RuleGroup.Category.UNKNOWN -> it.content
                     })
                     appendLine()
                 }
@@ -50,23 +49,21 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
 
 data class ValidationFailure(val group: RuleGroup, val message: String) {
 
-    internal fun construct(): RoseTree<ValidationNode> {
-        return construct(group, emptyList())
-    }
+    internal fun construct() = construct(group, emptyList())
 
     // TODO: can use some refactoring
     private fun construct(current: RuleGroup, parents: List<RuleGroup>): RoseTree<ValidationNode> {
         return if (current.parent == null) {
-            val rootContent = current.name + if (current.description.isNullOrBlank()) "" else " (${current.description})"
+            val rootContent = current.name + if (current.description.isBlank()) "" else " (${current.description})"
             val root = RoseTree(ValidationNode(rootContent, current.category))
             parents.foldRight(root) { parent, it ->
-                val content = parent.name + if (parent.description.isNullOrBlank()) "" else " (${parent.description})"
+                val content = parent.name + if (parent.description.isBlank()) "" else " (${parent.description})"
                 val child = RoseTree(ValidationNode(content, parent.category))
                 it.apply { children.add(child) }
                 child
             }.apply {
-                val content = message + if (group.description.isNullOrBlank()) "" else " (${group.description})"
-                children.add(RoseTree(ValidationNode(content, RuleGroupCategory.MESSAGE)))
+                val content = message + if (group.description.isBlank()) "" else " (${group.description})"
+                children.add(RoseTree(ValidationNode(content, RuleGroup.Category.MESSAGE)))
             }
             root
         } else {
@@ -77,5 +74,5 @@ data class ValidationFailure(val group: RuleGroup, val message: String) {
 
 data class ValidationNode(
     val content: String,
-    val category: RuleGroupCategory,
+    val category: RuleGroup.Category,
 )
