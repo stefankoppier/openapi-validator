@@ -2,13 +2,12 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
-import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ComponentsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.PathsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.TagsRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.OpenAPI
 
-class OpenAPIRule(group: RuleGroup =  RuleGroup.unknown()) : ValidationRule<OpenAPI>(group) {
+class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<OpenAPI>(group) {
 
     init {
         openapi { matches(Regex("[0-9]+\\.[0-9]+\\.[0-9]+")) }
@@ -44,13 +43,13 @@ class OpenAPIRule(group: RuleGroup =  RuleGroup.unknown()) : ValidationRule<Open
 
     // webhooks
 
-    fun components(description: String = "", rule: ComponentsRule.() -> ComponentsRule) =
-        apply { 
-            add {
-                rule(ComponentsRule(RuleGroup.named("components", description, RuleGroup.Category.OBJECT, group)))
-                    .validate(it?.components)
-            }
-        }
+//    fun components(description: String = "", rule: ComponentsRule.() -> ComponentsRule) =
+//        apply {
+//            add {
+//                rule(ComponentsRule(RuleGroup.named("components", description, RuleGroup.Category.OBJECT, group)))
+//                    .validate(it?.components)
+//            }
+//        }
 
     // security
 

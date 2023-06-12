@@ -5,7 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.openapi.ParameterRul
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
 import io.swagger.v3.oas.models.parameters.Parameter
 
-class ParametersRule(group: RuleGroup) : IterableValidationRule<Parameter>(group) {
+class ParametersRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Parameter>(group) {
 
     fun parameter(description: String = "", named: String, rule: ParameterRule.() -> ParameterRule) =
         apply {

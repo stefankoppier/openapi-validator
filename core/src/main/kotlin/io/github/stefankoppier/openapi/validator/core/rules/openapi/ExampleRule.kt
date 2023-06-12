@@ -7,7 +7,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRul
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.URIRule
 import io.swagger.v3.oas.models.examples.Example
 
-class ExampleRule(group: RuleGroup) : ValidationRule<Example>(group) {
+class ExampleRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Example>(group) {
 
     fun summary(description: String = "", rule: StringRule.() -> StringRule) =
         apply {

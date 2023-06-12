@@ -3,18 +3,33 @@ package io.github.stefankoppier.openapi.validator.core.rules.primitives
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 
-class IntegerRule(group: RuleGroup) : ValidationRule<Int>(group) {
+class IntegerRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Int>(group) {
 
+    /**
+     * Validate that the element is greater than or equal to [value].
+     *
+     * @return The rule on which this method has been invoked.
+     */
     fun min(value: Int) =
         holds( { "Was supposed to be greater than or equal to '$value' but is '$it'" } ) {
             it == null || it >= value
         }
 
+    /**
+     * Validate that the element is less than or equal to [value].
+     *
+     * @return The rule on which this method has been invoked.
+     */
     fun max(value: Int) =
         holds( { "Was supposed to be less than or equal to '$value' but is '$it'" } ) {
             it == null || it <= value
         }
 
+    /**
+     * Validate that the element is (inclusive) between [min] and [max].
+     *
+     * @return The rule on which this method has been invoked.
+     */
     fun between(min: Int, max: Int) =
         holds( { "Was supposed to be between '$min' and '$max' but is '$it'" } ) {
             it == null || it in min..max

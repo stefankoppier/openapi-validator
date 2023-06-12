@@ -5,7 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.openapi.TagRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
 import io.swagger.v3.oas.models.tags.Tag
 
-class TagsRule(group: RuleGroup) : IterableValidationRule<Tag>(group) {
+class TagsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Tag>(group) {
 
     fun tag(description: String = "", named: String, rule: TagRule.() -> TagRule) =
         apply {

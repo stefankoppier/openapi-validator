@@ -4,7 +4,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
 import io.swagger.v3.oas.models.media.MediaType
 
-class ContentRule(group: RuleGroup) : IterableValidationRule<Pair<String, MediaType>>(group) {
+class ContentRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, MediaType>>(group) {
 
     fun mediaType(description: String = "", named: String, rule: MediaTypeRule.() -> MediaTypeRule) =
         apply {

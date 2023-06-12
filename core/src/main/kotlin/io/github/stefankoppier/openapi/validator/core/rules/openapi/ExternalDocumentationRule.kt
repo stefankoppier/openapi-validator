@@ -6,7 +6,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRul
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.URLRule
 import io.swagger.v3.oas.models.ExternalDocumentation
 
-class ExternalDocumentationRule(group: RuleGroup) : ValidationRule<ExternalDocumentation>(group) {
+class ExternalDocumentationRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<ExternalDocumentation>(group) {
 
     init {
         url { required() }

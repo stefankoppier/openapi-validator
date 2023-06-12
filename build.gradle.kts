@@ -1,9 +1,14 @@
+import org.jetbrains.dokka.gradle.DokkaTask
+
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.dokka)
 }
 
 group = "io.github.stefankoppier"
 version = "1.0-SNAPSHOT"
+
+val javaVersion = 11
 
 allprojects {
     repositories {
@@ -11,15 +16,18 @@ allprojects {
     }
 
     plugins.withId("org.jetbrains.kotlin.jvm") {
+        apply(plugin = "org.jetbrains.dokka")
         apply(plugin = "jvm-test-suite")
 
         kotlin {
             jvmToolchain {
-                languageVersion.set(JavaLanguageVersion.of(11))
+                languageVersion.set(JavaLanguageVersion.of(javaVersion))
             }
         }
 
         dependencies {
+            dokkaHtmlPlugin(libs.dokka.versioning.plugin)
+
             implementation(libs.kotlin.stdlib)
         }
 
@@ -51,6 +59,14 @@ allprojects {
 
         tasks.check {
             dependsOn(testing.suites.named("integrationTest"))
+        }
+
+        tasks.withType<DokkaTask>().configureEach {
+            dokkaSourceSets {
+                configureEach {
+                    jdkVersion.set(javaVersion)
+                }
+            }
         }
     }
 }

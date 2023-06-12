@@ -5,7 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.info.Info
 
-class InfoRule(group: RuleGroup) : ValidationRule<Info>(group) {
+class InfoRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Info>(group) {
 
     init {
         title { required() }

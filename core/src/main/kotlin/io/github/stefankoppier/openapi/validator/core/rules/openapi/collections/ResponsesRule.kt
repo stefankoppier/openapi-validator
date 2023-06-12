@@ -6,7 +6,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.openapi.ResponseRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
 import io.swagger.v3.oas.models.responses.ApiResponse
 
-class ResponsesRule(group: RuleGroup) : IterableValidationRule<Pair<String, ApiResponse>>(group) {
+class ResponsesRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, ApiResponse>>(group) {
 
     fun all(description: String = "", rule: ResponseRule.() -> ResponseRule) =
         apply {

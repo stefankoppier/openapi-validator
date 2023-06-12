@@ -6,7 +6,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRul
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.URLRule
 import io.swagger.v3.oas.models.info.License
 
-class LicenceRule(group: RuleGroup) : ValidationRule<License>(group) {
+class LicenceRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<License>(group) {
 
     init {
         name { required() }

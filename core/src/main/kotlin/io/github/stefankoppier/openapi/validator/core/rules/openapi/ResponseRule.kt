@@ -5,7 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.responses.ApiResponse
 
-class ResponseRule(group: RuleGroup) : ValidationRule<ApiResponse>(group) {
+class ResponseRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<ApiResponse>(group) {
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {

@@ -5,7 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.openapi.PathRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
 import io.swagger.v3.oas.models.PathItem
 
-class PathsRule(group: RuleGroup) : IterableValidationRule<Pair<String, PathItem>>(group) {
+class PathsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, PathItem>>(group) {
 
     fun path(description: String = "", named: String, rule: PathRule.() -> PathRule)  =
         apply {

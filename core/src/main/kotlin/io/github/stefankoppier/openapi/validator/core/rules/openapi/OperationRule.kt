@@ -11,7 +11,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableS
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.Operation
 
-class OperationRule(group: RuleGroup) : ValidationRule<Operation>(group) {
+class OperationRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Operation>(group) {
 
     fun tags(description: String = "", rule: IterableStringRule.() -> IterableStringRule) =
         apply {

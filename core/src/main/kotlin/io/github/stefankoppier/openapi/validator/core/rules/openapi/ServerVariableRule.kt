@@ -6,7 +6,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableS
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.servers.ServerVariable
 
-class ServerVariableRule(group: RuleGroup) : ValidationRule<ServerVariable>(group) {
+class ServerVariableRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<ServerVariable>(group) {
 
     init {
         default { required() }

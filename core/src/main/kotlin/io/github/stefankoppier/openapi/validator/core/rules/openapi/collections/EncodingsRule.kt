@@ -2,17 +2,16 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.EncodingRule
-import io.github.stefankoppier.openapi.validator.core.rules.openapi.MediaTypeRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
-import io.swagger.v3.oas.models.media.MediaType
+import io.swagger.v3.oas.models.media.Encoding
 
-class ContentRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, MediaType>>(group) {
+class EncodingsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, Encoding>>(group) {
 
-    fun mediaType(description: String = "", named: String, rule: MediaTypeRule.() -> MediaTypeRule) =
+    fun encoding(description: String = "", named: String, rule: EncodingRule.() -> EncodingRule) =
         apply {
             add { encodings ->
                 val encoding = encodings?.find { it.first == named }
-                rule(MediaTypeRule(RuleGroup.named("mediaType '$named'", description, RuleGroup.Category.OBJECT, group)))
+                rule(EncodingRule(RuleGroup.named("encoding '$named'", description, RuleGroup.Category.OBJECT, group)))
                     .validate(encoding?.second)
             }
         }

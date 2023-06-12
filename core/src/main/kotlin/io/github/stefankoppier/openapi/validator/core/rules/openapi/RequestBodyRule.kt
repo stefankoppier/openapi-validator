@@ -6,7 +6,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.BooleanRu
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.parameters.RequestBody
 
-class RequestBodyRule(group: RuleGroup) : ValidationRule<RequestBody>(group) {
+class RequestBodyRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<RequestBody>(group) {
 
     init {
         content { required() }

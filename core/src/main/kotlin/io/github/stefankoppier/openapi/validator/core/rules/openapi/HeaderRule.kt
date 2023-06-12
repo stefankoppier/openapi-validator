@@ -7,33 +7,9 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.AnyRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.BooleanRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.EnumRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
-import io.swagger.v3.oas.models.parameters.Parameter
+import io.swagger.v3.oas.models.headers.Header
 
-class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Parameter>(group) {
-
-    init {
-        name { required() }
-        `in` { required() }
-        given( { it == null || it.`in` == "path" } ) {
-            required { required() }
-        }
-    }
-
-    fun name(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("name", description, RuleGroup.Category.FIELD, group)))
-                    .validate(it?.name)
-            }
-        }
-
-    fun `in`(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("in", description, RuleGroup.Category.FIELD, group)))
-                    .validate(it?.`in`)
-            }
-        }
+class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
@@ -59,15 +35,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
             }
         }
 
-    fun allowEmptyValue(description: String = "", rule: BooleanRule.() -> BooleanRule) =
-        apply {
-            add {
-                rule(BooleanRule(RuleGroup.named("allowEmptyValue", description, RuleGroup.Category.FIELD, group)))
-                    .validate(it?.allowEmptyValue)
-            }
-        }
-
-    fun style(description: String = "", rule: EnumRule<Parameter.StyleEnum>.() -> EnumRule<Parameter.StyleEnum>) =
+    fun style(description: String = "", rule: EnumRule<Header.StyleEnum>.() -> EnumRule<Header.StyleEnum>) =
         apply {
             add {
                 rule(EnumRule(RuleGroup.named("style", description, RuleGroup.Category.FIELD)))
@@ -80,14 +48,6 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
             add {
                 rule(BooleanRule(RuleGroup.named("explode", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.explode)
-            }
-        }
-
-    fun allowReserved(description: String = "", rule: BooleanRule.() -> BooleanRule) =
-        apply {
-            add {
-                rule(BooleanRule(RuleGroup.named("allowReserved", description, RuleGroup.Category.FIELD, group)))
-                    .validate(it?.allowReserved)
             }
         }
 
@@ -104,8 +64,8 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
             add {
                 rule(AnyRule(RuleGroup.named("example", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.example)
+            }
         }
-    }
 
     fun examples(description: String = "", rule: ExamplesRule.() -> ExamplesRule) =
         apply {

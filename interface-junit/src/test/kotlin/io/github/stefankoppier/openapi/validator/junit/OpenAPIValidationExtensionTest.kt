@@ -4,6 +4,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.openapi.openAPI
 import io.swagger.v3.oas.models.OpenAPI
 import org.junit.jupiter.api.extension.ExtendWith
 import java.time.Instant
+import java.time.LocalDate
 import kotlin.test.Test
 
 @ExtendWith(OpenAPIValidationExtension::class)
@@ -13,7 +14,7 @@ class OpenAPIValidationExtensionTest(private val document: OpenAPI) {
     @Test
     fun `test extension`() {
         assertDocumentIsValidFor(document, openAPI("My specification") {
-            given( { Instant.now().isAfter(Instant.MAX) } ) {
+            since(LocalDate.MAX) {
                 info { title { exactly("OpenAPI Peatstore") } }
             }
 

@@ -1,5 +1,5 @@
 rootProject.name = "openapi-validator"
 
 include(":core")
-include(":generator")
+//include(":generator")
 include(":interface-junit")

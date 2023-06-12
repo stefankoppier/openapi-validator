@@ -7,7 +7,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRul
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.URLRule
 import io.swagger.v3.oas.models.servers.Server
 
-class ServerRule(group: RuleGroup) : ValidationRule<Server>(group) {
+class ServerRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Server>(group) {
 
     init {
         url { required() }
