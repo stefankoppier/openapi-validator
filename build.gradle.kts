@@ -1,6 +1,7 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
+    id("jacoco-report-aggregation")
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.dokka)
 }
@@ -10,6 +11,11 @@ version = "1.0-SNAPSHOT"
 
 val javaVersion = 11
 
+dependencies {
+    implementation(project(":core"))
+    implementation(project(":integration-junit"))
+}
+
 allprojects {
     repositories {
         mavenCentral()
@@ -18,6 +24,7 @@ allprojects {
     plugins.withId("org.jetbrains.kotlin.jvm") {
         apply(plugin = "org.jetbrains.dokka")
         apply(plugin = "jvm-test-suite")
+        apply(plugin = "jacoco")
 
         kotlin {
             jvmToolchain {
@@ -72,4 +79,8 @@ allprojects {
             }
         }
     }
+}
+
+tasks.check {
+    dependsOn(tasks.testCodeCoverageReport)
 }
