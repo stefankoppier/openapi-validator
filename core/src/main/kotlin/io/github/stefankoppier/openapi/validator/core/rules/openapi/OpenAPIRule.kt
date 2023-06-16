@@ -16,7 +16,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun openapi(description: String = "", rule: StringRule.() -> StringRule) =
         apply { 
             add {
-                rule(StringRule(RuleGroup.named("info", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("openapi", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.openapi)
             }
         }

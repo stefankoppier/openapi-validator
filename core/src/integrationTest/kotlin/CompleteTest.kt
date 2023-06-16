@@ -8,7 +8,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.nio.charset.StandardCharsets
 
-class OpenAPIValidation {
+class CompleteTest {
 
     @Test
     fun `validate openAPI Petstore`() {
@@ -34,7 +34,7 @@ class OpenAPIValidation {
                     description { exactly("Access to Petstore orders") }
                 }
                 tag(named = "user") {
-                    description { exactly("Operations about user") }
+                    required()
                 }
             }
             paths {
@@ -107,6 +107,7 @@ class OpenAPIValidation {
             get {
                 parameters {
                     parameter(named = "status") {
+                        `in` { exactly("query") }
                         style { exactly(Parameter.StyleEnum.FORM) }
                         explode { exactly(false) }
                         deprecated { exactly(true) }

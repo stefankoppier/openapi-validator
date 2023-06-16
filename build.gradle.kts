@@ -65,6 +65,9 @@ allprojects {
             dokkaSourceSets {
                 configureEach {
                     jdkVersion.set(javaVersion)
+                    includes.from(
+                        "$rootDir/Dokka.md"
+                    )
                 }
             }
         }

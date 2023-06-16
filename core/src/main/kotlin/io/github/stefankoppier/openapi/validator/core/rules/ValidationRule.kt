@@ -2,6 +2,7 @@ package io.github.stefankoppier.openapi.validator.core.rules
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
 import io.github.stefankoppier.openapi.validator.core.ValidationResult
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.OperationRule
 import java.time.LocalDate
 
 abstract class ValidationRule<T : Any> protected constructor(protected val group: RuleGroup = RuleGroup.unknown()) {
@@ -58,7 +59,18 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
      * @return The original rule on which this method has been invoked.
      */
     fun <R : ValidationRule<T>> since(date: LocalDate, rule: () -> R) =
-        given( {_ -> LocalDate.now().isAfter(date) }, rule)
+        given({ LocalDate.now().isAfter(date) }, rule)
+
+    /**
+     * Validate [rule] only if the evaluated result of [value] is not null.
+     *
+     * @param value The value which, if not null, determines if [rule] should be valid.
+     * @param rule The rule which should hold after [date].
+     *
+     * @return The original rule on which this method has been invoked.
+     */
+    fun <V, R : ValidationRule<T>> optional(value: (T?) -> (V?), rule: () -> R) =
+        given({ value(it) != null }, rule)
 
     /**
      * Validate that the element is set.
@@ -82,5 +94,5 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
         return this
     }
 
-    private fun unit(): (T?) -> ValidationResult = { ValidationResult.success() }
+    protected fun unit(): (T?) -> ValidationResult = { ValidationResult.success() }
 }

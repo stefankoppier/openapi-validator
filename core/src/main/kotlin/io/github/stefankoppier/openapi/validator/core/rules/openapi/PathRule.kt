@@ -12,7 +12,8 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     fun summary(description: String = "", rule: StringRule.() -> StringRule) = 
         apply {
             add {
-                rule(StringRule(RuleGroup.named("summary", description, RuleGroup.Category.FIELD, group))).validate(it?.summary)
+                rule(StringRule(RuleGroup.named("summary", description, RuleGroup.Category.FIELD, group)))
+                    .validate(it?.summary)
             }
         }
 
@@ -22,6 +23,16 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
                 rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.description)
             }
+        }
+
+    fun operations(description: String = "", rule: OperationRule.() -> OperationRule) =
+        apply {
+            optional({ it?.get }) { get(description, rule) }
+            optional({ it?.delete }) { delete(description, rule) }
+            optional({ it?.options }) { options(description, rule) }
+            optional({ it?.head }) { head(description, rule) }
+            optional({ it?.patch }) { patch(description, rule) }
+            optional({ it?.trace }) { trace(description, rule) }
         }
 
     fun get(description: String = "", rule: OperationRule.() -> OperationRule) = 

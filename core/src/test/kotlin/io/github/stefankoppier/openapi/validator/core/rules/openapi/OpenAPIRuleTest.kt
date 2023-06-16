@@ -26,8 +26,8 @@ class OpenAPIRuleTest {
     @Test
     fun `openAPI tags`() {
         val result = OpenAPIRule()
-            .tags { all { it.name != null } }
-            .tags { any { it.description == "Description" } }
+            .tags { all(predicate = { it.description != null }) }
+            .tags { any(predicate = { it.description == "Description" }) }
             .validate(OpenAPI().tags(listOf(
                 Tag().name(null).description(null),
                 Tag().name("Name").description("Description"),

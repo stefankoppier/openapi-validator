@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.nio.charset.StandardCharsets
 
-class ValidationOutputFormatting {
+class OutputFormattingTest {
 
     @Test
     fun `output looks good`() {
