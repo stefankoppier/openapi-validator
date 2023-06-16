@@ -1,8 +1,9 @@
 # OpenAPI Validator
 
 The OpenAPI Validator tool allows you to validate your OpenAPI specification by writing a descriptive ruleset in Kotlin!
-There is an extensive set of built-in rules and is extensible, as it allows you to add custom rules easily. Visit 
-[the project documentation](https://stefankoppier.github.io/openapi-validator/) for a complete overview of the 
+There is an extensive set of built-in rules and is extensible, as it allows you to add custom rules easily. 
+
+Visit[the project documentation](https://stefankoppier.github.io/openapi-validator/) for a complete overview of the 
 functionality.
 
 ## Features

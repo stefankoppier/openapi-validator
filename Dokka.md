@@ -1,3 +1,3 @@
-# Module openapi validator
+# OpenAPI Validator
 
 Test

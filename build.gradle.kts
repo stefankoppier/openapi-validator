@@ -1,4 +1,5 @@
-import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import java.net.URL
 
 plugins {
     id("jacoco-report-aggregation")
@@ -68,17 +69,23 @@ allprojects {
             dependsOn(testing.suites.named("integrationTest"))
         }
 
-        tasks.withType<DokkaTask>().configureEach {
+        tasks.withType<DokkaTaskPartial>().configureEach {
             dokkaSourceSets {
                 configureEach {
+                    includes.from("$projectDir/Dokka.md")
                     jdkVersion.set(javaVersion)
-                    includes.from(
-                        "$rootDir/Dokka.md"
-                    )
+                    sourceLink {
+                        localDirectory.set(file("$projectDir/src/main/kotlin"))
+                        remoteUrl.set(URL("https://github.com/stefankoppier/openapi-validator/tree/main/${project.name}/src/main/kotlin"))
+                    }
                 }
             }
         }
     }
+}
+
+tasks.dokkaHtmlMultiModule.configure {
+    includes.from("$projectDir/Dokka.md")
 }
 
 tasks.check {

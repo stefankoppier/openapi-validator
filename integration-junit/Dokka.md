@@ -1,3 +1,3 @@
-# Module integration junit
+# Module integration-junit
 
 Test
