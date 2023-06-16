@@ -1,0 +1,11 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:core
+io.github.stefankoppier.openapi.validator.core
+io.github.stefankoppier.openapi.validator.core.rules
+io.github.stefankoppier.openapi.validator.core.rules.openapi
+io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
+io.github.stefankoppier.openapi.validator.core.rules.primitives
+module:integration-junit
+io.github.stefankoppier.openapi.validator.junit
