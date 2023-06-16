@@ -1,0 +1,38 @@
+name: Documentation
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Generate documentation
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: dokkaHtmlMultiModule
+          gradle-version: wrapper
+
+      - name: Upload documentation
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        with:
+          folder: build/dokka/htmlMultiModule
+          branch: main
+          target-folder: "docs"
+
