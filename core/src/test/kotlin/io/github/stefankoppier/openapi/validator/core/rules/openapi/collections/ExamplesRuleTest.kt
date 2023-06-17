@@ -1,15 +1,15 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
-import io.swagger.v3.oas.models.media.MediaType
+import io.swagger.v3.oas.models.examples.Example
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
-class ContentRuleTest {
+class ExamplesRuleTest {
 
     @Test
     fun `all succeeds`() {
-        val rule = ContentRule().all {
-            example { exactly("Example") }
+        val rule = ExamplesRule().all {
+            value { exactly("Example") }
         }
 
         val result = rule.validate(encodings)
@@ -18,8 +18,8 @@ class ContentRuleTest {
 
     @Test
     fun `all fails`() {
-        val rule = ContentRule().all {
-            example { exactly("Fail") }
+        val rule = ExamplesRule().all {
+            value { exactly("Fail") }
         }
 
         val result = rule.validate(encodings)
@@ -27,9 +27,9 @@ class ContentRuleTest {
     }
 
     @Test
-    fun `mediaType succeeds`() {
-        val rule = ContentRule().mediaType(named = "application/json") {
-            example { exactly("Example") }
+    fun `example succeeds`() {
+        val rule = ExamplesRule().example(named = "example") {
+            value { exactly("Example") }
         }
 
         val result = rule.validate(encodings)
@@ -37,9 +37,9 @@ class ContentRuleTest {
     }
 
     @Test
-    fun `mediaType fails`() {
-        val rule = ContentRule().mediaType(named = "application/json") {
-            example { exactly("Fail") }
+    fun `example fails`() {
+        val rule = ExamplesRule().example(named = "example") {
+            value { exactly("Fail") }
         }
 
         val result = rule.validate(encodings)
@@ -48,8 +48,8 @@ class ContentRuleTest {
 
     companion object {
         private val encodings = mapOf(
-            "application/json" to MediaType().apply {
-                example = "Example"
+            "example" to Example().apply {
+                value = "Example"
             }
         ).toList()
     }
