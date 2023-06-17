@@ -12,7 +12,7 @@ class EncodingsRuleTest {
             contentType { exactly("application/json") }
         }
 
-        val result = rule.validate(encodings)
+        val result = rule.validate(fixture)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -22,7 +22,7 @@ class EncodingsRuleTest {
             contentType { exactly("application/xml") }
         }
 
-        val result = rule.validate(encodings)
+        val result = rule.validate(fixture)
         assertThat(result.isFailure).isTrue()
     }
 
@@ -32,7 +32,7 @@ class EncodingsRuleTest {
             contentType { exactly("application/json") }
         }
 
-        val result = rule.validate(encodings)
+        val result = rule.validate(fixture)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -42,12 +42,12 @@ class EncodingsRuleTest {
              contentType { exactly("application/xml") }
         }
 
-        val result = rule.validate(encodings)
+        val result = rule.validate(fixture)
         assertThat(result.isFailure).isTrue()
     }
 
     companion object {
-        private val encodings = mapOf(
+        private val fixture = mapOf(
             "json" to Encoding().apply {
                 contentType = "application/json"
             }

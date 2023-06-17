@@ -5,7 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.openapi.SchemaRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
 import io.swagger.v3.oas.models.media.Schema
 
-class SchemasRule(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, Schema<*>>>(group) {
+class SchemasRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, Schema<*>>>(group) {
 
     fun all(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         all { schema ->

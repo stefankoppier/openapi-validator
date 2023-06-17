@@ -1,16 +1,15 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
-import io.swagger.v3.oas.models.PathItem
+import io.swagger.v3.oas.models.headers.Header
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
-
-class PathsRuleTest {
+class HeadersRuleTest {
 
     @Test
     fun `all succeeds`() {
-        val rule = PathsRule().all {
-            summary { exactly("Summary") }
+        val rule = HeadersRule().all {
+            required { isTrue() }
         }
 
         val result = rule.validate(fixture)
@@ -19,8 +18,8 @@ class PathsRuleTest {
 
     @Test
     fun `all fails`() {
-        val rule = PathsRule().all {
-            summary { exactly("Invalid") }
+        val rule = HeadersRule().all {
+            required { isFalse() }
         }
 
         val result = rule.validate(fixture)
@@ -28,9 +27,9 @@ class PathsRuleTest {
     }
 
     @Test
-    fun `path succeeds`() {
-        val rule = PathsRule().path(named = "/find") {
-            summary { exactly("Summary") }
+    fun `header succeeds`() {
+        val rule = HeadersRule().header(named = "header") {
+            required { isTrue() }
         }
 
         val result = rule.validate(fixture)
@@ -38,9 +37,9 @@ class PathsRuleTest {
     }
 
     @Test
-    fun `path fails`() {
-        val rule = PathsRule().path(named = "/find") {
-            summary { exactly("Invalid") }
+    fun `header fails`() {
+        val rule = HeadersRule().header(named = "header") {
+            required { isFalse() }
         }
 
         val result = rule.validate(fixture)
@@ -49,8 +48,8 @@ class PathsRuleTest {
 
     companion object {
         private val fixture = mapOf(
-            "/find" to PathItem().apply {
-                summary = "Summary"
+            "header" to Header().apply {
+                required = true
             }
         ).toList()
     }

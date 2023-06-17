@@ -14,7 +14,7 @@ class SchemasRuleTest {
             name { exactly("pet") }
         }
 
-        val result = rule.validate(schemas)
+        val result = rule.validate(fixture)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -24,7 +24,7 @@ class SchemasRuleTest {
             name { exactly("dog") }
         }
 
-        val result = rule.validate(schemas)
+        val result = rule.validate(fixture)
         assertThat(result.isFailure).isTrue()
     }
 
@@ -34,7 +34,7 @@ class SchemasRuleTest {
             required()
         }
 
-        val result = rule.validate(schemas)
+        val result = rule.validate(fixture)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -44,12 +44,12 @@ class SchemasRuleTest {
             required()
         }
 
-        val result = rule.validate(schemas)
+        val result = rule.validate(fixture)
         assertThat(result.isFailure).isTrue()
     }
 
     companion object {
-        private val schemas = mapOf(
+        private val fixture = mapOf(
             "pet" to Schema<String>(SpecVersion.V31).apply {
                 name = "pet"
             }

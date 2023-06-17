@@ -12,7 +12,7 @@ class ContentRuleTest {
             example { exactly("Example") }
         }
 
-        val result = rule.validate(encodings)
+        val result = rule.validate(fixture)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -22,7 +22,7 @@ class ContentRuleTest {
             example { exactly("Fail") }
         }
 
-        val result = rule.validate(encodings)
+        val result = rule.validate(fixture)
         assertThat(result.isFailure).isTrue()
     }
 
@@ -32,7 +32,7 @@ class ContentRuleTest {
             example { exactly("Example") }
         }
 
-        val result = rule.validate(encodings)
+        val result = rule.validate(fixture)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -42,12 +42,12 @@ class ContentRuleTest {
             example { exactly("Fail") }
         }
 
-        val result = rule.validate(encodings)
+        val result = rule.validate(fixture)
         assertThat(result.isFailure).isTrue()
     }
 
     companion object {
-        private val encodings = mapOf(
+        private val fixture = mapOf(
             "application/json" to MediaType().apply {
                 example = "Example"
             }

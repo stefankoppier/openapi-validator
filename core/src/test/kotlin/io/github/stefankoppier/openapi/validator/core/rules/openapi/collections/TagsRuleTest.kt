@@ -13,7 +13,7 @@ class TagsRuleTest {
             name { exactly("pet") }
         }
 
-        val result = rule.validate(tags)
+        val result = rule.validate(fixture)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -23,7 +23,7 @@ class TagsRuleTest {
             name { exactly("dog") }
         }
 
-        val result = rule.validate(tags)
+        val result = rule.validate(fixture)
         assertThat(result.isFailure).isTrue()
     }
 
@@ -33,7 +33,7 @@ class TagsRuleTest {
             required()
         }
 
-        val result = rule.validate(tags)
+        val result = rule.validate(fixture)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -43,12 +43,12 @@ class TagsRuleTest {
             required()
         }
 
-        val result = rule.validate(tags)
+        val result = rule.validate(fixture)
         assertThat(result.isFailure).isTrue()
     }
 
     companion object {
-        private val tags = listOf(
+        private val fixture = listOf(
             Tag().apply {
                 name = "pet"
             }
