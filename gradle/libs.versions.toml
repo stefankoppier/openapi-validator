@@ -5,7 +5,7 @@ dokka = "1.8.20"
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-swagger-models = { module = "io.swagger.core.v3:swagger-models", version = "2.2.10" }
+swagger-models = { module = "io.swagger.core.v3:swagger-models", version = "2.2.12" }
 swagger-parser = { module = "io.swagger.parser.v3:swagger-parser", version = "2.1.14" }
 kotlinpoet = { module = "com.squareup:kotlinpoet", version = "1.13.2" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.9.3" }
