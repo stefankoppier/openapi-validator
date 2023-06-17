@@ -19,3 +19,4 @@ testing = ["kotlin-test", "assertj-core"]
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+sonarqube = { id = "org.sonarqube", version = "4.2.1.3168" }

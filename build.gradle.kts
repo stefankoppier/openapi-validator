@@ -5,6 +5,7 @@ plugins {
     id("jacoco-report-aggregation")
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.sonarqube)
 }
 
 group = "io.github.stefankoppier"
@@ -90,4 +91,12 @@ tasks.dokkaHtmlMultiModule.configure {
 
 tasks.check {
     dependsOn(tasks.testCodeCoverageReport)
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "stefankoppier_openapi-validator")
+        property("sonar.organization", "stefankoppier")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
