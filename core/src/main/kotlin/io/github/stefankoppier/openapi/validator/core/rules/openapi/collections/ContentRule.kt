@@ -8,6 +8,12 @@ import io.swagger.v3.oas.models.media.MediaType
 
 class ContentRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, MediaType>>(group) {
 
+    fun all(description: String = "", rule: MediaTypeRule.() -> MediaTypeRule) =
+        all { mediaType ->
+            rule(MediaTypeRule(RuleGroup.named("mediaType '${mediaType.first}'", description, RuleGroup.Category.OBJECT, group)))
+                .validate(mediaType.second)
+        }
+
     fun mediaType(description: String = "", named: String, rule: MediaTypeRule.() -> MediaTypeRule) =
         apply {
             add { encodings ->
