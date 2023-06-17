@@ -98,5 +98,7 @@ sonar {
         property("sonar.projectKey", "stefankoppier_openapi-validator")
         property("sonar.organization", "stefankoppier")
         property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.java.coveragePlugin", "jacoco")
+        property("sonar.coverage.jacoco.xmlReportPath", "${buildDir}/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml")
     }
 }
