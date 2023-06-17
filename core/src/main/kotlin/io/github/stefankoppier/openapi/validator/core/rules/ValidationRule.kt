@@ -2,7 +2,6 @@ package io.github.stefankoppier.openapi.validator.core.rules
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
 import io.github.stefankoppier.openapi.validator.core.ValidationResult
-import io.github.stefankoppier.openapi.validator.core.rules.openapi.OperationRule
 import java.time.LocalDate
 
 abstract class ValidationRule<T : Any> protected constructor(protected val group: RuleGroup = RuleGroup.unknown()) {

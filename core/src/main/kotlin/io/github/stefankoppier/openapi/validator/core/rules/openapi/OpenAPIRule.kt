@@ -2,7 +2,9 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ComponentsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.PathsRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.SecurityRequirementsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.TagsRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.OpenAPI
@@ -43,15 +45,21 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
 
     // webhooks
 
-//    fun components(description: String = "", rule: ComponentsRule.() -> ComponentsRule) =
-//        apply {
-//            add {
-//                rule(ComponentsRule(RuleGroup.named("components", description, RuleGroup.Category.OBJECT, group)))
-//                    .validate(it?.components)
-//            }
-//        }
+    fun components(description: String = "", rule: ComponentsRule.() -> ComponentsRule) =
+        apply {
+            add {
+                rule(ComponentsRule(RuleGroup.named("components", description, RuleGroup.Category.OBJECT, group)))
+                    .validate(it?.components)
+            }
+        }
 
-    // security
+    fun security(description: String = "", rule: SecurityRequirementsRule.() -> SecurityRequirementsRule) =
+        apply {
+            add {
+                rule(SecurityRequirementsRule(RuleGroup.named("security", description, RuleGroup.Category.OBJECT, group)))
+                    .validate(it?.security)
+            }
+        }
 
     fun tags(description: String = "", rule: TagsRule.() -> TagsRule) =
         apply { 
