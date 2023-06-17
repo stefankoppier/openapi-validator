@@ -13,7 +13,7 @@ class PathsRuleTest {
             summary { exactly("Summary") }
         }
 
-        val result = rule.validate(paths.toList())
+        val result = rule.validate(paths)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -23,7 +23,7 @@ class PathsRuleTest {
             summary { exactly("Invalid") }
         }
 
-        val result = rule.validate(paths.toList())
+        val result = rule.validate(paths)
         assertThat(result.isFailure).isTrue()
     }
 
@@ -33,7 +33,7 @@ class PathsRuleTest {
             summary { exactly("Summary") }
         }
 
-        val result = rule.validate(paths.toList())
+        val result = rule.validate(paths)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -43,7 +43,7 @@ class PathsRuleTest {
             summary { exactly("Invalid") }
         }
 
-        val result = rule.validate(paths.toList())
+        val result = rule.validate(paths)
         assertThat(result.isFailure).isTrue()
     }
 
@@ -52,6 +52,6 @@ class PathsRuleTest {
             "/find" to PathItem().apply {
                 summary = "Summary"
             }
-        )
+        ).toList()
     }
 }

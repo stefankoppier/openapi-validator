@@ -14,7 +14,7 @@ class SchemasRuleTest {
             name { exactly("pet") }
         }
 
-        val result = rule.validate(schemas.toList())
+        val result = rule.validate(schemas)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -24,7 +24,7 @@ class SchemasRuleTest {
             name { exactly("dog") }
         }
 
-        val result = rule.validate(schemas.toList())
+        val result = rule.validate(schemas)
         assertThat(result.isFailure).isTrue()
     }
 
@@ -34,7 +34,7 @@ class SchemasRuleTest {
             required()
         }
 
-        val result = rule.validate(schemas.toList())
+        val result = rule.validate(schemas)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -44,7 +44,7 @@ class SchemasRuleTest {
             required()
         }
 
-        val result = rule.validate(schemas.toList())
+        val result = rule.validate(schemas)
         assertThat(result.isFailure).isTrue()
     }
 
@@ -53,6 +53,6 @@ class SchemasRuleTest {
             "pet" to Schema<String>(SpecVersion.V31).apply {
                 name = "pet"
             }
-        )
+        ).toList()
     }
 }

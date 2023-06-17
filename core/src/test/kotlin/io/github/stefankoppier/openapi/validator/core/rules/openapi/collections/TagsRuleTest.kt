@@ -13,7 +13,7 @@ class TagsRuleTest {
             name { exactly("pet") }
         }
 
-        val result = rule.validate(tags.toList())
+        val result = rule.validate(tags)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -23,7 +23,7 @@ class TagsRuleTest {
             name { exactly("dog") }
         }
 
-        val result = rule.validate(tags.toList())
+        val result = rule.validate(tags)
         assertThat(result.isFailure).isTrue()
     }
 
@@ -33,7 +33,7 @@ class TagsRuleTest {
             required()
         }
 
-        val result = rule.validate(tags.toList())
+        val result = rule.validate(tags)
         assertThat(result.isSuccess).isTrue()
     }
 
@@ -43,7 +43,7 @@ class TagsRuleTest {
             required()
         }
 
-        val result = rule.validate(tags.toList())
+        val result = rule.validate(tags)
         assertThat(result.isFailure).isTrue()
     }
 
