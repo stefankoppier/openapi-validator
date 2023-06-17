@@ -1,3 +1,6 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=stefankoppier_openapi-validator&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=stefankoppier_openapi-validator)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=stefankoppier_openapi-validator&metric=coverage)](https://sonarcloud.io/summary/new_code?id=stefankoppier_openapi-validator)
+
 # OpenAPI Validator
 
 The OpenAPI Validator tool allows you to validate your OpenAPI specification by writing a descriptive ruleset in Kotlin!
