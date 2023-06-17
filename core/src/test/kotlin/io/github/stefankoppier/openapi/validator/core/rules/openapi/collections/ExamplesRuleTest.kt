@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
+import io.github.stefankoppier.openapi.validator.core.assertThat
 import io.swagger.v3.oas.models.examples.Example
-import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
 class ExamplesRuleTest {
@@ -12,8 +12,7 @@ class ExamplesRuleTest {
             value { exactly("Example") }
         }
 
-        val result = rule.validate(fixture)
-        assertThat(result.isSuccess).isTrue()
+        assertThat(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -22,8 +21,7 @@ class ExamplesRuleTest {
             value { exactly("Fail") }
         }
 
-        val result = rule.validate(fixture)
-        assertThat(result.isFailure).isTrue()
+        assertThat(rule.validate(fixture)).isFailure()
     }
 
     @Test
@@ -32,8 +30,7 @@ class ExamplesRuleTest {
             value { exactly("Example") }
         }
 
-        val result = rule.validate(fixture)
-        assertThat(result.isSuccess).isTrue()
+        assertThat(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -42,8 +39,7 @@ class ExamplesRuleTest {
             value { exactly("Fail") }
         }
 
-        val result = rule.validate(fixture)
-        assertThat(result.isFailure).isTrue()
+        assertThat(rule.validate(fixture)).isFailure()
     }
 
     companion object {

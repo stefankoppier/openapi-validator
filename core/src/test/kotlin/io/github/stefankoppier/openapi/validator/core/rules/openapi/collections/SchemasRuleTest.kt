@@ -2,7 +2,7 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
 import io.swagger.v3.oas.models.SpecVersion
 import io.swagger.v3.oas.models.media.Schema
-import org.assertj.core.api.Assertions.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThat
 import kotlin.test.Test
 
 
@@ -14,8 +14,7 @@ class SchemasRuleTest {
             name { exactly("pet") }
         }
 
-        val result = rule.validate(fixture)
-        assertThat(result.isSuccess).isTrue()
+        assertThat(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -24,8 +23,7 @@ class SchemasRuleTest {
             name { exactly("dog") }
         }
 
-        val result = rule.validate(fixture)
-        assertThat(result.isFailure).isTrue()
+        assertThat(rule.validate(fixture)).isFailure()
     }
 
     @Test
@@ -34,8 +32,7 @@ class SchemasRuleTest {
             required()
         }
 
-        val result = rule.validate(fixture)
-        assertThat(result.isSuccess).isTrue()
+        assertThat(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -44,8 +41,7 @@ class SchemasRuleTest {
             required()
         }
 
-        val result = rule.validate(fixture)
-        assertThat(result.isFailure).isTrue()
+        assertThat(rule.validate(fixture)).isFailure()
     }
 
     companion object {

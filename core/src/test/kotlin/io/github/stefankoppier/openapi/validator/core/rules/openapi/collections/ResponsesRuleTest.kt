@@ -1,16 +1,15 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
-import io.swagger.v3.oas.models.PathItem
+import io.swagger.v3.oas.models.responses.ApiResponse
 import io.github.stefankoppier.openapi.validator.core.assertThat
 import kotlin.test.Test
 
-
-class PathsRuleTest {
+class ResponsesRuleTest {
 
     @Test
     fun `all succeeds`() {
-        val rule = PathsRule().all {
-            summary { exactly("Summary") }
+        val rule = ResponsesRule().all {
+            description { exactly("Description") }
         }
 
         assertThat(rule.validate(fixture)).isSuccess()
@@ -18,26 +17,26 @@ class PathsRuleTest {
 
     @Test
     fun `all fails`() {
-        val rule = PathsRule().all {
-            summary { exactly("Invalid") }
+        val rule = ResponsesRule().all {
+            description { exactly("Invalid") }
         }
 
         assertThat(rule.validate(fixture)).isFailure()
     }
 
     @Test
-    fun `path succeeds`() {
-        val rule = PathsRule().path(named = "/find") {
-            summary { exactly("Summary") }
+    fun `response succeeds`() {
+        val rule = ResponsesRule().response(named = "response") {
+            description { exactly("Description") }
         }
 
         assertThat(rule.validate(fixture)).isSuccess()
     }
 
     @Test
-    fun `path fails`() {
-        val rule = PathsRule().path(named = "/find") {
-            summary { exactly("Invalid") }
+    fun `response fails`() {
+        val rule = ResponsesRule().response(named = "response") {
+            description { exactly("Invalid") }
         }
 
         assertThat(rule.validate(fixture)).isFailure()
@@ -45,8 +44,8 @@ class PathsRuleTest {
 
     companion object {
         private val fixture = mapOf(
-            "/find" to PathItem().apply {
-                summary = "Summary"
+            "response" to ApiResponse().apply {
+                description = "Description"
             }
         ).toList()
     }

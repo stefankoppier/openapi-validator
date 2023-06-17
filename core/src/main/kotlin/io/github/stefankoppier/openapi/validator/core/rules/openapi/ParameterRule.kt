@@ -14,9 +14,10 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     init {
         name { required() }
         `in` { required() }
-        given( { it == null || it.`in` == "path" } ) {
-            required { required() }
-        }
+// TODO: the given (probably) doesn't work
+//        given( { it == null || it.`in` == "path" } ) {
+//            required { required() }
+//        }
     }
 
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
