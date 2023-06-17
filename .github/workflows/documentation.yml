@@ -30,7 +30,7 @@ jobs:
           gradle-version: wrapper
 
       - name: Upload documentation
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: JamesIves/github-pages-deploy-action@v4.4.2
         with:
           folder: build/dokka/htmlMultiModule
           branch: main
