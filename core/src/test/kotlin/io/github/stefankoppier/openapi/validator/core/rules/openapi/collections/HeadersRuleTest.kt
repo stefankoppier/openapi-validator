@@ -42,6 +42,15 @@ class HeadersRuleTest {
         assertThat(rule.validate(fixture)).isFailure()
     }
 
+    @Test
+    fun `header not found`() {
+        val rule = HeadersRule().header(named = "nothing") {
+            required { isFalse() }
+        }
+
+        assertThat(rule.validate(fixture)).isFailure()
+    }
+
     companion object {
         private val fixture = mapOf(
             "header" to Header().apply {

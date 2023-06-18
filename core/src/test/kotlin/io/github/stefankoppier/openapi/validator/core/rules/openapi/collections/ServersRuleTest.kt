@@ -42,6 +42,15 @@ class ServersRuleTest {
         assertThat(rule.validate(fixture)).isFailure()
     }
 
+    @Test
+    fun `server not found`() {
+        val rule = ServersRule().server(url = "http://notfound.com") {
+            description { exactly("Invalid") }
+        }
+
+        assertThat(rule.validate(fixture)).isFailure()
+    }
+
     companion object {
         private const val URL = "http://localhost"
 

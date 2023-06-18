@@ -42,6 +42,15 @@ class EncodingsRuleTest {
         assertThat(rule.validate(fixture)).isFailure()
     }
 
+    @Test
+    fun `path not found`() {
+        val rule = EncodingsRule().encoding(named = "nothing") {
+            contentType { exactly("nothing") }
+        }
+
+        assertThat(rule.validate(fixture)).isFailure()
+    }
+
     companion object {
         private val fixture = mapOf(
             "json" to Encoding().apply {

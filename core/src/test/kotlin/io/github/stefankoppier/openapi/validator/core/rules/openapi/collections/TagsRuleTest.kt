@@ -43,6 +43,16 @@ class TagsRuleTest {
         assertThat(result).isFailure()
     }
 
+    @Test
+    fun `tag not found`() {
+        val rule = TagsRule().tag(named = "not found") {
+            required()
+        }
+
+        val result = rule.validate(fixture)
+        assertThat(result).isFailure()
+    }
+
     companion object {
         private val fixture = listOf(
             Tag().apply {

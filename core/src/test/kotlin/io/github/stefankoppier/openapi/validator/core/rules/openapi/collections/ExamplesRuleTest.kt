@@ -42,6 +42,15 @@ class ExamplesRuleTest {
         assertThat(rule.validate(fixture)).isFailure()
     }
 
+    @Test
+    fun `example not found`() {
+        val rule = ExamplesRule().example(named = "nothing") {
+            value { exactly("Fail") }
+        }
+
+        assertThat(rule.validate(fixture)).isFailure()
+    }
+
     companion object {
         private val fixture = mapOf(
             "example" to Example().apply {

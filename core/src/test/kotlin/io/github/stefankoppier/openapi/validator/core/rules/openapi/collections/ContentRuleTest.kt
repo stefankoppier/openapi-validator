@@ -42,6 +42,15 @@ class ContentRuleTest {
         assertThat(rule.validate(fixture)).isFailure()
     }
 
+    @Test
+    fun `mediaType not found`() {
+        val rule = ContentRule().mediaType(named = "application/nothing") {
+            example { exactly("Fail") }
+        }
+
+        assertThat(rule.validate(fixture)).isFailure()
+    }
+
     companion object {
         private val fixture = mapOf(
             "application/json" to MediaType().apply {

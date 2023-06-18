@@ -42,6 +42,15 @@ class ResponsesRuleTest {
         assertThat(rule.validate(fixture)).isFailure()
     }
 
+    @Test
+    fun `response not found`() {
+        val rule = ResponsesRule().response(named = "not found") {
+            description { exactly("Invalid") }
+        }
+
+        assertThat(rule.validate(fixture)).isFailure()
+    }
+
     companion object {
         private val fixture = mapOf(
             "response" to ApiResponse().apply {

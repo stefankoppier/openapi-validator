@@ -43,6 +43,15 @@ class PathsRuleTest {
         assertThat(rule.validate(fixture)).isFailure()
     }
 
+    @Test
+    fun `path not found`() {
+        val rule = PathsRule().path(named = "not found") {
+            summary { exactly("Invalid") }
+        }
+
+        assertThat(rule.validate(fixture)).isFailure()
+    }
+
     companion object {
         private val fixture = mapOf(
             "/find" to PathItem().apply {

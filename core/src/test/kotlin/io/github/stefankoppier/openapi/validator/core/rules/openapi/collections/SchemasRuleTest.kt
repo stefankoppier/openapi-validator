@@ -44,6 +44,15 @@ class SchemasRuleTest {
         assertThat(rule.validate(fixture)).isFailure()
     }
 
+    @Test
+    fun `schema not found`() {
+        val rule = SchemasRule().schema(named = "not found") {
+            required()
+        }
+
+        assertThat(rule.validate(fixture)).isFailure()
+    }
+
     companion object {
         private val fixture = mapOf(
             "pet" to Schema<String>(SpecVersion.V31).apply {

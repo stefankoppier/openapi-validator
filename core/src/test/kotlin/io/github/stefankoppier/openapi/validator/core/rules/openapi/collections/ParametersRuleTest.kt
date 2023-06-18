@@ -42,6 +42,15 @@ class ParametersRuleTest {
         assertThat(rule.validate(fixture)).isFailure()
     }
 
+    @Test
+    fun `parameter not found`() {
+        val rule = ParametersRule().parameter(named = "nothing") {
+            deprecated { isFalse() }
+        }
+
+        assertThat(rule.validate(fixture)).isFailure()
+    }
+
     companion object {
         private val fixture = listOf(
             Parameter().apply {

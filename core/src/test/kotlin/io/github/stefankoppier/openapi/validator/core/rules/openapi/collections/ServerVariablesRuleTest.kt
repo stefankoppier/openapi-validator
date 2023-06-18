@@ -42,6 +42,15 @@ class ServerVariablesRuleTest {
         assertThat(rule.validate(fixture)).isFailure()
     }
 
+    @Test
+    fun `serverVariable not found`() {
+        val rule = ServerVariablesRule().serverVariable(named = "not found") {
+            description { exactly("Invalid") }
+        }
+
+        assertThat(rule.validate(fixture)).isFailure()
+    }
+
     companion object {
         private val fixture = mapOf(
             "variable" to ServerVariable().apply {
