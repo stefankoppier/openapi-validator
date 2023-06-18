@@ -12,7 +12,7 @@ class AnyRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Val
      * @return The rule on which this method has been invoked.
      */
     fun <T : Any> instanceof(clazz: KClass<T>) =
-        holds({ "Was supposed to be of type '${clazz.simpleName} but is of type '${it?.javaClass?.kotlin?.simpleName}"}) {
+        holds({ "Was supposed to be of type '${clazz.simpleName}' but is of type '${it?.javaClass?.kotlin?.simpleName}'"}) {
             it == null || clazz.isInstance(it)
         }
 }
