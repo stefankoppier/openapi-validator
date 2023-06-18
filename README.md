@@ -37,7 +37,7 @@ openAPI {
 ### Quantifier Rules
 
 ### Preconditions
-There is support for preconditions. The general precondition `given` applies a given rule only if
+There is support for preconditions. The general precondition `given` validates a given rule only if
 the predicate is true. For example
 ```kotlin
 openAPI {
