@@ -2,6 +2,7 @@ package io.github.stefankoppier.openapi.validator.core.rules
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
 import io.github.stefankoppier.openapi.validator.core.ValidationResult
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import java.time.LocalDate
 
 abstract class ValidationRule<T : Any> protected constructor(protected val group: RuleGroup = RuleGroup.unknown()) {
@@ -28,10 +29,12 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
      *
      * @return The original rule on which this method has been invoked.
      */
-    fun <R : ValidationRule<T>> given(precondition: (T?) -> Boolean, rule: () -> R): R {
-        val copy = preconditions
-        preconditions = { fixture -> precondition(fixture) && copy(fixture) }
-        return rule()
+    fun <R : ValidationRule<T>> R.given(precondition: (T?) -> Boolean, rule: () -> R): R {
+        rule().apply {
+            val copy = preconditions
+            preconditions = { fixture -> precondition(fixture) && copy(fixture) }
+        }
+        return this
     }
 
     /**
@@ -57,7 +60,7 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
      *
      * @return The original rule on which this method has been invoked.
      */
-    fun <R : ValidationRule<T>> since(date: LocalDate, rule: () -> R) =
+    fun <R : ValidationRule<T>> R.since(date: LocalDate, rule: () -> R): R =
         given({ LocalDate.now().isAfter(date) }, rule)
 
     /**
@@ -68,7 +71,7 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
      *
      * @return The original rule on which this method has been invoked.
      */
-    fun <V, R : ValidationRule<T>> optional(value: (T?) -> (V?), rule: () -> R) =
+    fun <V, R : ValidationRule<T>> R.optional(value: (T?) -> (V?), rule: () -> R) =
         given({ value(it) != null }, rule)
 
     /**
@@ -93,5 +96,5 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
         return this
     }
 
-    protected fun unit(): (T?) -> ValidationResult = { ValidationResult.success() }
+    private fun unit(): (T?) -> ValidationResult = { ValidationResult.success() }
 }

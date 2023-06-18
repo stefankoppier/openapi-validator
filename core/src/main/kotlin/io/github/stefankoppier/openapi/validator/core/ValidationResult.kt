@@ -38,6 +38,10 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
             return ValidationResult(mutableListOf())
         }
 
+        fun failure(vararg failure: ValidationFailure): ValidationResult {
+            return ValidationResult(failure.toMutableList())
+        }
+
         fun failure(failure: ValidationFailure): ValidationResult {
             return ValidationResult(mutableListOf(failure))
         }

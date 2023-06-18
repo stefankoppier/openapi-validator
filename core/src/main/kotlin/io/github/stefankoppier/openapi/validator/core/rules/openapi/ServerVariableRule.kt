@@ -11,9 +11,9 @@ class ServerVariableRule internal constructor(group: RuleGroup = RuleGroup.unkno
     init {
         default { required() }
 //        TODO: given probably doesn't work
-//        given( { it != null && it.enum != null && it.enum.isNotEmpty() } ) {
-//            holds { it?.enum?.contains(it.default) ?: true }
-//        }
+        given( { it != null && it.enum != null && it.enum.isNotEmpty() } ) {
+            holds { it?.enum?.contains(it.default) ?: true }
+        }
     }
 
     fun enum(description: String = "", rule: IterableStringRule.() -> IterableStringRule) =

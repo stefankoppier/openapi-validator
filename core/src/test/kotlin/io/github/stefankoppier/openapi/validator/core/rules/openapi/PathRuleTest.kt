@@ -1,49 +1,97 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
+import io.github.stefankoppier.openapi.validator.core.ValidationFailure
+import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.swagger.v3.oas.models.PathItem
-import org.assertj.core.api.Assertions.assertThat
+import io.swagger.v3.oas.models.parameters.Parameter
+import io.swagger.v3.oas.models.servers.Server
 import kotlin.test.Test
-import kotlin.test.assertTrue
 
 class PathRuleTest {
 
     @Test
-    fun `path with all properties failing`() {
-        val result = PathRule()
-            .summary { required() }
-            .description { required() }
-            .validate(PathItem())
+    fun `summary succeeds`() {
+        val rule = PathRule()
+            .summary { exactly("Summary") }
 
-        assertTrue { result.isFailure }
-        assertThat(result.failures).hasSize(2)
+        assertThat(rule.validate(fixture)).isSuccess()
     }
 
     @Test
-    fun `summary required with a summary`() {
-        val result = PathRule()
-            .summary { required() }
-            .validate(PathItem().summary("Summary"))
+    fun `summary fails`() {
+        val rule = PathRule()
+            .summary { exactly("Fail") }
 
-        assertTrue { result.isSuccess }
+        assertThat(rule.validate(fixture)).isFailure(
+            ValidationFailure(
+                RuleGroup.named("summary", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                "Was supposed to be 'Fail' but is 'Summary'")
+        )
     }
 
     @Test
-    fun `summary required without a summary`() {
-        val result = PathRule()
-            .summary { required() }
-            .validate(PathItem())
+    fun `description succeeds`() {
+        val rule = PathRule()
+            .description { exactly("Description") }
 
-        assertTrue { result.isFailure }
-        assertThat(result.failures).hasSize(1)
+        assertThat(rule.validate(fixture)).isSuccess()
     }
 
     @Test
-    fun `summary required and lowercase with a summary`() {
-        val result = PathRule()
-            .summary { required(); lowercase() }
-            .validate(PathItem().summary("Summary"))
+    fun `description fails`() {
+        val rule = PathRule()
+            .description { exactly("Fail") }
 
-        assertTrue { result.isFailure }
-        assertThat(result.failures).hasSize(1)
+        assertThat(rule.validate(fixture)).isFailure(
+            ValidationFailure(
+                RuleGroup.named("description", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                "Was supposed to be 'Fail' but is 'Description'")
+        )
+    }
+
+    @Test
+    fun `servers succeeds`() {
+        val rule = PathRule()
+            .servers { exactly(listOf(Server())) }
+
+        assertThat(rule.validate(fixture)).isSuccess()
+    }
+
+    @Test
+    fun `servers fails`() {
+        val rule = PathRule()
+            .servers { exactly(listOf(Server().apply { url = "http://localhost" })) }
+
+        assertThat(rule.validate(fixture))
+            .isFailure(RuleGroup.named("servers", "", RuleGroup.Category.OBJECT, RuleGroup.unknown())
+        )
+    }
+
+    @Test
+    fun `parameters succeeds`() {
+        val rule = PathRule()
+            .parameters { exactly(listOf(Parameter())) }
+
+        assertThat(rule.validate(fixture)).isSuccess()
+    }
+
+    @Test
+    fun `parameters fails`() {
+        val rule = PathRule()
+            .parameters { exactly(listOf(Parameter().apply { name = "parameter" })) }
+
+        assertThat(rule.validate(fixture))
+            .isFailure(RuleGroup.named("parameters", "", RuleGroup.Category.OBJECT, RuleGroup.unknown()))
+    }
+
+    companion object {
+        val fixture = PathItem().apply {
+            summary = "Summary"
+            description = "Description"
+            servers = listOf(Server())
+            parameters = listOf(Parameter())
+            `$ref` = "ref"
+        }
     }
 }
