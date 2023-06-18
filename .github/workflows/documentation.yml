@@ -3,6 +3,10 @@ name: Documentation
 on:
   push:
     branches: [main]
+    paths:
+      - ./**/Dokka.md
+      - ./core/src/main/**
+      - ./integration-junit/src/main/**
 
 permissions:
   contents: write
