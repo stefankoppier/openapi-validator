@@ -49,6 +49,7 @@ class ParametersRuleTest {
                 deprecated = true
                 description = "Description"
                 `in` = "query"
-            })
+            }
+        )
     }
 }

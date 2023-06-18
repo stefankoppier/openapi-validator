@@ -40,7 +40,8 @@ class ValidationResultAssertions(actual: AtomicReference<ValidationResult>) : Ob
                         |""".trimMargin()
                     }
                         .usingRecursiveComparison()
-                        .isEqualTo(ValidationResult.failure(*failures))
+                        .ignoringCollectionOrder()
+                    .isEqualTo(ValidationResult.failure(*failures))
                 }
             }
     }

@@ -2,14 +2,11 @@ package io.github.stefankoppier.openapi.validator.core.rules
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
 import io.github.stefankoppier.openapi.validator.core.ValidationResult
-import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import java.time.LocalDate
 
 abstract class ValidationRule<T : Any> protected constructor(protected val group: RuleGroup = RuleGroup.unknown()) {
 
-    private var preconditions = { _: T? -> true }
-
-    private var rules = unit()
+    private val rules: MutableList<Pair<(T?) -> Boolean, (T?) -> ValidationResult>> = mutableListOf()
 
     /**
      * Execute the given rule(s) on the [fixture].
@@ -19,7 +16,9 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
      * @return The [ValidationResult] possibly containing failures.
      */
     fun validate(fixture: T?) =
-        if (preconditions(fixture)) rules(fixture) else unit()(fixture)
+        rules.fold(unit()(fixture)) { acc, rule ->
+            acc merge if (rule.first(fixture)) rule.second.invoke(fixture) else unit()(fixture)
+        }
 
     /**
      * Validate [rule] only if [precondition] evaluates to true.
@@ -29,13 +28,11 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
      *
      * @return The original rule on which this method has been invoked.
      */
-    fun <R : ValidationRule<T>> R.given(precondition: (T?) -> Boolean, rule: () -> R): R {
+    fun <R : ValidationRule<T>> R.given(precondition: (T?) -> Boolean, rule: R.() -> R): R =
         rule().apply {
-            val copy = preconditions
-            preconditions = { fixture -> precondition(fixture) && copy(fixture) }
+            val last = rules.last()
+            rules[rules.size - 1] = last.copy(first = { precondition(it) && last.first(it) })
         }
-        return this
-    }
 
     /**
      * Validate that [predicate] evaluates to true.
@@ -60,7 +57,7 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
      *
      * @return The original rule on which this method has been invoked.
      */
-    fun <R : ValidationRule<T>> R.since(date: LocalDate, rule: () -> R): R =
+    fun <R : ValidationRule<T>> R.since(date: LocalDate, rule: R.() -> R): R =
         given({ LocalDate.now().isAfter(date) }, rule)
 
     /**
@@ -71,7 +68,7 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
      *
      * @return The original rule on which this method has been invoked.
      */
-    fun <V, R : ValidationRule<T>> R.optional(value: (T?) -> (V?), rule: () -> R) =
+    fun <V, R : ValidationRule<T>> R.optional(value: (T?) -> (V?), rule: R.() -> R) =
         given({ value(it) != null }, rule)
 
     /**
@@ -80,7 +77,9 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
      * @return The original rule on which this method has been invoked.
      */
     fun <R : ValidationRule<T>> R.required() =
-        holds( { "Was required but is not given" } ) { it != null }
+        holds( { "Was required but is not given" } ) {
+            it != null
+        }
 
     /**
      * Validate that the element should be equal to [value] *given that it is set*.
@@ -91,8 +90,7 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
         holds( { "Was supposed to be '$value' but is '$it'" } ) { it == value }
 
     protected fun add(rule: (T?) -> ValidationResult): ValidationRule<T> {
-        val copy = rules
-        rules = { fixture -> copy(fixture) merge rule(fixture) }
+        rules.add({ _: T? -> true } to { fixture -> rule(fixture) })
         return this
     }
 

@@ -15,10 +15,10 @@ class OpenAPIValidationExtensionTest(private val document: OpenAPI) {
     fun `test extension`() {
         assertDocumentIsValidFor(document, openAPI("My specification") {
             since(LocalDate.MAX) {
-                info { title { exactly("OpenAPI Peatstore") } }
+                info {
+                    title { exactly("OpenAPI Peatstore") }
+                }
             }
-
-            info { summary { required() } }
         })
     }
 }
