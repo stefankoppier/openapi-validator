@@ -22,7 +22,7 @@ class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
      */
     fun lowercase() =
         holds( { "Was supposed to be lowercase but is '$it'" } ) {
-            it == null || it.all { c -> c.isLowerCase() }
+            it == null || it.all { c -> (c.isLetter() && c.isLowerCase()) || !c.isLetter() }
         }
 
     /**
@@ -32,7 +32,7 @@ class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
      */
     fun uppercase() =
         holds( { "Was supposed to be uppercase but is '$it'" } ) {
-            it == null || it.all { c -> c.isUpperCase() }
+            it == null || it.all { c -> (c.isLetter() && c.isUpperCase()) || !c.isLetter() }
         }
 
     /**
