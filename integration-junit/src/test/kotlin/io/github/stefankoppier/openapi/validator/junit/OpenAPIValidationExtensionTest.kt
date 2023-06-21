@@ -13,10 +13,8 @@ class OpenAPIValidationExtensionTest {
     fun `test extension`() {
         assertDocumentIsValidFor {
             openAPI("My specification") {
-                since(LocalDate.MAX) {
-                    info {
-                        title { exactly("OpenAPI Peatstore") }
-                    }
+                info {
+                    title { exactly("OpenAPI Petstore") }
                 }
             }
         }
