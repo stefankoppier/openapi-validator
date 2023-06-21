@@ -23,14 +23,6 @@ internal data class RoseTree<T>(val data: T, val children: MutableList<RoseTree<
         return RoseTree(action(this), children.map { it.mapNodes(action) }.toMutableList())
     }
 
-    fun <R> fold(acc: R, operation: (acc: R, T) -> R): R {
-        return if (children.isEmpty()) {
-            operation(acc, data)
-        } else {
-            children.fold(operation(acc, data)) { acc, it -> it.fold(acc, operation) }
-        }
-    }
-
     fun <R> foldWithLevel(acc: R, operation: (level: Int, acc: R, T) -> R) = foldWithLevel(0, acc, operation)
 
     private fun <R> foldWithLevel(level: Int, acc: R, operation: (level: Int, acc: R, T) -> R): R {
