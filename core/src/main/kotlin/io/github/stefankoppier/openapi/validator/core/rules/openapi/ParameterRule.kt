@@ -2,6 +2,7 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ContentRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ExamplesRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.AnyRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.BooleanRule
