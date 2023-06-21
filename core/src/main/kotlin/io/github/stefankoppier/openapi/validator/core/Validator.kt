@@ -23,7 +23,7 @@ class Validator(private val rule: ValidationRule<OpenAPI>, private val options: 
         return if (document != null) {
             Result.success(document)
         } else {
-            Result.failure(IllegalArgumentException("Failed to parse from '$path'"))
+            Result.failure(IllegalArgumentException("Failed to parse contents from '$path'"))
         }
     }
 
@@ -34,7 +34,7 @@ class Validator(private val rule: ValidationRule<OpenAPI>, private val options: 
         return if (document != null) {
             Result.success(document)
         } else {
-            Result.failure(IllegalArgumentException("Failed to parse contents from yaml"))
+            Result.failure(IllegalArgumentException("Failed to parse yaml"))
         }
     }
 

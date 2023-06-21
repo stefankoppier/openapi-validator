@@ -2,7 +2,6 @@ package io.github.stefankoppier.openapi.validator.junit
 
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.openAPI
 import org.junit.jupiter.api.extension.ExtendWith
-import java.time.LocalDate
 import kotlin.test.Test
 
 @ExtendWith(OpenAPIValidationExtension::class)

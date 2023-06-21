@@ -14,7 +14,7 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
     internal constructor(exception: Throwable) :
         this(
             mutableListOf(
-                ValidationFailure(RuleGroup.named("", "", RuleGroup.Category.EXCEPTION, null), exception.toString()),
+                ValidationFailure(RuleGroup.named("", "", RuleGroup.Category.EXCEPTION, null), exception.message ?: exception.toString()),
             ),
         )
 
