@@ -88,8 +88,7 @@ allprojects {
 
         spotless {
             kotlin {
-                ktlint()
-                    .setEditorConfigPath("$rootDir/.editorconfig")
+                ktlint().setEditorConfigPath("$rootDir/.editorconfig")
             }
         }
     }
