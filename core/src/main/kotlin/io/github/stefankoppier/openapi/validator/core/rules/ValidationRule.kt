@@ -89,6 +89,16 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
     fun <R : ValidationRule<T>> R.exactly(value: T) =
         holds({ "Was supposed to be '$value' but is '$it'" }) { it == value }
 
+    /**
+     * Validate that the element should be equal to one of the elements in [option] *given that it is set*.
+     *
+     * @return The original rule on which this method has been invoked.
+     */
+    fun <R : ValidationRule<T>> R.either(vararg option: T) =
+        holds({ "Was supposed to be one of '${option.joinToString(", ")}' but is '$it'" }) {
+            it in option
+        }
+
     protected fun add(rule: (T?) -> ValidationResult): ValidationRule<T> {
         rules.add({ _: T? -> true } to { fixture -> rule(fixture) })
         return this
