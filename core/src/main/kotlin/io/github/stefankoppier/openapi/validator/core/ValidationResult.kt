@@ -26,7 +26,7 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
         return failures
             .map { it.construct() }
             .reduce(RoseTree<ValidationNode>::merge)
-            .foldWithLevel(StringBuilder()) { level, builder, it ->
+            .fold(StringBuilder()) { level, builder, it ->
                 builder.apply {
                     append((0 until level).joinToString(separator = "") { "    " })
                     append(
