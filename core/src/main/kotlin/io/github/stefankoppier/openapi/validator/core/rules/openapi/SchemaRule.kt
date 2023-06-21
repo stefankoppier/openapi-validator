@@ -2,7 +2,11 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
-import io.github.stefankoppier.openapi.validator.core.rules.primitives.*
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.BigDecimalRule
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.BooleanRule
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.IntegerRule
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableStringRule
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.media.Schema
 
 class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Schema<*>>(group) {
@@ -157,7 +161,6 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
 
     // additionalProperties
 
-
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
@@ -237,5 +240,4 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     // _enum
 
     // descriminator
-
 }

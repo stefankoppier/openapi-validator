@@ -13,7 +13,7 @@ class PathsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : I
                 .validate(path.second)
         }
 
-    fun path(description: String = "", named: String, rule: PathRule.() -> PathRule)  =
+    fun path(description: String = "", named: String, rule: PathRule.() -> PathRule) =
         apply {
             add { paths ->
                 val path = paths?.find { it.first == named }

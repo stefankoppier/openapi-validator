@@ -28,10 +28,14 @@ class OpenAPIRuleTest {
         val result = OpenAPIRule()
             .tags { each(predicate = { it.description != null }) }
             .tags { some(predicate = { it.description == "Description" }) }
-            .validate(OpenAPI().tags(listOf(
-                Tag().name(null).description(null),
-                Tag().name("Name").description("Description"),
-            )))
+            .validate(
+                OpenAPI().tags(
+                    listOf(
+                        Tag().name(null).description(null),
+                        Tag().name("Name").description("Description"),
+                    ),
+                ),
+            )
         assertTrue { result.isFailure }
         assertThat(result.failures).hasSize(1)
     }

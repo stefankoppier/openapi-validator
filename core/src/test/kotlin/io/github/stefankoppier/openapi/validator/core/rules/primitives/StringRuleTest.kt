@@ -23,8 +23,10 @@ class StringRuleTest {
         }
 
         assertThat(rule.validate("a")).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to match '[0-9]+' but is 'a'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to match '[0-9]+' but is 'a'",
+            ),
         )
     }
 
@@ -53,8 +55,10 @@ class StringRuleTest {
         }
 
         assertThat(rule.validate("STRING")).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be lowercase but is 'STRING'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be lowercase but is 'STRING'",
+            ),
         )
     }
 
@@ -83,8 +87,10 @@ class StringRuleTest {
         }
 
         assertThat(rule.validate("string")).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be uppercase but is 'string'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be uppercase but is 'string'",
+            ),
         )
     }
 
@@ -104,8 +110,10 @@ class StringRuleTest {
         }
 
         assertThat(rule.validate("1")).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be alphabetic but is '1'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be alphabetic but is '1'",
+            ),
         )
     }
 
@@ -125,8 +133,10 @@ class StringRuleTest {
         }
 
         assertThat(rule.validate("string")).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be numeric but is 'string'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be numeric but is 'string'",
+            ),
         )
     }
 
@@ -146,8 +156,10 @@ class StringRuleTest {
         }
 
         assertThat(rule.validate("string_1")).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be alphanumeric but is 'string_1'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be alphanumeric but is 'string_1'",
+            ),
         )
     }
 
@@ -167,8 +179,10 @@ class StringRuleTest {
         }
 
         assertThat(rule.validate("kebab case")).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be kebab case but is 'kebab case'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be kebab case but is 'kebab case'",
+            ),
         )
     }
 
@@ -188,8 +202,10 @@ class StringRuleTest {
         }
 
         assertThat(rule.validate("snake case")).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be snake case but is 'snake case'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be snake case but is 'snake case'",
+            ),
         )
     }
 

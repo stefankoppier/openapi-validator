@@ -15,7 +15,6 @@ class EncodingRule(group: RuleGroup) : ValidationRule<Encoding>(group) {
             add {
                 rule(StringRule(RuleGroup.named("contentType", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.contentType)
-
             }
         }
 
@@ -24,7 +23,6 @@ class EncodingRule(group: RuleGroup) : ValidationRule<Encoding>(group) {
             add {
                 rule(HeadersRule(RuleGroup.named("headers", description, RuleGroup.Category.OBJECT, group)))
                     .validate(it?.headers?.toList())
-
             }
         }
 
@@ -33,7 +31,6 @@ class EncodingRule(group: RuleGroup) : ValidationRule<Encoding>(group) {
             add {
                 rule(EnumRule(RuleGroup.named("style", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.style)
-
             }
         }
 
@@ -42,7 +39,6 @@ class EncodingRule(group: RuleGroup) : ValidationRule<Encoding>(group) {
             add {
                 rule(BooleanRule(RuleGroup.named("explode", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.explode)
-
             }
         }
 
@@ -51,7 +47,6 @@ class EncodingRule(group: RuleGroup) : ValidationRule<Encoding>(group) {
             add {
                 rule(BooleanRule(RuleGroup.named("allowReserved", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.allowReserved)
-
             }
         }
 }

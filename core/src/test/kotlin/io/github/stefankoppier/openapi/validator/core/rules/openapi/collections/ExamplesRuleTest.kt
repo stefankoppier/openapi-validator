@@ -55,7 +55,7 @@ class ExamplesRuleTest {
         private val fixture = mapOf(
             "example" to Example().apply {
                 value = "Example"
-            }
+            },
         ).toList()
     }
 }

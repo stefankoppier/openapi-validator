@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
-import io.swagger.v3.oas.models.servers.Server
 import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.swagger.v3.oas.models.servers.Server
 import kotlin.test.Test
 
 class ServersRuleTest {
@@ -58,7 +58,7 @@ class ServersRuleTest {
             Server().apply {
                 url = URL
                 description = "Description"
-            }
+            },
         )
     }
 }

@@ -5,7 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.openapi.ExampleRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
 import io.swagger.v3.oas.models.examples.Example
 
-class ExamplesRule internal constructor(group: RuleGroup = RuleGroup.unknown()): IterableValidationRule<Pair<String, Example>>(group) {
+class ExamplesRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, Example>>(group) {
 
     fun all(description: String = "", rule: ExampleRule.() -> ExampleRule) =
         all { example ->

@@ -3,9 +3,7 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
 import io.github.stefankoppier.openapi.validator.core.assertThat
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
-import io.swagger.v3.oas.models.PathItem
 import io.swagger.v3.oas.models.parameters.Parameter
-import io.swagger.v3.oas.models.servers.Server
 import kotlin.test.Test
 
 class ParameterRuleTest {
@@ -15,7 +13,7 @@ class ParameterRuleTest {
         val rule = ParameterRule()
         assertThat(rule.validate(Parameter())).isFailure(
             ValidationFailure(RuleGroup.named("name", "", RuleGroup.Category.FIELD, RuleGroup.unknown()), "Was required but is not given"),
-            ValidationFailure(RuleGroup.named("in", "", RuleGroup.Category.FIELD, RuleGroup.unknown()), "Was required but is not given")
+            ValidationFailure(RuleGroup.named("in", "", RuleGroup.Category.FIELD, RuleGroup.unknown()), "Was required but is not given"),
         )
     }
 
@@ -48,7 +46,8 @@ class ParameterRuleTest {
         assertThat(rule.validate(fixture)).isFailure(
             ValidationFailure(
                 RuleGroup.named("name", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
-                "Was supposed to be 'Fail' but is 'Parameter'")
+                "Was supposed to be 'Fail' but is 'Parameter'",
+            ),
         )
     }
 

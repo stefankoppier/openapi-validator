@@ -14,7 +14,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     init {
         name { required() }
         `in` { required() }
-        given( { it != null && it.`in` == "path" } ) {
+        given({ it != null && it.`in` == "path" }) {
             required { required(); isTrue() }
         }
     }
@@ -104,8 +104,8 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
             add {
                 rule(AnyRule(RuleGroup.named("example", description, RuleGroup.Category.FIELD, group)))
                     .validate(it?.example)
+            }
         }
-    }
 
     fun examples(description: String = "", rule: ExamplesRule.() -> ExamplesRule) =
         apply {

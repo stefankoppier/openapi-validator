@@ -4,8 +4,8 @@ data class RuleGroup internal constructor(
     val parent: RuleGroup?,
     val name: String,
     val description: String,
-    val category: Category)
-{
+    val category: Category,
+) {
 
     enum class Category {
         OBJECT,

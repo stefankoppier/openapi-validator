@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
-import io.swagger.v3.oas.models.headers.Header
 import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.swagger.v3.oas.models.headers.Header
 import kotlin.test.Test
 
 class HeadersRuleTest {
@@ -55,7 +55,7 @@ class HeadersRuleTest {
         private val fixture = mapOf(
             "header" to Header().apply {
                 required = true
-            }
+            },
         ).toList()
     }
 }

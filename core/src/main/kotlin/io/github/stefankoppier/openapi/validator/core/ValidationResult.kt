@@ -19,15 +19,17 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
         return failures
             .map { it.construct() }
             .reduce(RoseTree<ValidationNode>::merge)
-            .foldWithLevel(StringBuilder()) { level, builder , it ->
+            .foldWithLevel(StringBuilder()) { level, builder, it ->
                 builder.apply {
                     append((0 until level).joinToString(separator = "") { "    " })
-                    append(when (it.category) {
-                        RuleGroup.Category.OBJECT -> "For ${it.content}:"
-                        RuleGroup.Category.FIELD -> "Field '${it.content}' does not comply:"
-                        RuleGroup.Category.MESSAGE -> "- ${it.content}"
-                        RuleGroup.Category.UNKNOWN -> it.content
-                    })
+                    append(
+                        when (it.category) {
+                            RuleGroup.Category.OBJECT -> "For ${it.content}:"
+                            RuleGroup.Category.FIELD -> "Field '${it.content}' does not comply:"
+                            RuleGroup.Category.MESSAGE -> "- ${it.content}"
+                            RuleGroup.Category.UNKNOWN -> it.content
+                        },
+                    )
                     appendLine()
                 }
             }.toString()

@@ -77,7 +77,7 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
      * @return The original rule on which this method has been invoked.
      */
     fun <R : ValidationRule<T>> R.required() =
-        holds( { "Was required but is not given" } ) {
+        holds({ "Was required but is not given" }) {
             it != null
         }
 
@@ -87,7 +87,7 @@ abstract class ValidationRule<T : Any> protected constructor(protected val group
      * @return The original rule on which this method has been invoked.
      */
     fun <R : ValidationRule<T>> R.exactly(value: T) =
-        holds( { "Was supposed to be '$value' but is '$it'" } ) { it == value }
+        holds({ "Was supposed to be '$value' but is '$it'" }) { it == value }
 
     protected fun add(rule: (T?) -> ValidationResult): ValidationRule<T> {
         rules.add({ _: T? -> true } to { fixture -> rule(fixture) })

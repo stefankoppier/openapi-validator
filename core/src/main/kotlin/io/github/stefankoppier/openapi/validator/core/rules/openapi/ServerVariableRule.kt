@@ -10,7 +10,7 @@ class ServerVariableRule internal constructor(group: RuleGroup = RuleGroup.unkno
 
     init {
         default { required() }
-        given( { it != null && it.enum != null && it.enum.isNotEmpty() } ) {
+        given({ it != null && it.enum != null && it.enum.isNotEmpty() }) {
             holds { it?.enum?.contains(it.default) ?: true }
         }
     }

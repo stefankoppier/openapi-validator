@@ -26,7 +26,8 @@ class PathRuleTest {
         assertThat(rule.validate(fixture)).isFailure(
             ValidationFailure(
                 RuleGroup.named("summary", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
-                "Was supposed to be 'Fail' but is 'Summary'")
+                "Was supposed to be 'Fail' but is 'Summary'",
+            ),
         )
     }
 
@@ -46,7 +47,8 @@ class PathRuleTest {
         assertThat(rule.validate(fixture)).isFailure(
             ValidationFailure(
                 RuleGroup.named("description", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
-                "Was supposed to be 'Fail' but is 'Description'")
+                "Was supposed to be 'Fail' but is 'Description'",
+            ),
         )
     }
 
@@ -64,8 +66,9 @@ class PathRuleTest {
             .servers { exactly(listOf(Server().apply { url = "http://localhost" })) }
 
         assertThat(rule.validate(fixture))
-            .isFailure(RuleGroup.named("servers", "", RuleGroup.Category.OBJECT, RuleGroup.unknown())
-        )
+            .isFailure(
+                RuleGroup.named("servers", "", RuleGroup.Category.OBJECT, RuleGroup.unknown()),
+            )
     }
 
     @Test

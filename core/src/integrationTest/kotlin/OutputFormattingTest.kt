@@ -25,7 +25,8 @@ class OutputFormattingTest {
         val result = Validator(rule).validate(openAPI)
 
         assertThat(result.failures).isNotEmpty()
-        assertThat(result.summarize()).isEqualTo("""
+        assertThat(result.summarize()).isEqualTo(
+            """
             |For document:
             |    For info:
             |        Field 'title' does not comply:
@@ -33,6 +34,8 @@ class OutputFormattingTest {
             |        For contact:
             |            Field 'name' does not comply:
             |                - Was supposed to be 'Different name' but is 'Swagger'
-            |""".trimMargin())
+            |
+            """.trimMargin(),
+        )
     }
 }

@@ -24,8 +24,10 @@ class BigDecimalRuleTest {
         }
 
         assertThat(rule.validate(BigDecimal("0.99"))).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be greater than or equal to '1' but is '0.99'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be greater than or equal to '1' but is '0.99'",
+            ),
         )
     }
 
@@ -45,8 +47,10 @@ class BigDecimalRuleTest {
         }
 
         assertThat(rule.validate(BigDecimal("1.01"))).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be less than or equal to '1' but is '1.01'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be less than or equal to '1' but is '1.01'",
+            ),
         )
     }
 
@@ -66,8 +70,10 @@ class BigDecimalRuleTest {
         }
 
         assertThat(rule.validate(BigDecimal("0.99"))).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be between '1' and '10' but is '0.99'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be between '1' and '10' but is '0.99'",
+            ),
         )
     }
 
@@ -78,8 +84,10 @@ class BigDecimalRuleTest {
         }
 
         assertThat(rule.validate(BigDecimal("10.01"))).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be between '1' and '10' but is '10.01'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be between '1' and '10' but is '10.01'",
+            ),
         )
     }
 

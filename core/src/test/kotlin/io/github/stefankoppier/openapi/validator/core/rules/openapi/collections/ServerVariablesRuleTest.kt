@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
-import io.swagger.v3.oas.models.servers.ServerVariable
 import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.swagger.v3.oas.models.servers.ServerVariable
 import kotlin.test.Test
 
 class ServerVariablesRuleTest {
@@ -56,7 +56,7 @@ class ServerVariablesRuleTest {
             "variable" to ServerVariable().apply {
                 description = "Description"
                 default = "Default"
-            }
+            },
         ).toList()
     }
 }

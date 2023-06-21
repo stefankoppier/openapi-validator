@@ -18,11 +18,11 @@ class CompleteTest {
                 description { exactly("This is a sample server Petstore server. For this sample, you can use the api key `special-key` to test the authorization filters.") }
                 version { exactly("1.0.0") }
                 contact {
-                    name { exactly("Swagger" ) }
+                    name { exactly("Swagger") }
                     url { exactly("http://petstore.swagger.io/") }
                 }
                 licence {
-                    name { exactly("Apache-2.0" ) }
+                    name { exactly("Apache-2.0") }
                     url { exactly("https://www.apache.org/licenses/LICENSE-2.0.html") }
                 }
             }

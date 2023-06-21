@@ -23,10 +23,11 @@ class OperationRule internal constructor(group: RuleGroup = RuleGroup.unknown())
 
     fun summary(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
-            add { rule(StringRule(RuleGroup.named("summary", description, RuleGroup.Category.FIELD, group)))
-                .validate(it?.summary)
+            add {
+                rule(StringRule(RuleGroup.named("summary", description, RuleGroup.Category.FIELD, group)))
+                    .validate(it?.summary)
+            }
         }
-    }
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {

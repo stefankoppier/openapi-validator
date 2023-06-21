@@ -15,7 +15,7 @@ abstract class IterableValidationRule<T : Any> internal constructor(group: RuleG
      * @return The original rule on which this method has been invoked.
      */
     fun <R : IterableValidationRule<T>> R.each(description: String = "", predicate: (T) -> Boolean): R =
-        holds( { "All were supposed to match '$description' but not all did" } ) {
+        holds({ "All were supposed to match '$description' but not all did" }) {
             it?.all(predicate) ?: true
         }
 
@@ -28,7 +28,7 @@ abstract class IterableValidationRule<T : Any> internal constructor(group: RuleG
      * @return The original rule on which this method has been invoked.
      */
     fun <R : IterableValidationRule<T>> R.some(description: String = "", predicate: (T) -> Boolean): R =
-        holds( { "At least one was supposed to match '$description' but none did" } ) {
+        holds({ "At least one was supposed to match '$description' but none did" }) {
             it?.any(predicate) ?: false
         }
 
@@ -41,7 +41,7 @@ abstract class IterableValidationRule<T : Any> internal constructor(group: RuleG
      * @return The original rule on which this method has been invoked.
      */
     fun <R : IterableValidationRule<T>> R.none(description: String = "", predicate: (T) -> Boolean): R =
-        holds( { "None were supposed to match '$description' but at least one did" } ) {
+        holds({ "None were supposed to match '$description' but at least one did" }) {
             it?.none(predicate) ?: false
         }
 

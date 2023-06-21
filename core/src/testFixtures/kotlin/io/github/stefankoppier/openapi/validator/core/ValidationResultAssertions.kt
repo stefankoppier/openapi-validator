@@ -16,7 +16,7 @@ class ValidationResultAssertions(actual: AtomicReference<ValidationResult>) : Ob
                 withFailMessage {
                     """
                     |Rule group was expected to be
-                    |${group}
+                    |$group
                     |But was
                     |${actual.failures.joinToString(separator = System.lineSeparator()) { it.group.toString() }}
                     """.trimIndent()
@@ -37,11 +37,12 @@ class ValidationResultAssertions(actual: AtomicReference<ValidationResult>) : Ob
                         |${failures.joinToString(separator = System.lineSeparator())}
                         |but was
                         |${actual.failures.joinToString(separator = System.lineSeparator())}
-                        |""".trimMargin()
+                        |
+                        """.trimMargin()
                     }
                         .usingRecursiveComparison()
                         .ignoringCollectionOrder()
-                    .isEqualTo(ValidationResult.failure(*failures))
+                        .isEqualTo(ValidationResult.failure(*failures))
                 }
             }
     }
@@ -51,7 +52,9 @@ class ValidationResultAssertions(actual: AtomicReference<ValidationResult>) : Ob
             """
             |ValidationResult should be successful but was failure:
             |${actual.summarize()}
-            |""".trimMargin() }
+            |
+            """.trimMargin()
+        }
             .hasFieldOrPropertyWithValue("success", true)
     }
 }

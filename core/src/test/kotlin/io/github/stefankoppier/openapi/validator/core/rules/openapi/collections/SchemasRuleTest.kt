@@ -1,10 +1,9 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
+import io.github.stefankoppier.openapi.validator.core.assertThat
 import io.swagger.v3.oas.models.SpecVersion
 import io.swagger.v3.oas.models.media.Schema
-import io.github.stefankoppier.openapi.validator.core.assertThat
 import kotlin.test.Test
-
 
 class SchemasRuleTest {
 
@@ -57,7 +56,7 @@ class SchemasRuleTest {
         private val fixture = mapOf(
             "pet" to Schema<String>(SpecVersion.V31).apply {
                 name = "pet"
-            }
+            },
         ).toList()
     }
 }

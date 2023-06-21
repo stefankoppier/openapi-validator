@@ -13,7 +13,7 @@ class ResponsesRule internal constructor(group: RuleGroup = RuleGroup.unknown())
                 .validate(response.second)
         }
 
-    fun response(description: String = "", named: String, rule: ResponseRule.() -> ResponseRule)  =
+    fun response(description: String = "", named: String, rule: ResponseRule.() -> ResponseRule) =
         apply {
             add { responses ->
                 val response = responses?.find { it.first == named }

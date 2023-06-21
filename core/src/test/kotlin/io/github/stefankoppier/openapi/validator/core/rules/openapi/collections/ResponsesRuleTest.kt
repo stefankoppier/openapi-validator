@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
-import io.swagger.v3.oas.models.responses.ApiResponse
 import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.swagger.v3.oas.models.responses.ApiResponse
 import kotlin.test.Test
 
 class ResponsesRuleTest {
@@ -55,7 +55,7 @@ class ResponsesRuleTest {
         private val fixture = mapOf(
             "response" to ApiResponse().apply {
                 description = "Description"
-            }
+            },
         ).toList()
     }
 }

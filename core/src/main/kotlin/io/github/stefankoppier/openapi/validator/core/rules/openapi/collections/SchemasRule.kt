@@ -13,7 +13,7 @@ class SchemasRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
                 .validate(schema.second)
         }
 
-    fun schema(description: String = "", named: String, rule: SchemaRule.() -> SchemaRule)  =
+    fun schema(description: String = "", named: String, rule: SchemaRule.() -> SchemaRule) =
         apply {
             add { schemas ->
                 val schema = schemas?.find { it.first == named }

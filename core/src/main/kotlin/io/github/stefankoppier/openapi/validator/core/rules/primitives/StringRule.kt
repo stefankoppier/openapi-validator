@@ -11,7 +11,7 @@ class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
      * @return The rule on which this method has been invoked.
      */
     fun matches(regex: Regex) =
-        holds( { "Was supposed to match '$regex' but is '$it'" } ) {
+        holds({ "Was supposed to match '$regex' but is '$it'" }) {
             it == null || regex.matches(it)
         }
 
@@ -21,7 +21,7 @@ class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
      * @return The rule on which this method has been invoked.
      */
     fun lowercase() =
-        holds( { "Was supposed to be lowercase but is '$it'" } ) {
+        holds({ "Was supposed to be lowercase but is '$it'" }) {
             it == null || it.all { c -> (c.isLetter() && c.isLowerCase()) || !c.isLetter() }
         }
 
@@ -31,7 +31,7 @@ class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
      * @return The rule on which this method has been invoked.
      */
     fun uppercase() =
-        holds( { "Was supposed to be uppercase but is '$it'" } ) {
+        holds({ "Was supposed to be uppercase but is '$it'" }) {
             it == null || it.all { c -> (c.isLetter() && c.isUpperCase()) || !c.isLetter() }
         }
 
@@ -41,7 +41,7 @@ class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
      * @return The rule on which this method has been invoked.
      */
     fun alpha() =
-        holds( { "Was supposed to be alphabetic but is '$it'" } ) {
+        holds({ "Was supposed to be alphabetic but is '$it'" }) {
             it == null || it.all { c -> c.isLetter() }
         }
 
@@ -51,7 +51,7 @@ class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
      * @return The rule on which this method has been invoked.
      */
     fun numeric() =
-        holds( { "Was supposed to be numeric but is '$it'" } ) {
+        holds({ "Was supposed to be numeric but is '$it'" }) {
             it == null || it.all { c -> c.isDigit() }
         }
 
@@ -61,7 +61,7 @@ class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
      * @return The rule on which this method has been invoked.
      */
     fun alphanumeric() =
-        holds( { "Was supposed to be alphanumeric but is '$it'" } ) {
+        holds({ "Was supposed to be alphanumeric but is '$it'" }) {
             it == null || it.all { c -> c.isLetterOrDigit() }
         }
 
@@ -71,7 +71,7 @@ class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
      * @return The rule on which this method has been invoked.
      */
     fun kebabcase() =
-        holds( { "Was supposed to be kebab case but is '$it'" } ) {
+        holds({ "Was supposed to be kebab case but is '$it'" }) {
             it == null || it.all { c -> c.isLetterOrDigit() || c == '-' }
         }
 
@@ -81,7 +81,7 @@ class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
      * @return The rule on which this method has been invoked.
      */
     fun snakecase() =
-        holds( { "Was supposed to be snake case but is '$it'" } ) {
+        holds({ "Was supposed to be snake case but is '$it'" }) {
             it == null || it.all { c -> c.isLetterOrDigit() || c == '_' }
         }
 }

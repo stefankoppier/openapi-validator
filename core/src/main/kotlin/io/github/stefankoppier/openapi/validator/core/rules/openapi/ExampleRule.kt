@@ -17,7 +17,7 @@ class ExampleRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
             }
         }
 
-    fun description(description: String = "", rule: StringRule.() -> StringRule) = 
+    fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
                 rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))

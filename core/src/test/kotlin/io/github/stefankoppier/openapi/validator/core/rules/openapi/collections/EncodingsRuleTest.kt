@@ -36,7 +36,7 @@ class EncodingsRuleTest {
     @Test
     fun `path fails`() {
         val rule = EncodingsRule().encoding(named = "json") {
-             contentType { exactly("application/xml") }
+            contentType { exactly("application/xml") }
         }
 
         assertThat(rule.validate(fixture)).isFailure()
@@ -55,7 +55,7 @@ class EncodingsRuleTest {
         private val fixture = mapOf(
             "json" to Encoding().apply {
                 contentType = "application/json"
-            }
+            },
         ).toList()
     }
 }

@@ -9,7 +9,7 @@ class Parser {
 
     fun parse(path: URI): Result<OpenAPI> {
         val openAPI: OpenAPI? = OpenAPIV3Parser().read(path.toString())
-        return if (openAPI != null)  {
+        return if (openAPI != null) {
             Result.success(openAPI)
         } else {
             Result.failure(IllegalArgumentException("Failed to parse from '$path'"))
@@ -21,7 +21,7 @@ class Parser {
         val openAPI: OpenAPI? = OpenAPIV3Parser()
             .readContents(yaml, emptyList(), options)
             ?.openAPI
-        return if (openAPI != null)  {
+        return if (openAPI != null) {
             Result.success(openAPI)
         } else {
             Result.failure(IllegalArgumentException("Failed to parse contents"))

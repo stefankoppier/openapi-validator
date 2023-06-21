@@ -20,3 +20,4 @@ testing = ["kotlin-test", "assertj-core"]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 sonarqube = { id = "org.sonarqube", version = "4.2.1.3168" }
+spotless = { id = "com.diffplug.spotless", version = "6.19.0" }

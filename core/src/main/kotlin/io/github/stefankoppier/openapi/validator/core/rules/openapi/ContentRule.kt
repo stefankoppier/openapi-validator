@@ -15,4 +15,3 @@ class ContentRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
             }
         }
 }
-

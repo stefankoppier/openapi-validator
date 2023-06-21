@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
-import io.swagger.v3.oas.models.tags.Tag
 import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.swagger.v3.oas.models.tags.Tag
 import kotlin.test.Test
 
 class TagsRuleTest {
@@ -57,7 +57,7 @@ class TagsRuleTest {
         private val fixture = listOf(
             Tag().apply {
                 name = "pet"
-            }
+            },
         )
     }
 }

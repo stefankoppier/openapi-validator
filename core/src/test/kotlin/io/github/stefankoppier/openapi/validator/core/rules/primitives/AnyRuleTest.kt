@@ -23,8 +23,10 @@ class AnyRuleTest {
         }
 
         assertThat(rule.validate(true)).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be of type 'String' but is of type 'Boolean'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be of type 'String' but is of type 'Boolean'",
+            ),
         )
     }
 

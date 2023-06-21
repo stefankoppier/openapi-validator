@@ -1,8 +1,8 @@
 package io.github.stefankoppier.openapi.validator.core.rules.primitives
 
-import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
 import io.github.stefankoppier.openapi.validator.core.ValidationResult
+import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import java.net.URL
 
@@ -34,7 +34,7 @@ class URLRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Val
      * @return The rule on which this method has been invoked.
      */
     fun <R : ValidationRule<URL>> R.exactly(value: String) =
-        holds( { "Was supposed to be '$value' but is '$it'" } ) {
+        holds({ "Was supposed to be '$value' but is '$it'" }) {
             it == run { URL(value) }
         }
 }

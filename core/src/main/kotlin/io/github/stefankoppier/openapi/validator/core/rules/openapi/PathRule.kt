@@ -9,7 +9,7 @@ import io.swagger.v3.oas.models.PathItem
 
 class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem>(group) {
 
-    fun summary(description: String = "", rule: StringRule.() -> StringRule) = 
+    fun summary(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
                 rule(StringRule(RuleGroup.named("summary", description, RuleGroup.Category.FIELD, group)))
@@ -17,7 +17,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             }
         }
 
-    fun description(description: String = "", rule: StringRule.() -> StringRule) = 
+    fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
                 rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
@@ -35,7 +35,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             optional({ it?.trace }) { trace(description, rule) }
         }
 
-    fun get(description: String = "", rule: OperationRule.() -> OperationRule) = 
+    fun get(description: String = "", rule: OperationRule.() -> OperationRule) =
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("get", description, RuleGroup.Category.OBJECT, group)))
@@ -43,7 +43,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             }
         }
 
-    fun put(description: String = "", rule: OperationRule.() -> OperationRule) = 
+    fun put(description: String = "", rule: OperationRule.() -> OperationRule) =
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("put", description, RuleGroup.Category.OBJECT, group)))
@@ -51,7 +51,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             }
         }
 
-    fun post(description: String = "", rule: OperationRule.() -> OperationRule) = 
+    fun post(description: String = "", rule: OperationRule.() -> OperationRule) =
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("post", description, RuleGroup.Category.OBJECT, group)))
@@ -59,7 +59,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             }
         }
 
-    fun delete(description: String = "", rule: OperationRule.() -> OperationRule) = 
+    fun delete(description: String = "", rule: OperationRule.() -> OperationRule) =
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("delete", description, RuleGroup.Category.OBJECT, group)))
@@ -67,7 +67,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             }
         }
 
-    fun options(description: String = "", rule: OperationRule.() -> OperationRule) = 
+    fun options(description: String = "", rule: OperationRule.() -> OperationRule) =
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("options", description, RuleGroup.Category.OBJECT, group)))
@@ -75,7 +75,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             }
         }
 
-    fun head(description: String = "", rule: OperationRule.() -> OperationRule) = 
+    fun head(description: String = "", rule: OperationRule.() -> OperationRule) =
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("head", description, RuleGroup.Category.OBJECT, group)))
@@ -83,7 +83,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             }
         }
 
-    fun patch(description: String = "", rule: OperationRule.() -> OperationRule) = 
+    fun patch(description: String = "", rule: OperationRule.() -> OperationRule) =
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("patch", description, RuleGroup.Category.OBJECT, group)))
@@ -91,7 +91,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             }
         }
 
-    fun trace(description: String = "", rule: OperationRule.() -> OperationRule) = 
+    fun trace(description: String = "", rule: OperationRule.() -> OperationRule) =
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("trace", description, RuleGroup.Category.OBJECT, group)))
@@ -99,7 +99,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             }
         }
 
-    fun servers(description: String = "", rule: ServersRule.() -> ServersRule) = 
+    fun servers(description: String = "", rule: ServersRule.() -> ServersRule) =
         apply {
             add {
                 rule(ServersRule(RuleGroup.named("servers", description, RuleGroup.Category.OBJECT, group)))
@@ -107,7 +107,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             }
         }
 
-    fun parameters(description: String = "", rule: ParametersRule.() -> ParametersRule) = 
+    fun parameters(description: String = "", rule: ParametersRule.() -> ParametersRule) =
         apply {
             add {
                 rule(ParametersRule(RuleGroup.named("parameters", description, RuleGroup.Category.OBJECT, group)))

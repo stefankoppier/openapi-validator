@@ -55,7 +55,7 @@ class ContentRuleTest {
         private val fixture = mapOf(
             "application/json" to MediaType().apply {
                 example = "Example"
-            }
+            },
         ).toList()
     }
 }

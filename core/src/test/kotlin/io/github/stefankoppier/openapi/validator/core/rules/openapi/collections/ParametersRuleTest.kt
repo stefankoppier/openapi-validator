@@ -1,8 +1,8 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
 import io.github.stefankoppier.openapi.validator.core.assertThat
-import kotlin.test.Test
 import io.swagger.v3.oas.models.parameters.Parameter
+import kotlin.test.Test
 
 class ParametersRuleTest {
 
@@ -58,7 +58,7 @@ class ParametersRuleTest {
                 deprecated = true
                 description = "Description"
                 `in` = "query"
-            }
+            },
         )
     }
 }

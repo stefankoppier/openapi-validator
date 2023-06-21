@@ -1,9 +1,8 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
-import io.swagger.v3.oas.models.PathItem
 import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.swagger.v3.oas.models.PathItem
 import kotlin.test.Test
-
 
 class PathsRuleTest {
 
@@ -56,7 +55,7 @@ class PathsRuleTest {
         private val fixture = mapOf(
             "/find" to PathItem().apply {
                 summary = "Summary"
-            }
+            },
         ).toList()
     }
 }

@@ -23,8 +23,10 @@ class IntegerRuleTest {
         }
 
         assertThat(rule.validate(0)).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be greater than or equal to '1' but is '0'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be greater than or equal to '1' but is '0'",
+            ),
         )
     }
 
@@ -44,8 +46,10 @@ class IntegerRuleTest {
         }
 
         assertThat(rule.validate(2)).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be less than or equal to '1' but is '2'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be less than or equal to '1' but is '2'",
+            ),
         )
     }
 
@@ -65,8 +69,10 @@ class IntegerRuleTest {
         }
 
         assertThat(rule.validate(0)).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be between '1' and '10' but is '0'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be between '1' and '10' but is '0'",
+            ),
         )
     }
 
@@ -77,8 +83,10 @@ class IntegerRuleTest {
         }
 
         assertThat(rule.validate(11)).isFailure(
-            ValidationFailure(RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
-                "Was supposed to be between '1' and '10' but is '11'")
+            ValidationFailure(
+                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                "Was supposed to be between '1' and '10' but is '11'",
+            ),
         )
     }
 

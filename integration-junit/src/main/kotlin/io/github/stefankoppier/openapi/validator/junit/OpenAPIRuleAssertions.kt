@@ -8,12 +8,14 @@ import org.junit.jupiter.api.fail
 fun assertDocumentIsValidFor(document: OpenAPI, rule: OpenAPIRule) {
     val result = rule.validate(document)
     if (result.isFailure) {
-        fail("""
+        fail(
+            """
             |Validation for document failed
             |${amountLine(result)}
             |
             |${result.summarize()}
-        """.trimMargin())
+            """.trimMargin(),
+        )
     }
 }
 

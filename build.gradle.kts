@@ -1,10 +1,12 @@
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import org.jetbrains.kotlin.js.inline.clean.removeUnusedImports
 import java.net.URL
 
 plugins {
     id("jacoco-report-aggregation")
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.spotless)
     alias(libs.plugins.sonarqube)
 }
 
@@ -27,6 +29,7 @@ allprojects {
         apply(plugin = "org.jetbrains.dokka")
         apply(plugin = "jvm-test-suite")
         apply(plugin = "jacoco")
+        apply(plugin = "com.diffplug.spotless")
 
         kotlin {
             jvmToolchain {
@@ -80,6 +83,13 @@ allprojects {
                         remoteUrl.set(URL("https://github.com/stefankoppier/openapi-validator/tree/main/${project.name}/src/main/kotlin"))
                     }
                 }
+            }
+        }
+
+        spotless {
+            kotlin {
+                ktlint()
+                    .setEditorConfigPath("$rootDir/.editorconfig")
             }
         }
     }
