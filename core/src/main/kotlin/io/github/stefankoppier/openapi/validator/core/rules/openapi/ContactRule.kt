@@ -28,7 +28,6 @@ class ContactRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
             }
         }
 
-    // TODO: stricter email validation
     fun email(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
