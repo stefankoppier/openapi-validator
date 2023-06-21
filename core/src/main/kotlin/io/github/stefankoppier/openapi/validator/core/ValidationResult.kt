@@ -11,6 +11,13 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
     val isFailure: Boolean
         get() = failures.isNotEmpty()
 
+    internal constructor(exception: Throwable) :
+        this(
+            mutableListOf(
+                ValidationFailure(RuleGroup.named("", "", RuleGroup.Category.EXCEPTION, null), exception.toString()),
+            ),
+        )
+
     infix fun merge(other: ValidationResult): ValidationResult {
         return apply { failures.addAll(other.failures) }
     }
@@ -27,6 +34,7 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
                             RuleGroup.Category.OBJECT -> "For ${it.content}:"
                             RuleGroup.Category.FIELD -> "Field '${it.content}' does not comply:"
                             RuleGroup.Category.MESSAGE -> "- ${it.content}"
+                            RuleGroup.Category.EXCEPTION -> "An exception occurred: ${it.content}"
                             RuleGroup.Category.UNKNOWN -> it.content
                         },
                     )

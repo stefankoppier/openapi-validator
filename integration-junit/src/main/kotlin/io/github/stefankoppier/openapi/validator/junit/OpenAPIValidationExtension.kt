@@ -1,32 +1,52 @@
 package io.github.stefankoppier.openapi.validator.junit
 
-import io.github.stefankoppier.openapi.validator.core.Parser
-import io.swagger.v3.oas.models.OpenAPI
+import org.junit.jupiter.api.extension.AfterAllCallback
+import org.junit.jupiter.api.extension.AfterEachCallback
+import org.junit.jupiter.api.extension.BeforeAllCallback
+import org.junit.jupiter.api.extension.BeforeEachCallback
+import org.junit.jupiter.api.extension.Extension
 import org.junit.jupiter.api.extension.ExtensionContext
-import org.junit.jupiter.api.extension.ParameterContext
-import org.junit.jupiter.api.extension.ParameterResolutionException
-import org.junit.jupiter.api.extension.ParameterResolver
-import java.nio.file.Paths
+import java.lang.IllegalStateException
+import java.lang.reflect.Method
+import java.net.URI
 import kotlin.jvm.optionals.getOrNull
 
-class OpenAPIValidationExtension : ParameterResolver {
+class OpenAPIValidationExtension : Extension, BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
 
-    override fun supportsParameter(parameterContext: ParameterContext, extensionContext: ExtensionContext): Boolean {
-        return parameterContext.parameter.type == OpenAPI::class.java
+    override fun beforeAll(context: ExtensionContext) {
+        val element = context.element.getOrNull() as Class<*>?
+        tests = element?.getAnnotation(OpenAPITest::class.java)
     }
 
-    override fun resolveParameter(parameterContext: ParameterContext, extensionContext: ExtensionContext): Any {
-        val element = extensionContext.element
-            .getOrNull() as? Class<*>
-            ?: throw ParameterResolutionException("Could not find element")
+    override fun beforeEach(context: ExtensionContext) {
+        val element = context.element.getOrNull() as Method?
+        test = element?.getAnnotation(OpenAPITest::class.java)
+    }
 
-        val annotation = element
-            .getAnnotation(OpenAPITest::class.java)
-            ?: throw ParameterResolutionException("Please annotate class '${element.name}' with '@${OpenAPITest::class.simpleName}")
+    override fun afterAll(context: ExtensionContext?) {
+        tests = null
+    }
 
-        val uri = runCatching { Paths.get(annotation.relativeUrl).toUri() }
-            .getOrElse { throw ParameterResolutionException("Could not parse uri '${annotation.relativeUrl}'", it) }
+    override fun afterEach(context: ExtensionContext) {
+        test = null
+    }
 
-        return Parser().parse(uri).getOrThrow()
+    companion object {
+        var tests: OpenAPITest? = null
+
+        var test: OpenAPITest? = null
+
+        val uri: URI
+            get() {
+                val uri = test?.relativeUrl ?: tests?.relativeUrl
+                return runCatching { URI(uri) }.getOrElse {
+                    throw IllegalStateException(
+                        """|Failed to parse URI '$uri'.
+                           |Make sure your class is annotated with @OpenAPITests or your test is annotated with @OpenAPITest")
+                        """.trimMargin(),
+                        it,
+                    )
+                }
+            }
     }
 }

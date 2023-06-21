@@ -1,5 +1,4 @@
 import com.google.common.io.Resources
-import io.github.stefankoppier.openapi.validator.core.Parser
 import io.github.stefankoppier.openapi.validator.core.Validator
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.openAPI
 import org.assertj.core.api.Assertions.assertThat
@@ -20,10 +19,8 @@ class DocumentTest {
             }
         }
 
-        val openAPI = Parser()
-            .parse(Resources.toString(Resources.getResource("petstore.yaml"), StandardCharsets.UTF_8))
-            .getOrThrow()
-        val result = Validator(rule).validate(openAPI)
+        val result = Validator(rule)
+            .validate(Resources.toString(Resources.getResource("petstore.yaml"), StandardCharsets.UTF_8))
 
         assertThat(result.failures)
             .withFailMessage { result.summarize() }

@@ -8,6 +8,7 @@ data class RuleGroup internal constructor(
 ) {
 
     enum class Category {
+        EXCEPTION,
         OBJECT,
         FIELD,
         UNKNOWN,

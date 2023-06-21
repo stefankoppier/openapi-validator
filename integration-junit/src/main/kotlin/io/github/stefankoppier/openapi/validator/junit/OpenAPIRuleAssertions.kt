@@ -1,12 +1,12 @@
 package io.github.stefankoppier.openapi.validator.junit
 
 import io.github.stefankoppier.openapi.validator.core.ValidationResult
+import io.github.stefankoppier.openapi.validator.core.Validator
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.OpenAPIRule
-import io.swagger.v3.oas.models.OpenAPI
 import org.junit.jupiter.api.fail
 
-fun assertDocumentIsValidFor(document: OpenAPI, rule: OpenAPIRule) {
-    val result = rule.validate(document)
+fun assertDocumentIsValidFor(rule: OpenAPIRule) {
+    val result = Validator(rule).validate(OpenAPIValidationExtension.uri)
     if (result.isFailure) {
         fail(
             """
@@ -18,6 +18,9 @@ fun assertDocumentIsValidFor(document: OpenAPI, rule: OpenAPIRule) {
         )
     }
 }
+
+fun assertDocumentIsValidFor(rule: () -> OpenAPIRule) =
+    assertDocumentIsValidFor(rule())
 
 private fun amountLine(result: ValidationResult): String {
     return when (val size = result.failures.size) {
