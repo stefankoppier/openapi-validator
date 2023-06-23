@@ -12,7 +12,7 @@ class MediaTypeRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun schema(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
-                rule(SchemaRule(RuleGroup.named("schema", description, RuleGroup.Category.OBJECT, group)))
+                rule(SchemaRule(RuleGroup.named("schema", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.schema)
             }
         }
@@ -20,7 +20,7 @@ class MediaTypeRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun example(description: String = "", rule: AnyRule.() -> AnyRule) =
         apply {
             add {
-                rule(AnyRule(RuleGroup.named("example", description, RuleGroup.Category.FIELD, group)))
+                rule(AnyRule(RuleGroup.named("example", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.example)
             }
         }
@@ -28,7 +28,7 @@ class MediaTypeRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun examples(description: String = "", rule: ExamplesRule.() -> ExamplesRule) =
         apply {
             add {
-                rule(ExamplesRule(RuleGroup.named("examples", description, RuleGroup.Category.OBJECT, group)))
+                rule(ExamplesRule(RuleGroup.named("examples", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.examples?.toList())
             }
         }
@@ -36,7 +36,7 @@ class MediaTypeRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun encoding(description: String = "", rule: EncodingsRule.() -> EncodingsRule) =
         apply {
             add {
-                rule(EncodingsRule(RuleGroup.named("encoding", description, RuleGroup.Category.OBJECT, group)))
+                rule(EncodingsRule(RuleGroup.named("encoding", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.encoding?.toList())
             }
         }

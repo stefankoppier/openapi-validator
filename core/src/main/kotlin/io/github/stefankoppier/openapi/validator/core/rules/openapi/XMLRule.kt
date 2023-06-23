@@ -11,7 +11,7 @@ class XMLRule(group: RuleGroup) : ValidationRule<XML>(group) {
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("name", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("name", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.name)
             }
         }
@@ -19,7 +19,7 @@ class XMLRule(group: RuleGroup) : ValidationRule<XML>(group) {
     fun namespace(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("namespace", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("namespace", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.namespace)
             }
         }
@@ -27,7 +27,7 @@ class XMLRule(group: RuleGroup) : ValidationRule<XML>(group) {
     fun prefix(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("prefix", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("prefix", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.prefix)
             }
         }
@@ -35,7 +35,7 @@ class XMLRule(group: RuleGroup) : ValidationRule<XML>(group) {
     fun attribute(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("attribute", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("attribute", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.attribute)
             }
         }
@@ -43,7 +43,7 @@ class XMLRule(group: RuleGroup) : ValidationRule<XML>(group) {
     fun wrapped(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("wrapped", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("wrapped", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.wrapped)
             }
         }

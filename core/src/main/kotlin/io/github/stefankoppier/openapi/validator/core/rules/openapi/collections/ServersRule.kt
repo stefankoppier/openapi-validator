@@ -9,7 +9,7 @@ class ServersRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
 
     fun all(description: String = "", rule: ServerRule.() -> ServerRule) =
         all { server ->
-            rule(ServerRule(RuleGroup.named("server '${server.url}'", description, RuleGroup.Category.OBJECT, group)))
+            rule(ServerRule(RuleGroup.named("server '${server.url}'", RuleGroup.Category.OBJECT, description, group)))
                 .validate(server)
         }
 
@@ -17,7 +17,7 @@ class ServersRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
         apply {
             add { servers ->
                 val server = servers?.find { it.url == url }
-                rule(ServerRule(RuleGroup.named("server '$url'", description, RuleGroup.Category.OBJECT, group)))
+                rule(ServerRule(RuleGroup.named("server '$url'", RuleGroup.Category.OBJECT, description, group)))
                     .validate(server)
             }
         }

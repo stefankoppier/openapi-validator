@@ -24,7 +24,7 @@ class URLRuleTest {
 
         assertThatResult(rule.validate("https://localhost")).isFailure(
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was supposed to be '$URL' but is 'https://localhost'",
             ),
         )
@@ -38,7 +38,7 @@ class URLRuleTest {
 
         assertThatResult(rule.validate("fail")).isFailure(
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was required to be in the form of a URL but was 'fail'",
             ),
         )
@@ -48,7 +48,7 @@ class URLRuleTest {
         private const val URL = "http://localhost"
 
         private fun url(rule: URLRule.() -> URLRule): URLRule {
-            return rule(URLRule(RuleGroup.named("rule", "", RuleGroup.Category.FIELD)))
+            return rule(URLRule(RuleGroup.named("rule", RuleGroup.Category.FIELD)))
         }
     }
 }

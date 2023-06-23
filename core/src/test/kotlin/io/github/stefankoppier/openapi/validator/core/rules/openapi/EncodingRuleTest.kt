@@ -24,7 +24,7 @@ class EncodingRuleTest {
 
         assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
-                RuleGroup.named("contentType", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                RuleGroup.named("contentType", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
                 "Was supposed to be 'application/xml' but is 'application/json'",
             ),
         )
@@ -44,7 +44,7 @@ class EncodingRuleTest {
             .headers { exactly(listOf("Fail" to Header())) }
 
         assertThatResult(rule.validate(fixture)).isFailure(
-            RuleGroup.named("headers", "", RuleGroup.Category.OBJECT, RuleGroup.unknown()),
+            RuleGroup.named("headers", RuleGroup.Category.OBJECT, "", RuleGroup.unknown()),
         )
     }
 
@@ -63,7 +63,7 @@ class EncodingRuleTest {
 
         assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
-                RuleGroup.named("style", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                RuleGroup.named("style", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
                 "Was supposed to be 'spaceDelimited' but is 'form'",
             ),
         )
@@ -84,7 +84,7 @@ class EncodingRuleTest {
 
         assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
-                RuleGroup.named("explode", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                RuleGroup.named("explode", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
                 "Was supposed to be 'false' but is 'true'",
             ),
         )
@@ -105,7 +105,7 @@ class EncodingRuleTest {
 
         assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
-                RuleGroup.named("allowReserved", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                RuleGroup.named("allowReserved", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
                 "Was supposed to be 'false' but is 'true'",
             ),
         )

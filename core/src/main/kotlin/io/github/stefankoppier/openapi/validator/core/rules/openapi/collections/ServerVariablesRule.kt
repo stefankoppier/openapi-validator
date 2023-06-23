@@ -9,7 +9,16 @@ class ServerVariablesRule internal constructor(group: RuleGroup = RuleGroup.unkn
 
     fun all(description: String = "", rule: ServerVariableRule.() -> ServerVariableRule) =
         all { serverVariables ->
-            rule(ServerVariableRule(RuleGroup.named("serverVariable '${serverVariables.first}'", description, RuleGroup.Category.OBJECT, group)))
+            rule(
+                ServerVariableRule(
+                    RuleGroup.named(
+                        "serverVariable '${serverVariables.first}'",
+                        RuleGroup.Category.OBJECT,
+                        description,
+                        group,
+                    ),
+                ),
+            )
                 .validate(serverVariables.second)
         }
 
@@ -17,7 +26,16 @@ class ServerVariablesRule internal constructor(group: RuleGroup = RuleGroup.unkn
         apply {
             add { serverVariables ->
                 val serverVariable = serverVariables?.find { it.first == named }
-                rule(ServerVariableRule(RuleGroup.named("serverVariable '$named'", description, RuleGroup.Category.OBJECT, group)))
+                rule(
+                    ServerVariableRule(
+                        RuleGroup.named(
+                            "serverVariable '$named'",
+                            RuleGroup.Category.OBJECT,
+                            description,
+                            group,
+                        ),
+                    ),
+                )
                     .validate(serverVariable?.second)
             }
         }

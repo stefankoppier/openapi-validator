@@ -15,7 +15,7 @@ class InfoRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     fun title(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("title", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("title", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.title)
             }
         }
@@ -23,7 +23,7 @@ class InfoRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     fun summary(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("summary", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("summary", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.summary)
             }
         }
@@ -31,7 +31,7 @@ class InfoRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.description)
             }
         }
@@ -39,7 +39,7 @@ class InfoRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     fun termsOfService(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("Terms of Service", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("Terms of Service", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.termsOfService)
             }
         }
@@ -47,7 +47,7 @@ class InfoRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     fun contact(description: String = "", rule: ContactRule.() -> ContactRule) =
         apply {
             add {
-                rule(ContactRule(RuleGroup.named("contact", description, RuleGroup.Category.OBJECT, group)))
+                rule(ContactRule(RuleGroup.named("contact", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.contact)
             }
         }
@@ -55,7 +55,7 @@ class InfoRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     fun licence(description: String = "", rule: LicenceRule.() -> LicenceRule) =
         apply {
             add {
-                rule(LicenceRule(RuleGroup.named("licence", description, RuleGroup.Category.OBJECT, group)))
+                rule(LicenceRule(RuleGroup.named("licence", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.license)
             }
         }
@@ -63,7 +63,7 @@ class InfoRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     fun version(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("version", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("version", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.version)
             }
         }

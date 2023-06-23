@@ -15,7 +15,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("name", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("name", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.name)
             }
         }
@@ -23,7 +23,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun title(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("title", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("title", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.title)
             }
         }
@@ -31,7 +31,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun multipleOf(description: String = "", rule: BigDecimalRule.() -> BigDecimalRule) =
         apply {
             add {
-                rule(BigDecimalRule(RuleGroup.named("multipleOf", description, RuleGroup.Category.FIELD, group)))
+                rule(BigDecimalRule(RuleGroup.named("multipleOf", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.multipleOf)
             }
         }
@@ -39,7 +39,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun maximum(description: String = "", rule: BigDecimalRule.() -> BigDecimalRule) =
         apply {
             add {
-                rule(BigDecimalRule(RuleGroup.named("maximum", description, RuleGroup.Category.FIELD, group)))
+                rule(BigDecimalRule(RuleGroup.named("maximum", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.maximum)
             }
         }
@@ -47,7 +47,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun exclusiveMaximum(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("exclusiveMaximum", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("exclusiveMaximum", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.exclusiveMaximum)
             }
         }
@@ -55,7 +55,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun minimum(description: String = "", rule: BigDecimalRule.() -> BigDecimalRule) =
         apply {
             add {
-                rule(BigDecimalRule(RuleGroup.named("minimum", description, RuleGroup.Category.FIELD, group)))
+                rule(BigDecimalRule(RuleGroup.named("minimum", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.minimum)
             }
         }
@@ -63,7 +63,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun exclusiveMinimum(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("exclusiveMinimum", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("exclusiveMinimum", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.exclusiveMinimum)
             }
         }
@@ -71,7 +71,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun maxLength(description: String = "", rule: IntegerRule.() -> IntegerRule) =
         apply {
             add {
-                rule(IntegerRule(RuleGroup.named("maxLength", description, RuleGroup.Category.FIELD, group)))
+                rule(IntegerRule(RuleGroup.named("maxLength", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.maxLength)
             }
         }
@@ -79,7 +79,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun minLength(description: String = "", rule: IntegerRule.() -> IntegerRule) =
         apply {
             add {
-                rule(IntegerRule(RuleGroup.named("minLength", description, RuleGroup.Category.FIELD, group)))
+                rule(IntegerRule(RuleGroup.named("minLength", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.minLength)
             }
         }
@@ -87,7 +87,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun pattern(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("pattern", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("pattern", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.pattern)
             }
         }
@@ -95,7 +95,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun maxItems(description: String = "", rule: IntegerRule.() -> IntegerRule) =
         apply {
             add {
-                rule(IntegerRule(RuleGroup.named("maxItems", description, RuleGroup.Category.FIELD, group)))
+                rule(IntegerRule(RuleGroup.named("maxItems", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.maxItems)
             }
         }
@@ -103,7 +103,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun minItems(description: String = "", rule: IntegerRule.() -> IntegerRule) =
         apply {
             add {
-                rule(IntegerRule(RuleGroup.named("minItems", description, RuleGroup.Category.FIELD, group)))
+                rule(IntegerRule(RuleGroup.named("minItems", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.minItems)
             }
         }
@@ -111,7 +111,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun uniqueItems(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("uniqueItems", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("uniqueItems", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.uniqueItems)
             }
         }
@@ -119,7 +119,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun maxProperties(description: String = "", rule: IntegerRule.() -> IntegerRule) =
         apply {
             add {
-                rule(IntegerRule(RuleGroup.named("maxProperties", description, RuleGroup.Category.FIELD, group)))
+                rule(IntegerRule(RuleGroup.named("maxProperties", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.maxProperties)
             }
         }
@@ -127,7 +127,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun minProperties(description: String = "", rule: IntegerRule.() -> IntegerRule) =
         apply {
             add {
-                rule(IntegerRule(RuleGroup.named("minProperties", description, RuleGroup.Category.FIELD, group)))
+                rule(IntegerRule(RuleGroup.named("minProperties", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.minProperties)
             }
         }
@@ -135,7 +135,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun required(description: String = "", rule: IterableStringRule.() -> IterableStringRule) =
         apply {
             add {
-                rule(IterableStringRule(RuleGroup.named("required", description, RuleGroup.Category.FIELD, group)))
+                rule(IterableStringRule(RuleGroup.named("required", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.required)
             }
         }
@@ -143,7 +143,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun type(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("type", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("type", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.type)
             }
         }
@@ -151,7 +151,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun not(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
-                rule(SchemaRule(RuleGroup.named("not", description, RuleGroup.Category.OBJECT, group)))
+                rule(SchemaRule(RuleGroup.named("not", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.not)
             }
         }
@@ -159,7 +159,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun properties(description: String = "", rule: SchemasRule.() -> SchemasRule) =
         apply {
             add {
-                rule(SchemasRule(RuleGroup.named("properties", description, RuleGroup.Category.OBJECT, group)))
+                rule(SchemasRule(RuleGroup.named("properties", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.properties?.toList())
             }
         }
@@ -167,7 +167,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.description)
             }
         }
@@ -175,7 +175,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun format(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("format", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("format", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.format)
             }
         }
@@ -183,7 +183,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun ref(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("title", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("title", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.`$ref`)
             }
         }
@@ -191,7 +191,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun nullable(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("nullable", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("nullable", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.nullable)
             }
         }
@@ -199,7 +199,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun readOnly(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("readOnly", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("readOnly", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.readOnly)
             }
         }
@@ -207,7 +207,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun writeOnly(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("writeOnly", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("writeOnly", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.writeOnly)
             }
         }
@@ -215,7 +215,16 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun externalDocs(description: String = "", rule: ExternalDocumentationRule.() -> ExternalDocumentationRule) =
         apply {
             add {
-                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", description, RuleGroup.Category.OBJECT, group)))
+                rule(
+                    ExternalDocumentationRule(
+                        RuleGroup.named(
+                            "externalDocs",
+                            RuleGroup.Category.OBJECT,
+                            description,
+                            group,
+                        ),
+                    ),
+                )
                     .validate(it?.externalDocs)
             }
         }
@@ -223,7 +232,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun deprecated(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("deprecated", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("deprecated", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.deprecated)
             }
         }
@@ -231,7 +240,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun items(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
-                rule(SchemaRule(RuleGroup.named("items", description, RuleGroup.Category.FIELD, group)))
+                rule(SchemaRule(RuleGroup.named("items", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.items)
             }
         }
@@ -239,7 +248,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun xml(description: String = "", rule: XMLRule.() -> XMLRule) =
         apply {
             add {
-                rule(XMLRule(RuleGroup.named("xml", description, RuleGroup.Category.OBJECT, group)))
+                rule(XMLRule(RuleGroup.named("xml", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.xml)
             }
         }
@@ -247,7 +256,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun discriminator(description: String = "", rule: DiscriminatorRule.() -> DiscriminatorRule) =
         apply {
             add {
-                rule(DiscriminatorRule(RuleGroup.named("discriminator", description, RuleGroup.Category.OBJECT, group)))
+                rule(DiscriminatorRule(RuleGroup.named("discriminator", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.discriminator)
             }
         }
@@ -255,7 +264,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun allOf(description: String = "", rule: SchemasRule.() -> SchemasRule) =
         apply {
             add {
-                rule(SchemasRule(RuleGroup.named("allOf", description, RuleGroup.Category.OBJECT, group)))
+                rule(SchemasRule(RuleGroup.named("allOf", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.allOf?.map { schema -> schema.name to schema })
             }
         }
@@ -263,7 +272,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun oneOf(description: String = "", rule: SchemasRule.() -> SchemasRule) =
         apply {
             add {
-                rule(SchemasRule(RuleGroup.named("oneOf", description, RuleGroup.Category.OBJECT, group)))
+                rule(SchemasRule(RuleGroup.named("oneOf", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.oneOf?.map { schema -> schema.name to schema })
             }
         }
@@ -271,7 +280,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun anyOf(description: String = "", rule: SchemasRule.() -> SchemasRule) =
         apply {
             add {
-                rule(SchemasRule(RuleGroup.named("anyOf", description, RuleGroup.Category.OBJECT, group)))
+                rule(SchemasRule(RuleGroup.named("anyOf", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.oneOf?.map { schema -> schema.name to schema })
             }
         }

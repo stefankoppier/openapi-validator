@@ -9,7 +9,7 @@ class HeadersRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
 
     fun all(description: String = "", rule: HeaderRule.() -> HeaderRule) =
         all { header ->
-            rule(HeaderRule(RuleGroup.named("header '${header.first}'", description, RuleGroup.Category.OBJECT, group)))
+            rule(HeaderRule(RuleGroup.named("header '${header.first}'", RuleGroup.Category.OBJECT, description, group)))
                 .validate(header.second)
         }
 
@@ -17,7 +17,7 @@ class HeadersRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
         apply {
             add { examples ->
                 val example = examples?.find { it.first == named }
-                rule(HeaderRule(RuleGroup.named("header '$named'", description, RuleGroup.Category.OBJECT, group)))
+                rule(HeaderRule(RuleGroup.named("header '$named'", RuleGroup.Category.OBJECT, description, group)))
                     .validate(example?.second)
             }
         }

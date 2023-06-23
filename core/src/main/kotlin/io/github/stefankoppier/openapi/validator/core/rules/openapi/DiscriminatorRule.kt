@@ -10,7 +10,7 @@ class DiscriminatorRule(group: RuleGroup) : ValidationRule<Discriminator>(group)
     fun propertyName(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("propertyName", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("propertyName", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.propertyName)
             }
         }

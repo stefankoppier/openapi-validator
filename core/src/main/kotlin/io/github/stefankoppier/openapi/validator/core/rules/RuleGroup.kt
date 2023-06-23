@@ -16,7 +16,7 @@ data class RuleGroup internal constructor(
     }
 
     companion object {
-        fun named(name: String, description: String, category: Category, parent: RuleGroup? = null): RuleGroup {
+        fun named(name: String, category: Category, description: String = "", parent: RuleGroup? = null): RuleGroup {
             return RuleGroup(parent, name, description, category)
         }
 

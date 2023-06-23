@@ -13,7 +13,7 @@ class EncodingRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Enco
     fun contentType(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("contentType", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("contentType", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.contentType)
             }
         }
@@ -21,7 +21,7 @@ class EncodingRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Enco
     fun headers(description: String = "", rule: HeadersRule.() -> HeadersRule) =
         apply {
             add {
-                rule(HeadersRule(RuleGroup.named("headers", description, RuleGroup.Category.OBJECT, group)))
+                rule(HeadersRule(RuleGroup.named("headers", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.headers?.toList())
             }
         }
@@ -29,7 +29,7 @@ class EncodingRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Enco
     fun style(description: String = "", rule: EnumRule<Encoding.StyleEnum>.() -> EnumRule<Encoding.StyleEnum>) =
         apply {
             add {
-                rule(EnumRule(RuleGroup.named("style", description, RuleGroup.Category.FIELD, group)))
+                rule(EnumRule(RuleGroup.named("style", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.style)
             }
         }
@@ -37,7 +37,7 @@ class EncodingRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Enco
     fun explode(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("explode", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("explode", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.explode)
             }
         }
@@ -45,7 +45,7 @@ class EncodingRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Enco
     fun allowReserved(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("allowReserved", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("allowReserved", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.allowReserved)
             }
         }

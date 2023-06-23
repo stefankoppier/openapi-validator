@@ -23,7 +23,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("name", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("name", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.name)
             }
         }
@@ -31,7 +31,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun `in`(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("in", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("in", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.`in`)
             }
         }
@@ -39,7 +39,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.description)
             }
         }
@@ -47,7 +47,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun required(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("required", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("required", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.required)
             }
         }
@@ -55,7 +55,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun deprecated(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("deprecated", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("deprecated", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.deprecated)
             }
         }
@@ -63,7 +63,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun allowEmptyValue(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("allowEmptyValue", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("allowEmptyValue", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.allowEmptyValue)
             }
         }
@@ -71,7 +71,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun style(description: String = "", rule: EnumRule<Parameter.StyleEnum>.() -> EnumRule<Parameter.StyleEnum>) =
         apply {
             add {
-                rule(EnumRule(RuleGroup.named("style", description, RuleGroup.Category.FIELD)))
+                rule(EnumRule(RuleGroup.named("style", RuleGroup.Category.FIELD, description)))
                     .validate(it?.style)
             }
         }
@@ -79,7 +79,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun explode(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("explode", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("explode", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.explode)
             }
         }
@@ -87,7 +87,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun allowReserved(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("allowReserved", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("allowReserved", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.allowReserved)
             }
         }
@@ -95,7 +95,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun schema(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
-                rule(SchemaRule(RuleGroup.named("schema", description, RuleGroup.Category.OBJECT, group)))
+                rule(SchemaRule(RuleGroup.named("schema", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.schema)
             }
         }
@@ -103,7 +103,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun example(description: String = "", rule: AnyRule.() -> AnyRule) =
         apply {
             add {
-                rule(AnyRule(RuleGroup.named("example", description, RuleGroup.Category.FIELD, group)))
+                rule(AnyRule(RuleGroup.named("example", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.example)
             }
         }
@@ -111,7 +111,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun examples(description: String = "", rule: ExamplesRule.() -> ExamplesRule) =
         apply {
             add {
-                rule(ExamplesRule(RuleGroup.named("examples", description, RuleGroup.Category.FIELD, group)))
+                rule(ExamplesRule(RuleGroup.named("examples", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.examples?.toList())
             }
         }
@@ -119,7 +119,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun content(description: String = "", rule: ContentRule.() -> ContentRule) =
         apply {
             add {
-                rule(ContentRule(RuleGroup.named("content", description, RuleGroup.Category.OBJECT, group)))
+                rule(ContentRule(RuleGroup.named("content", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.content?.toList())
             }
         }

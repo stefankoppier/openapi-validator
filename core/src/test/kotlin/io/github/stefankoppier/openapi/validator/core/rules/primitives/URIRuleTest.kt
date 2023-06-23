@@ -24,7 +24,7 @@ class URIRuleTest {
 
         assertThatResult(rule.validate("https://localhost")).isFailure(
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was supposed to be '$URI' but is 'https://localhost'",
             ),
         )
@@ -38,7 +38,7 @@ class URIRuleTest {
 
         assertThatResult(rule.validate("fail")).isFailure(
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was supposed to be '$URI' but is 'fail'",
             ),
         )
@@ -48,7 +48,7 @@ class URIRuleTest {
         private const val URI = "http://localhost"
 
         private fun uri(rule: URIRule.() -> URIRule): URIRule {
-            return rule(URIRule(RuleGroup.named("rule", "", RuleGroup.Category.FIELD)))
+            return rule(URIRule(RuleGroup.named("rule", RuleGroup.Category.FIELD)))
         }
     }
 }

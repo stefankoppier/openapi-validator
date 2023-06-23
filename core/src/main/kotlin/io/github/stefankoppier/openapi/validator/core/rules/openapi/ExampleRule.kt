@@ -12,7 +12,7 @@ class ExampleRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun summary(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("summary", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("summary", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.summary)
             }
         }
@@ -20,7 +20,7 @@ class ExampleRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.description)
             }
         }
@@ -28,7 +28,7 @@ class ExampleRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun value(description: String = "", rule: AnyRule.() -> AnyRule) =
         apply {
             add {
-                rule(AnyRule(RuleGroup.named("value", description, RuleGroup.Category.FIELD, group)))
+                rule(AnyRule(RuleGroup.named("value", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.value)
             }
         }
@@ -36,7 +36,7 @@ class ExampleRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun externalValue(description: String = "", rule: URIRule.() -> URIRule) =
         apply {
             add {
-                rule(URIRule(RuleGroup.named("externalValue", description, RuleGroup.Category.FIELD, group)))
+                rule(URIRule(RuleGroup.named("externalValue", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.externalValue)
             }
         }

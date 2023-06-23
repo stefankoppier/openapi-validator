@@ -22,7 +22,7 @@ class ValidatorTest {
 
         assertThatResult(validator.validate("invalid yaml")).isFailure(
             ValidationFailure(
-                RuleGroup.named("", "", RuleGroup.Category.EXCEPTION, null),
+                RuleGroup.named("", RuleGroup.Category.EXCEPTION),
                 "Failed to parse yaml",
             ),
         )
@@ -43,7 +43,7 @@ class ValidatorTest {
         val path = Path(".").toUri()
         assertThatResult(validator.validate(path)).isFailure(
             ValidationFailure(
-                RuleGroup.named("", "", RuleGroup.Category.EXCEPTION, null),
+                RuleGroup.named("", RuleGroup.Category.EXCEPTION),
                 "Failed to parse contents from '$path'",
             ),
         )

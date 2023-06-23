@@ -9,7 +9,7 @@ class SchemasRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
 
     fun all(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         all { schema ->
-            rule(SchemaRule(RuleGroup.named("schema '${schema.first}'", description, RuleGroup.Category.OBJECT, group)))
+            rule(SchemaRule(RuleGroup.named("schema '${schema.first}'", RuleGroup.Category.OBJECT, description, group)))
                 .validate(schema.second)
         }
 
@@ -17,7 +17,7 @@ class SchemasRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
         apply {
             add { schemas ->
                 val schema = schemas?.find { it.first == named }
-                rule(SchemaRule(RuleGroup.named("schema '$named'", description, RuleGroup.Category.OBJECT, group)))
+                rule(SchemaRule(RuleGroup.named("schema '$named'", RuleGroup.Category.OBJECT, description, group)))
                     .validate(schema?.second)
             }
         }

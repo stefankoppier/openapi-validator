@@ -24,7 +24,7 @@ class EnumRuleTest {
 
         assertThatResult(rule.validate(Color.BLUE)).isFailure(
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was supposed to be one of 'RED, GREEN' but is 'BLUE'",
             ),
         )
@@ -38,7 +38,7 @@ class EnumRuleTest {
         }
 
         private fun enum(rule: EnumRule<Color>.() -> EnumRule<Color>): EnumRule<Color> {
-            return rule(EnumRule(RuleGroup.named("rule", "", RuleGroup.Category.FIELD)))
+            return rule(EnumRule(RuleGroup.named("rule", RuleGroup.Category.FIELD)))
         }
     }
 }

@@ -16,7 +16,7 @@ class ServerRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun url(description: String = "", rule: URLRule.() -> URLRule) =
         apply {
             add {
-                rule(URLRule(RuleGroup.named("url", description, RuleGroup.Category.FIELD, group)))
+                rule(URLRule(RuleGroup.named("url", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.url)
             }
         }
@@ -24,7 +24,7 @@ class ServerRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.description)
             }
         }
@@ -32,7 +32,7 @@ class ServerRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun variables(description: String = "", rule: ServerVariablesRule.() -> ServerVariablesRule) =
         apply {
             add {
-                rule(ServerVariablesRule(RuleGroup.named("variables", description, RuleGroup.Category.OBJECT, group)))
+                rule(ServerVariablesRule(RuleGroup.named("variables", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.variables?.toList())
             }
         }

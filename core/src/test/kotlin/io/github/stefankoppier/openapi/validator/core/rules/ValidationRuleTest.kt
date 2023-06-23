@@ -31,7 +31,7 @@ class ValidationRuleTest {
 
         assertThatResult(rule.validate("string")).isFailure(
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was supposed to be uppercase but is 'string'",
             ),
         )
@@ -48,12 +48,12 @@ class ValidationRuleTest {
 
         assertThatResult(rule.validate("string")).isFailure(
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was supposed to be uppercase but is 'string'",
             ),
 
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was supposed to be 'fail' but is 'string'",
             ),
         )
@@ -80,7 +80,7 @@ class ValidationRuleTest {
 
         assertThatResult(rule.validate("string")).isFailure(
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was supposed to be uppercase but is 'string'",
             ),
         )
@@ -129,7 +129,7 @@ class ValidationRuleTest {
 
         assertThatResult(rule.validate("string")).isFailure(
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was supposed to be uppercase but is 'string'",
             ),
         )
@@ -152,7 +152,7 @@ class ValidationRuleTest {
 
         assertThatResult(rule.validate(null)).isFailure(
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was required but is not given",
             ),
         )
@@ -175,7 +175,7 @@ class ValidationRuleTest {
 
         assertThatResult(rule.validate("fail")).isFailure(
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was supposed to be 'string' but is 'fail'",
             ),
         )
@@ -183,7 +183,7 @@ class ValidationRuleTest {
 
     companion object {
         private fun string(rule: StringRule.() -> StringRule): StringRule {
-            return rule(StringRule(RuleGroup.named("rule", "", RuleGroup.Category.FIELD)))
+            return rule(StringRule(RuleGroup.named("rule", RuleGroup.Category.FIELD)))
         }
     }
 }

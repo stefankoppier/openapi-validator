@@ -9,7 +9,7 @@ class PathsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : I
 
     fun all(description: String = "", rule: PathRule.() -> PathRule) =
         all { path ->
-            rule(PathRule(RuleGroup.named("path '${path.first}", description, RuleGroup.Category.OBJECT, group)))
+            rule(PathRule(RuleGroup.named("path '${path.first}", RuleGroup.Category.OBJECT, description, group)))
                 .validate(path.second)
         }
 
@@ -17,7 +17,7 @@ class PathsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : I
         apply {
             add { paths ->
                 val path = paths?.find { it.first == named }
-                rule(PathRule(RuleGroup.named("path '$named'", description, RuleGroup.Category.OBJECT, group)))
+                rule(PathRule(RuleGroup.named("path '$named'", RuleGroup.Category.OBJECT, description, group)))
                     .validate(path?.second)
             }
         }

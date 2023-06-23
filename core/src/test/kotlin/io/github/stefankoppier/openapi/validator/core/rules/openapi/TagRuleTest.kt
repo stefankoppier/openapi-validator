@@ -13,7 +13,7 @@ class TagRuleTest {
     fun `name is required`() {
         val rule = TagRule()
         assertThatResult(rule.validate(Tag())).isFailure(
-            ValidationFailure(RuleGroup.named("name", "", RuleGroup.Category.FIELD, RuleGroup.unknown()), "Was required but is not given"),
+            ValidationFailure(RuleGroup.named("name", RuleGroup.Category.FIELD, "", RuleGroup.unknown()), "Was required but is not given"),
         )
     }
 
@@ -32,7 +32,7 @@ class TagRuleTest {
 
         assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
-                RuleGroup.named("name", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                RuleGroup.named("name", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
                 "Was supposed to be 'Fail' but is 'Name'",
             ),
         )
@@ -53,7 +53,7 @@ class TagRuleTest {
 
         assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
-                RuleGroup.named("description", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                RuleGroup.named("description", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
                 "Was supposed to be 'Fail' but is 'Description'",
             ),
         )
@@ -73,7 +73,7 @@ class TagRuleTest {
             .externalDocs { exactly(ExternalDocumentation()) }
 
         assertThatResult(rule.validate(fixture)).isFailure(
-            RuleGroup.named("externalDocs", "", RuleGroup.Category.OBJECT, RuleGroup.unknown()),
+            RuleGroup.named("externalDocs", RuleGroup.Category.OBJECT, "", RuleGroup.unknown()),
         )
     }
     companion object {

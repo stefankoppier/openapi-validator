@@ -15,7 +15,7 @@ class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.description)
             }
         }
@@ -23,7 +23,7 @@ class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
     fun required(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("required", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("required", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.required)
             }
         }
@@ -31,7 +31,7 @@ class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
     fun deprecated(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("deprecated", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("deprecated", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.deprecated)
             }
         }
@@ -39,7 +39,7 @@ class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
     fun style(description: String = "", rule: EnumRule<Header.StyleEnum>.() -> EnumRule<Header.StyleEnum>) =
         apply {
             add {
-                rule(EnumRule(RuleGroup.named("style", description, RuleGroup.Category.FIELD)))
+                rule(EnumRule(RuleGroup.named("style", RuleGroup.Category.FIELD, description)))
                     .validate(it?.style)
             }
         }
@@ -47,7 +47,7 @@ class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
     fun explode(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("explode", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("explode", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.explode)
             }
         }
@@ -55,7 +55,7 @@ class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
     fun schema(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
-                rule(SchemaRule(RuleGroup.named("schema", description, RuleGroup.Category.OBJECT, group)))
+                rule(SchemaRule(RuleGroup.named("schema", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.schema)
             }
         }
@@ -63,7 +63,7 @@ class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
     fun example(description: String = "", rule: AnyRule.() -> AnyRule) =
         apply {
             add {
-                rule(AnyRule(RuleGroup.named("example", description, RuleGroup.Category.FIELD, group)))
+                rule(AnyRule(RuleGroup.named("example", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.example)
             }
         }
@@ -71,7 +71,7 @@ class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
     fun examples(description: String = "", rule: ExamplesRule.() -> ExamplesRule) =
         apply {
             add {
-                rule(ExamplesRule(RuleGroup.named("examples", description, RuleGroup.Category.FIELD, group)))
+                rule(ExamplesRule(RuleGroup.named("examples", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.examples?.toList())
             }
         }
@@ -79,7 +79,7 @@ class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
     fun content(description: String = "", rule: ContentRule.() -> ContentRule) =
         apply {
             add {
-                rule(ContentRule(RuleGroup.named("content", description, RuleGroup.Category.OBJECT, group)))
+                rule(ContentRule(RuleGroup.named("content", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.content?.toList())
             }
         }

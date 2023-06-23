@@ -9,7 +9,7 @@ class ComponentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()
     fun schemas(description: String = "", rule: SchemasRule.() -> SchemasRule) =
         apply {
             add { components ->
-                rule(SchemasRule(RuleGroup.named("schemas", description, RuleGroup.Category.OBJECT, group)))
+                rule(SchemasRule(RuleGroup.named("schemas", RuleGroup.Category.OBJECT, description, group)))
                     .validate(components?.schemas?.toList())
             }
         }
@@ -17,7 +17,7 @@ class ComponentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()
     fun responses(description: String = "", rule: ResponsesRule.() -> ResponsesRule) =
         apply {
             add { components ->
-                rule(ResponsesRule(RuleGroup.named("responses", description, RuleGroup.Category.OBJECT, group)))
+                rule(ResponsesRule(RuleGroup.named("responses", RuleGroup.Category.OBJECT, description, group)))
                     .validate(components?.responses?.toList())
             }
         }
@@ -25,7 +25,7 @@ class ComponentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()
     fun parameters(description: String = "", rule: ParametersRule.() -> ParametersRule) =
         apply {
             add { components ->
-                rule(ParametersRule(RuleGroup.named("parameters", description, RuleGroup.Category.OBJECT, group)))
+                rule(ParametersRule(RuleGroup.named("parameters", RuleGroup.Category.OBJECT, description, group)))
                     .validate(components?.parameters?.toList()?.map { it.second })
             }
         }
@@ -33,7 +33,7 @@ class ComponentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()
     fun examples(description: String = "", rule: ExamplesRule.() -> ExamplesRule) =
         apply {
             add { components ->
-                rule(ExamplesRule(RuleGroup.named("examples", description, RuleGroup.Category.OBJECT, group)))
+                rule(ExamplesRule(RuleGroup.named("examples", RuleGroup.Category.OBJECT, description, group)))
                     .validate(components?.examples?.toList())
             }
         }
@@ -43,7 +43,7 @@ class ComponentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()
     fun headers(description: String = "", rule: HeadersRule.() -> HeadersRule) =
         apply {
             add { components ->
-                rule(HeadersRule(RuleGroup.named("headers", description, RuleGroup.Category.OBJECT, group)))
+                rule(HeadersRule(RuleGroup.named("headers", RuleGroup.Category.OBJECT, description, group)))
                     .validate(components?.headers?.toList())
             }
         }

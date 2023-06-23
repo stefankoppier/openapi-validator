@@ -16,7 +16,7 @@ class RequestBodyRule internal constructor(group: RuleGroup = RuleGroup.unknown(
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.description)
             }
         }
@@ -24,7 +24,7 @@ class RequestBodyRule internal constructor(group: RuleGroup = RuleGroup.unknown(
     fun content(description: String = "", rule: ContentRule.() -> ContentRule) =
         apply {
             add {
-                rule(ContentRule(RuleGroup.named("content", description, RuleGroup.Category.FIELD, group)))
+                rule(ContentRule(RuleGroup.named("content", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.content?.toList())
             }
         }
@@ -32,7 +32,7 @@ class RequestBodyRule internal constructor(group: RuleGroup = RuleGroup.unknown(
     fun required(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {
             add {
-                rule(BooleanRule(RuleGroup.named("required", description, RuleGroup.Category.FIELD, group)))
+                rule(BooleanRule(RuleGroup.named("required", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.required)
             }
         }

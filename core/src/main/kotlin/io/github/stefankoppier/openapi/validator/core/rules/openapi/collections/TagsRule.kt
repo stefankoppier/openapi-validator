@@ -9,7 +9,16 @@ class TagsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : It
 
     fun all(description: String = "", rule: TagRule.() -> TagRule) =
         all { tag ->
-            rule(TagRule(RuleGroup.named("tag '${tag.name}'", description, io.github.stefankoppier.openapi.validator.core.rules.RuleGroup.Category.OBJECT, group)))
+            rule(
+                TagRule(
+                    RuleGroup.named(
+                        "tag '${tag.name}'",
+                        io.github.stefankoppier.openapi.validator.core.rules.RuleGroup.Category.OBJECT,
+                        description,
+                        group,
+                    ),
+                ),
+            )
                 .validate(tag)
         }
 
@@ -17,7 +26,7 @@ class TagsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : It
         apply {
             add { tags ->
                 val tag = tags?.find { it.name == named }
-                rule(TagRule(RuleGroup.named("tag '$named'", description, RuleGroup.Category.OBJECT, group)))
+                rule(TagRule(RuleGroup.named("tag '$named'", RuleGroup.Category.OBJECT, description, group)))
                     .validate(tag)
             }
         }

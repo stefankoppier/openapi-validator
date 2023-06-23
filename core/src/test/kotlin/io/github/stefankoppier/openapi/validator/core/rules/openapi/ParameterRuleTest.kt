@@ -12,8 +12,8 @@ class ParameterRuleTest {
     fun `name and in are required`() {
         val rule = ParameterRule()
         assertThatResult(rule.validate(Parameter())).isFailure(
-            ValidationFailure(RuleGroup.named("name", "", RuleGroup.Category.FIELD, RuleGroup.unknown()), "Was required but is not given"),
-            ValidationFailure(RuleGroup.named("in", "", RuleGroup.Category.FIELD, RuleGroup.unknown()), "Was required but is not given"),
+            ValidationFailure(RuleGroup.named("name", RuleGroup.Category.FIELD, "", RuleGroup.unknown()), "Was required but is not given"),
+            ValidationFailure(RuleGroup.named("in", RuleGroup.Category.FIELD, "", RuleGroup.unknown()), "Was required but is not given"),
         )
     }
 
@@ -26,7 +26,7 @@ class ParameterRuleTest {
             required = false
         }
         assertThatResult(rule.validate(fixture)).isFailure(
-            ValidationFailure(RuleGroup.named("required", "", RuleGroup.Category.FIELD, RuleGroup.unknown()), "Was supposed to be 'true' but is 'false'"),
+            ValidationFailure(RuleGroup.named("required", RuleGroup.Category.FIELD, "", RuleGroup.unknown()), "Was supposed to be 'true' but is 'false'"),
         )
     }
 
@@ -45,7 +45,7 @@ class ParameterRuleTest {
 
         assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
-                RuleGroup.named("name", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                RuleGroup.named("name", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
                 "Was supposed to be 'Fail' but is 'Parameter'",
             ),
         )

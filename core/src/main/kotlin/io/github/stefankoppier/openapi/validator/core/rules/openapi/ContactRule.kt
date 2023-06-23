@@ -15,7 +15,7 @@ class ContactRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("name", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("name", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.name)
             }
         }
@@ -23,7 +23,7 @@ class ContactRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun url(description: String = "", rule: URLRule.() -> URLRule) =
         apply {
             add {
-                rule(URLRule(RuleGroup.named("url", description, RuleGroup.Category.FIELD, group)))
+                rule(URLRule(RuleGroup.named("url", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.url)
             }
         }
@@ -31,7 +31,7 @@ class ContactRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun email(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("email", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("email", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.email)
             }
         }

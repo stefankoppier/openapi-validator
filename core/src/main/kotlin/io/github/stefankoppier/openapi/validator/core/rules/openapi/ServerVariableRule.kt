@@ -18,7 +18,7 @@ class ServerVariableRule internal constructor(group: RuleGroup = RuleGroup.unkno
     fun enum(description: String = "", rule: IterableStringRule.() -> IterableStringRule) =
         apply {
             add {
-                rule(IterableStringRule(RuleGroup.named("enum", description, RuleGroup.Category.FIELD, group)))
+                rule(IterableStringRule(RuleGroup.named("enum", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.enum)
             }
         }
@@ -26,7 +26,7 @@ class ServerVariableRule internal constructor(group: RuleGroup = RuleGroup.unkno
     fun default(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("default", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("default", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.default)
             }
         }
@@ -34,7 +34,7 @@ class ServerVariableRule internal constructor(group: RuleGroup = RuleGroup.unkno
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("description", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.description)
             }
         }

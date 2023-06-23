@@ -14,7 +14,7 @@ class ContactRuleTest {
 
         assertThatResult(rule.validate(null)).isFailure(
             ValidationFailure(
-                RuleGroup.named("", "", RuleGroup.Category.UNKNOWN, null),
+                RuleGroup.named("", RuleGroup.Category.UNKNOWN),
                 "Was required but is not given",
             ),
         )
@@ -35,7 +35,7 @@ class ContactRuleTest {
 
         assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
-                RuleGroup.named("name", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                RuleGroup.named("name", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
                 "Was supposed to be 'Fail' but is 'name'",
             ),
         )
@@ -56,7 +56,7 @@ class ContactRuleTest {
 
         assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
-                RuleGroup.named("url", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                RuleGroup.named("url", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
                 "Was supposed to be 'https://localhost' but is 'http://localhost'",
             ),
         )
@@ -77,7 +77,7 @@ class ContactRuleTest {
 
         assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
-                RuleGroup.named("email", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                RuleGroup.named("email", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
                 "Was supposed to be 'fail@fail.com' but is 'test@test.com'",
             ),
         )

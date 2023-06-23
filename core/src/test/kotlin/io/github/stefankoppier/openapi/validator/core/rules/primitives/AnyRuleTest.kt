@@ -24,7 +24,7 @@ class AnyRuleTest {
 
         assertThatResult(rule.validate(true)).isFailure(
             ValidationFailure(
-                RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
                 "Was supposed to be of type 'String' but is of type 'Boolean'",
             ),
         )
@@ -32,7 +32,7 @@ class AnyRuleTest {
 
     companion object {
         private fun any(rule: AnyRule.() -> AnyRule): AnyRule {
-            return rule(AnyRule(RuleGroup.named("rule", "", RuleGroup.Category.FIELD)))
+            return rule(AnyRule(RuleGroup.named("rule", RuleGroup.Category.FIELD)))
         }
     }
 }

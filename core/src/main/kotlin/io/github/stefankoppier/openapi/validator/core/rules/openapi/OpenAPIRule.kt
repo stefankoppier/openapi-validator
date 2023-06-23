@@ -18,7 +18,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun openapi(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("openapi", description, RuleGroup.Category.FIELD, group)))
+                rule(StringRule(RuleGroup.named("openapi", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.openapi)
             }
         }
@@ -26,7 +26,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun info(description: String = "", rule: InfoRule.() -> InfoRule) =
         apply {
             add {
-                rule(InfoRule(RuleGroup.named("info", description, RuleGroup.Category.OBJECT, group)))
+                rule(InfoRule(RuleGroup.named("info", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.info)
             }
         }
@@ -38,7 +38,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun paths(description: String = "", rule: PathsRule.() -> PathsRule) =
         apply {
             add {
-                rule(PathsRule(RuleGroup.named("paths", description, RuleGroup.Category.OBJECT, group)))
+                rule(PathsRule(RuleGroup.named("paths", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.paths?.toList())
             }
         }
@@ -48,7 +48,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun components(description: String = "", rule: ComponentsRule.() -> ComponentsRule) =
         apply {
             add {
-                rule(ComponentsRule(RuleGroup.named("components", description, RuleGroup.Category.OBJECT, group)))
+                rule(ComponentsRule(RuleGroup.named("components", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.components)
             }
         }
@@ -56,7 +56,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun security(description: String = "", rule: SecurityRequirementsRule.() -> SecurityRequirementsRule) =
         apply {
             add {
-                rule(SecurityRequirementsRule(RuleGroup.named("security", description, RuleGroup.Category.OBJECT, group)))
+                rule(SecurityRequirementsRule(RuleGroup.named("security", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.security)
             }
         }
@@ -64,7 +64,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun tags(description: String = "", rule: TagsRule.() -> TagsRule) =
         apply {
             add {
-                rule(TagsRule(RuleGroup.named("tags", description, RuleGroup.Category.OBJECT, group)))
+                rule(TagsRule(RuleGroup.named("tags", RuleGroup.Category.OBJECT, description, group)))
                     .validate(it?.tags)
             }
         }
@@ -72,12 +72,21 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun externalDocs(description: String = "", rule: ExternalDocumentationRule.() -> ExternalDocumentationRule) =
         apply {
             add {
-                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", description, RuleGroup.Category.OBJECT, group)))
+                rule(
+                    ExternalDocumentationRule(
+                        RuleGroup.named(
+                            "externalDocs",
+                            RuleGroup.Category.OBJECT,
+                            description,
+                            group,
+                        ),
+                    ),
+                )
                     .validate(it?.externalDocs)
             }
         }
 }
 
 fun openAPI(description: String = "", rule: OpenAPIRule.() -> OpenAPIRule): OpenAPIRule {
-    return rule(OpenAPIRule(RuleGroup.named("document", description, RuleGroup.Category.OBJECT)))
+    return rule(OpenAPIRule(RuleGroup.named("document", RuleGroup.Category.OBJECT, description)))
 }

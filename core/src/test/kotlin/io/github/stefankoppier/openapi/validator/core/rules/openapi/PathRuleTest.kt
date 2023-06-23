@@ -25,7 +25,7 @@ class PathRuleTest {
 
         assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
-                RuleGroup.named("summary", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                RuleGroup.named("summary", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
                 "Was supposed to be 'Fail' but is 'Summary'",
             ),
         )
@@ -46,7 +46,7 @@ class PathRuleTest {
 
         assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
-                RuleGroup.named("description", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
+                RuleGroup.named("description", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
                 "Was supposed to be 'Fail' but is 'Description'",
             ),
         )
@@ -67,7 +67,7 @@ class PathRuleTest {
 
         assertThatResult(rule.validate(fixture))
             .isFailure(
-                RuleGroup.named("servers", "", RuleGroup.Category.OBJECT, RuleGroup.unknown()),
+                RuleGroup.named("servers", RuleGroup.Category.OBJECT, "", RuleGroup.unknown()),
             )
     }
 
@@ -85,7 +85,7 @@ class PathRuleTest {
             .parameters { exactly(listOf(Parameter().apply { name = "parameter" })) }
 
         assertThatResult(rule.validate(fixture))
-            .isFailure(RuleGroup.named("parameters", "", RuleGroup.Category.OBJECT, RuleGroup.unknown()))
+            .isFailure(RuleGroup.named("parameters", RuleGroup.Category.OBJECT, "", RuleGroup.unknown()))
     }
 
     companion object {
