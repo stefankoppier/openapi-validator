@@ -64,8 +64,7 @@ Add the package TODO to your Gradle dependencies.
 
 Then extend your test class with `@ExtendWith(OpenAPIValidationExtension::class)` to add loading of a specification. The
 specification can be loaded using the annotation `@OpenAPITest(relativeUrl = "src/test/resources/petstore.yaml")` to 
-specify the location of the specification. The specification will be passed as an argument to the constructor of the test
-class. For example
+specify the location of the specification. For example
 ```kotlin
 @ExtendWith(OpenAPIValidationExtension::class)
 @OpenAPITest(relativeUrl = "src/test/resources/petstore.yaml")
