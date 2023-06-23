@@ -2,6 +2,7 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.SchemasRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.BigDecimalRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.BooleanRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.IntegerRule
@@ -147,19 +148,21 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
             }
         }
 
-//    fun enum(description: String = "", rule: IterableValidationRule<*>.() -> IterableValidationRule<*>) =
-//        apply {
-//            add {
-//                rule(IterableValidationRule<*>(RuleGroup.named("enum", description, RuleGroup.Category.FIELD, group)))
-//                    .validate(it?.enum)
-//            }
-//        }
+    fun not(description: String = "", rule: SchemaRule.() -> SchemaRule) =
+        apply {
+            add {
+                rule(SchemaRule(RuleGroup.named("not", description, RuleGroup.Category.OBJECT, group)))
+                    .validate(it?.not)
+            }
+        }
 
-    // not
-
-    // properties
-
-    // additionalProperties
+    fun properties(description: String = "", rule: SchemasRule.() -> SchemasRule) =
+        apply {
+            add {
+                rule(SchemasRule(RuleGroup.named("properties", description, RuleGroup.Category.OBJECT, group)))
+                    .validate(it?.properties?.toList())
+            }
+        }
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
@@ -233,11 +236,43 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
             }
         }
 
-    // xml
+    fun xml(description: String = "", rule: XMLRule.() -> XMLRule) =
+        apply {
+            add {
+                rule(XMLRule(RuleGroup.named("xml", description, RuleGroup.Category.OBJECT, group)))
+                    .validate(it?.xml)
+            }
+        }
 
-    // extensions
+    fun discriminator(description: String = "", rule: DiscriminatorRule.() -> DiscriminatorRule) =
+        apply {
+            add {
+                rule(DiscriminatorRule(RuleGroup.named("discriminator", description, RuleGroup.Category.OBJECT, group)))
+                    .validate(it?.discriminator)
+            }
+        }
 
-    // _enum
+    fun allOf(description: String = "", rule: SchemasRule.() -> SchemasRule) =
+        apply {
+            add {
+                rule(SchemasRule(RuleGroup.named("allOf", description, RuleGroup.Category.OBJECT, group)))
+                    .validate(it?.allOf?.map { schema -> schema.name to schema })
+            }
+        }
 
-    // descriminator
+    fun oneOf(description: String = "", rule: SchemasRule.() -> SchemasRule) =
+        apply {
+            add {
+                rule(SchemasRule(RuleGroup.named("oneOf", description, RuleGroup.Category.OBJECT, group)))
+                    .validate(it?.oneOf?.map { schema -> schema.name to schema })
+            }
+        }
+
+    fun anyOf(description: String = "", rule: SchemasRule.() -> SchemasRule) =
+        apply {
+            add {
+                rule(SchemasRule(RuleGroup.named("anyOf", description, RuleGroup.Category.OBJECT, group)))
+                    .validate(it?.oneOf?.map { schema -> schema.name to schema })
+            }
+        }
 }
