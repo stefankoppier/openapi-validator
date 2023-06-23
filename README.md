@@ -69,15 +69,20 @@ class. For example
 ```kotlin
 @ExtendWith(OpenAPIValidationExtension::class)
 @OpenAPITest(relativeUrl = "src/test/resources/petstore.yaml")
-class MyTestClass(private val document: OpenAPI) {
+class OpenAPIValidationExtensionTest {
 
     @Test
-    fun `this is my test`() {
-        assertDocumentIsValidFor(document, openAPI {
-            info { title { exactly("OpenAPI Petstore") } }
-        })
+    fun `my test`() {
+        assertDocumentIsValidFor {
+            openAPI("My specification") {
+                info {
+                    title { exactly("OpenAPI Petstore") }
+                }
+            }
+        }
     }
 }
+
 ```
 
 ## Roadmap
