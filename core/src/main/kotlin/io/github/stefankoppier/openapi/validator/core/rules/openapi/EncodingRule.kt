@@ -8,7 +8,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.EnumRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.media.Encoding
 
-class EncodingRule(group: RuleGroup) : ValidationRule<Encoding>(group) {
+class EncodingRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Encoding>(group) {
 
     fun contentType(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
