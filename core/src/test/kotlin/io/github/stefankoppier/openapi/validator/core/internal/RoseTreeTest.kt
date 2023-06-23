@@ -81,4 +81,32 @@ class RoseTreeTest {
 
         assertThrows<IllegalArgumentException> { left.merge(right) }
     }
+
+    @Test
+    fun `fold simple tree`() {
+        val tree = RoseTree(
+            1,
+            mutableListOf(
+                RoseTree(2, mutableListOf()),
+                RoseTree(3, mutableListOf()),
+            ),
+        )
+
+        assertThat(tree.fold(0) { _, acc, it -> acc + it })
+            .isEqualTo(1 + 2 + 3)
+    }
+
+    @Test
+    fun `fold is left-associative`() {
+        val tree = RoseTree(
+            1,
+            mutableListOf(
+                RoseTree(2, mutableListOf()),
+                RoseTree(3, mutableListOf()),
+            ),
+        )
+
+        assertThat(tree.fold(0) { _, acc, it -> acc - it })
+            .isEqualTo(((0 - 1) - 2) - 3)
+    }
 }

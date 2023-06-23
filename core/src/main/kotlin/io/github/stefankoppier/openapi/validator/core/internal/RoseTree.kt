@@ -14,13 +14,13 @@ internal data class RoseTree<T>(val data: T, val children: MutableList<RoseTree<
         return this
     }
 
-    fun <R> fold(acc: R, operation: (Int, R, T) -> R) = fold(0, acc, operation)
+    fun <R> fold(initial: R, operation: (Int, R, T) -> R) = fold(0, initial, operation)
 
-    private fun <R> fold(level: Int, acc: R, operation: (Int, R, T) -> R): R =
+    private fun <R> fold(level: Int, initial: R, operation: (Int, R, T) -> R): R =
         if (children.isEmpty()) {
-            operation(level, acc, data)
+            operation(level, initial, data)
         } else {
-            children.fold(operation(level, acc, data)) { acc, it ->
+            children.fold(operation(level, initial, data)) { acc, it ->
                 it.fold(level + 1, acc, operation)
             }
         }
