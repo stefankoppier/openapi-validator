@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.primitives
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import java.math.BigDecimal
 import kotlin.test.Test
@@ -14,7 +14,7 @@ class BigDecimalRuleTest {
             min(BigDecimal.ONE)
         }
 
-        assertThat(rule.validate(BigDecimal(1.0))).isSuccess()
+        assertThatResult(rule.validate(BigDecimal(1.0))).isSuccess()
     }
 
     @Test
@@ -23,7 +23,7 @@ class BigDecimalRuleTest {
             min(BigDecimal.ONE)
         }
 
-        assertThat(rule.validate(BigDecimal("0.99"))).isFailure(
+        assertThatResult(rule.validate(BigDecimal("0.99"))).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be greater than or equal to '1' but is '0.99'",
@@ -37,7 +37,7 @@ class BigDecimalRuleTest {
             max(BigDecimal.ONE)
         }
 
-        assertThat(rule.validate(BigDecimal.ONE)).isSuccess()
+        assertThatResult(rule.validate(BigDecimal.ONE)).isSuccess()
     }
 
     @Test
@@ -46,7 +46,7 @@ class BigDecimalRuleTest {
             max(BigDecimal.ONE)
         }
 
-        assertThat(rule.validate(BigDecimal("1.01"))).isFailure(
+        assertThatResult(rule.validate(BigDecimal("1.01"))).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be less than or equal to '1' but is '1.01'",
@@ -60,7 +60,7 @@ class BigDecimalRuleTest {
             between(BigDecimal.ONE, BigDecimal.TEN)
         }
 
-        assertThat(rule.validate(BigDecimal.ONE)).isSuccess()
+        assertThatResult(rule.validate(BigDecimal.ONE)).isSuccess()
     }
 
     @Test
@@ -69,7 +69,7 @@ class BigDecimalRuleTest {
             between(BigDecimal.ONE, BigDecimal.TEN)
         }
 
-        assertThat(rule.validate(BigDecimal("0.99"))).isFailure(
+        assertThatResult(rule.validate(BigDecimal("0.99"))).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be between '1' and '10' but is '0.99'",
@@ -83,7 +83,7 @@ class BigDecimalRuleTest {
             between(BigDecimal.ONE, BigDecimal.TEN)
         }
 
-        assertThat(rule.validate(BigDecimal("10.01"))).isFailure(
+        assertThatResult(rule.validate(BigDecimal("10.01"))).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be between '1' and '10' but is '10.01'",

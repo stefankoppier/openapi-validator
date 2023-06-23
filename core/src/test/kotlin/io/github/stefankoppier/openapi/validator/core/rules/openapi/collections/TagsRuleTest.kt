@@ -1,6 +1,6 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.swagger.v3.oas.models.tags.Tag
 import kotlin.test.Test
 
@@ -12,7 +12,7 @@ class TagsRuleTest {
             name { exactly("pet") }
         }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -21,7 +21,7 @@ class TagsRuleTest {
             name { exactly("dog") }
         }
 
-        assertThat(rule.validate(fixture)).isFailure()
+        assertThatResult(rule.validate(fixture)).isFailure()
     }
 
     @Test
@@ -30,7 +30,7 @@ class TagsRuleTest {
             required()
         }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -40,7 +40,7 @@ class TagsRuleTest {
         }
 
         val result = rule.validate(fixture)
-        assertThat(result).isFailure()
+        assertThatResult(result).isFailure()
     }
 
     @Test
@@ -50,7 +50,7 @@ class TagsRuleTest {
         }
 
         val result = rule.validate(fixture)
-        assertThat(result).isFailure()
+        assertThatResult(result).isFailure()
     }
 
     companion object {

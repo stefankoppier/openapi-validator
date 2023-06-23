@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.swagger.v3.oas.models.ExternalDocumentation
 import io.swagger.v3.oas.models.tags.Tag
@@ -12,7 +12,7 @@ class TagRuleTest {
     @Test
     fun `name is required`() {
         val rule = TagRule()
-        assertThat(rule.validate(Tag())).isFailure(
+        assertThatResult(rule.validate(Tag())).isFailure(
             ValidationFailure(RuleGroup.named("name", "", RuleGroup.Category.FIELD, RuleGroup.unknown()), "Was required but is not given"),
         )
     }
@@ -22,7 +22,7 @@ class TagRuleTest {
         val rule = TagRule()
             .name { exactly("Name") }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -30,7 +30,7 @@ class TagRuleTest {
         val rule = TagRule()
             .name { exactly("Fail") }
 
-        assertThat(rule.validate(fixture)).isFailure(
+        assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
                 RuleGroup.named("name", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
                 "Was supposed to be 'Fail' but is 'Name'",
@@ -43,7 +43,7 @@ class TagRuleTest {
         val rule = TagRule()
             .description { exactly("Description") }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -51,7 +51,7 @@ class TagRuleTest {
         val rule = TagRule()
             .description { exactly("Fail") }
 
-        assertThat(rule.validate(fixture)).isFailure(
+        assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
                 RuleGroup.named("description", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
                 "Was supposed to be 'Fail' but is 'Description'",
@@ -64,7 +64,7 @@ class TagRuleTest {
         val rule = TagRule()
             .externalDocs { exactly(ExternalDocumentation().apply { url = "http://localhost" }) }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -72,7 +72,7 @@ class TagRuleTest {
         val rule = TagRule()
             .externalDocs { exactly(ExternalDocumentation()) }
 
-        assertThat(rule.validate(fixture)).isFailure(
+        assertThatResult(rule.validate(fixture)).isFailure(
             RuleGroup.named("externalDocs", "", RuleGroup.Category.OBJECT, RuleGroup.unknown()),
         )
     }

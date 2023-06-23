@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.primitives
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import kotlin.test.Test
 
@@ -13,7 +13,7 @@ class IntegerRuleTest {
             min(1)
         }
 
-        assertThat(rule.validate(1)).isSuccess()
+        assertThatResult(rule.validate(1)).isSuccess()
     }
 
     @Test
@@ -22,7 +22,7 @@ class IntegerRuleTest {
             min(1)
         }
 
-        assertThat(rule.validate(0)).isFailure(
+        assertThatResult(rule.validate(0)).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be greater than or equal to '1' but is '0'",
@@ -36,7 +36,7 @@ class IntegerRuleTest {
             max(1)
         }
 
-        assertThat(rule.validate(1)).isSuccess()
+        assertThatResult(rule.validate(1)).isSuccess()
     }
 
     @Test
@@ -45,7 +45,7 @@ class IntegerRuleTest {
             max(1)
         }
 
-        assertThat(rule.validate(2)).isFailure(
+        assertThatResult(rule.validate(2)).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be less than or equal to '1' but is '2'",
@@ -59,7 +59,7 @@ class IntegerRuleTest {
             between(1, 10)
         }
 
-        assertThat(rule.validate(1)).isSuccess()
+        assertThatResult(rule.validate(1)).isSuccess()
     }
 
     @Test
@@ -68,7 +68,7 @@ class IntegerRuleTest {
             between(1, 10)
         }
 
-        assertThat(rule.validate(0)).isFailure(
+        assertThatResult(rule.validate(0)).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be between '1' and '10' but is '0'",
@@ -82,7 +82,7 @@ class IntegerRuleTest {
             between(1, 10)
         }
 
-        assertThat(rule.validate(11)).isFailure(
+        assertThatResult(rule.validate(11)).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be between '1' and '10' but is '11'",

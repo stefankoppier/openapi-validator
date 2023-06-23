@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.swagger.v3.oas.models.info.Contact
 import kotlin.test.Test
@@ -12,7 +12,7 @@ class ContactRuleTest {
     fun `is required`() {
         val rule = ContactRule()
 
-        assertThat(rule.validate(null)).isFailure(
+        assertThatResult(rule.validate(null)).isFailure(
             ValidationFailure(
                 RuleGroup.named("", "", RuleGroup.Category.UNKNOWN, null),
                 "Was required but is not given",
@@ -25,7 +25,7 @@ class ContactRuleTest {
         val rule = ContactRule()
             .name { exactly("name") }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -33,7 +33,7 @@ class ContactRuleTest {
         val rule = ContactRule()
             .name { exactly("Fail") }
 
-        assertThat(rule.validate(fixture)).isFailure(
+        assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
                 RuleGroup.named("name", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
                 "Was supposed to be 'Fail' but is 'name'",
@@ -46,7 +46,7 @@ class ContactRuleTest {
         val rule = ContactRule()
             .url { exactly("http://localhost") }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -54,7 +54,7 @@ class ContactRuleTest {
         val rule = ContactRule()
             .url { exactly("https://localhost") }
 
-        assertThat(rule.validate(fixture)).isFailure(
+        assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
                 RuleGroup.named("url", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
                 "Was supposed to be 'https://localhost' but is 'http://localhost'",
@@ -67,7 +67,7 @@ class ContactRuleTest {
         val rule = ContactRule()
             .email { exactly("test@test.com") }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -75,7 +75,7 @@ class ContactRuleTest {
         val rule = ContactRule()
             .email { exactly("fail@fail.com") }
 
-        assertThat(rule.validate(fixture)).isFailure(
+        assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
                 RuleGroup.named("email", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
                 "Was supposed to be 'fail@fail.com' but is 'test@test.com'",

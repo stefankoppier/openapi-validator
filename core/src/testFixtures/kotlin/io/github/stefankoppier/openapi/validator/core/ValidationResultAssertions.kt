@@ -4,7 +4,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import org.assertj.core.api.ObjectAssert
 import java.util.concurrent.atomic.AtomicReference
 
-fun assertThat(actual: ValidationResult) =
+fun assertThatResult(actual: ValidationResult) =
     ValidationResultAssertions(AtomicReference(actual))
 
 class ValidationResultAssertions(actual: AtomicReference<ValidationResult>) : ObjectAssert<ValidationResult>(actual) {

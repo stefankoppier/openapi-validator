@@ -1,6 +1,6 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.swagger.v3.oas.models.media.Encoding
 import kotlin.test.Test
 
@@ -12,7 +12,7 @@ class EncodingsRuleTest {
             contentType { exactly("application/json") }
         }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -21,7 +21,7 @@ class EncodingsRuleTest {
             contentType { exactly("application/xml") }
         }
 
-        assertThat(rule.validate(fixture)).isFailure()
+        assertThatResult(rule.validate(fixture)).isFailure()
     }
 
     @Test
@@ -30,7 +30,7 @@ class EncodingsRuleTest {
             contentType { exactly("application/json") }
         }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -39,7 +39,7 @@ class EncodingsRuleTest {
             contentType { exactly("application/xml") }
         }
 
-        assertThat(rule.validate(fixture)).isFailure()
+        assertThatResult(rule.validate(fixture)).isFailure()
     }
 
     @Test
@@ -48,7 +48,7 @@ class EncodingsRuleTest {
             contentType { exactly("nothing") }
         }
 
-        assertThat(rule.validate(fixture)).isFailure()
+        assertThatResult(rule.validate(fixture)).isFailure()
     }
 
     companion object {

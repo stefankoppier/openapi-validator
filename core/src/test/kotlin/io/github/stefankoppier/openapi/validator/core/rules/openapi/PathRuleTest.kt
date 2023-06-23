@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.swagger.v3.oas.models.PathItem
 import io.swagger.v3.oas.models.parameters.Parameter
@@ -15,7 +15,7 @@ class PathRuleTest {
         val rule = PathRule()
             .summary { exactly("Summary") }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -23,7 +23,7 @@ class PathRuleTest {
         val rule = PathRule()
             .summary { exactly("Fail") }
 
-        assertThat(rule.validate(fixture)).isFailure(
+        assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
                 RuleGroup.named("summary", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
                 "Was supposed to be 'Fail' but is 'Summary'",
@@ -36,7 +36,7 @@ class PathRuleTest {
         val rule = PathRule()
             .description { exactly("Description") }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -44,7 +44,7 @@ class PathRuleTest {
         val rule = PathRule()
             .description { exactly("Fail") }
 
-        assertThat(rule.validate(fixture)).isFailure(
+        assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
                 RuleGroup.named("description", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
                 "Was supposed to be 'Fail' but is 'Description'",
@@ -57,7 +57,7 @@ class PathRuleTest {
         val rule = PathRule()
             .servers { exactly(listOf(Server())) }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -65,7 +65,7 @@ class PathRuleTest {
         val rule = PathRule()
             .servers { exactly(listOf(Server().apply { url = "http://localhost" })) }
 
-        assertThat(rule.validate(fixture))
+        assertThatResult(rule.validate(fixture))
             .isFailure(
                 RuleGroup.named("servers", "", RuleGroup.Category.OBJECT, RuleGroup.unknown()),
             )
@@ -76,7 +76,7 @@ class PathRuleTest {
         val rule = PathRule()
             .parameters { exactly(listOf(Parameter())) }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -84,7 +84,7 @@ class PathRuleTest {
         val rule = PathRule()
             .parameters { exactly(listOf(Parameter().apply { name = "parameter" })) }
 
-        assertThat(rule.validate(fixture))
+        assertThatResult(rule.validate(fixture))
             .isFailure(RuleGroup.named("parameters", "", RuleGroup.Category.OBJECT, RuleGroup.unknown()))
     }
 

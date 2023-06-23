@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.swagger.v3.oas.models.parameters.Parameter
 import kotlin.test.Test
@@ -11,7 +11,7 @@ class ParameterRuleTest {
     @Test
     fun `name and in are required`() {
         val rule = ParameterRule()
-        assertThat(rule.validate(Parameter())).isFailure(
+        assertThatResult(rule.validate(Parameter())).isFailure(
             ValidationFailure(RuleGroup.named("name", "", RuleGroup.Category.FIELD, RuleGroup.unknown()), "Was required but is not given"),
             ValidationFailure(RuleGroup.named("in", "", RuleGroup.Category.FIELD, RuleGroup.unknown()), "Was required but is not given"),
         )
@@ -25,7 +25,7 @@ class ParameterRuleTest {
             `in` = "path"
             required = false
         }
-        assertThat(rule.validate(fixture)).isFailure(
+        assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(RuleGroup.named("required", "", RuleGroup.Category.FIELD, RuleGroup.unknown()), "Was supposed to be 'true' but is 'false'"),
         )
     }
@@ -35,7 +35,7 @@ class ParameterRuleTest {
         val rule = ParameterRule()
             .name { exactly("Parameter") }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -43,7 +43,7 @@ class ParameterRuleTest {
         val rule = ParameterRule()
             .name { exactly("Fail") }
 
-        assertThat(rule.validate(fixture)).isFailure(
+        assertThatResult(rule.validate(fixture)).isFailure(
             ValidationFailure(
                 RuleGroup.named("name", "", RuleGroup.Category.FIELD, RuleGroup.unknown()),
                 "Was supposed to be 'Fail' but is 'Parameter'",

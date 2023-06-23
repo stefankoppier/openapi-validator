@@ -1,6 +1,6 @@
 package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.swagger.v3.oas.models.SpecVersion
 import io.swagger.v3.oas.models.media.Schema
 import kotlin.test.Test
@@ -13,7 +13,7 @@ class SchemasRuleTest {
             name { exactly("pet") }
         }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -22,7 +22,7 @@ class SchemasRuleTest {
             name { exactly("dog") }
         }
 
-        assertThat(rule.validate(fixture)).isFailure()
+        assertThatResult(rule.validate(fixture)).isFailure()
     }
 
     @Test
@@ -31,7 +31,7 @@ class SchemasRuleTest {
             required()
         }
 
-        assertThat(rule.validate(fixture)).isSuccess()
+        assertThatResult(rule.validate(fixture)).isSuccess()
     }
 
     @Test
@@ -40,7 +40,7 @@ class SchemasRuleTest {
             required()
         }
 
-        assertThat(rule.validate(fixture)).isFailure()
+        assertThatResult(rule.validate(fixture)).isFailure()
     }
 
     @Test
@@ -49,7 +49,7 @@ class SchemasRuleTest {
             required()
         }
 
-        assertThat(rule.validate(fixture)).isFailure()
+        assertThatResult(rule.validate(fixture)).isFailure()
     }
 
     companion object {

@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import java.time.LocalDate
 import kotlin.test.Test
@@ -17,7 +17,7 @@ class ValidationRuleTest {
             }
         }
 
-        assertThat(rule.validate("string")).isSuccess()
+        assertThatResult(rule.validate("string")).isSuccess()
     }
 
     @Test
@@ -29,7 +29,7 @@ class ValidationRuleTest {
             }
         }
 
-        assertThat(rule.validate("string")).isFailure(
+        assertThatResult(rule.validate("string")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be uppercase but is 'string'",
@@ -46,7 +46,7 @@ class ValidationRuleTest {
             }
         }
 
-        assertThat(rule.validate("string")).isFailure(
+        assertThatResult(rule.validate("string")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be uppercase but is 'string'",
@@ -67,7 +67,7 @@ class ValidationRuleTest {
             }
         }
 
-        assertThat(rule.validate("string")).isSuccess()
+        assertThatResult(rule.validate("string")).isSuccess()
     }
 
     @Test
@@ -78,7 +78,7 @@ class ValidationRuleTest {
             }
         }
 
-        assertThat(rule.validate("string")).isFailure(
+        assertThatResult(rule.validate("string")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be uppercase but is 'string'",
@@ -94,7 +94,7 @@ class ValidationRuleTest {
             }
         }
 
-        assertThat(rule.validate("string")).isSuccess()
+        assertThatResult(rule.validate("string")).isSuccess()
     }
 
     @Test
@@ -105,7 +105,7 @@ class ValidationRuleTest {
             }
         }
 
-        assertThat(rule.validate(null)).isSuccess()
+        assertThatResult(rule.validate(null)).isSuccess()
     }
 
     @Test
@@ -116,7 +116,7 @@ class ValidationRuleTest {
             }
         }
 
-        assertThat(rule.validate("string")).isSuccess()
+        assertThatResult(rule.validate("string")).isSuccess()
     }
 
     @Test
@@ -127,7 +127,7 @@ class ValidationRuleTest {
             }
         }
 
-        assertThat(rule.validate("string")).isFailure(
+        assertThatResult(rule.validate("string")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be uppercase but is 'string'",
@@ -141,7 +141,7 @@ class ValidationRuleTest {
             required()
         }
 
-        assertThat(rule.validate("string")).isSuccess()
+        assertThatResult(rule.validate("string")).isSuccess()
     }
 
     @Test
@@ -150,7 +150,7 @@ class ValidationRuleTest {
             required()
         }
 
-        assertThat(rule.validate(null)).isFailure(
+        assertThatResult(rule.validate(null)).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was required but is not given",
@@ -164,7 +164,7 @@ class ValidationRuleTest {
             exactly("string")
         }
 
-        assertThat(rule.validate("string")).isSuccess()
+        assertThatResult(rule.validate("string")).isSuccess()
     }
 
     @Test
@@ -173,7 +173,7 @@ class ValidationRuleTest {
             exactly("string")
         }
 
-        assertThat(rule.validate("fail")).isFailure(
+        assertThatResult(rule.validate("fail")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be 'string' but is 'fail'",

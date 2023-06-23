@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.primitives
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import kotlin.test.Test
 
@@ -13,7 +13,7 @@ class URIRuleTest {
             exactly(URI)
         }
 
-        assertThat(rule.validate(URI)).isSuccess()
+        assertThatResult(rule.validate(URI)).isSuccess()
     }
 
     @Test
@@ -22,7 +22,7 @@ class URIRuleTest {
             exactly(URI)
         }
 
-        assertThat(rule.validate("https://localhost")).isFailure(
+        assertThatResult(rule.validate("https://localhost")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be '$URI' but is 'https://localhost'",
@@ -36,7 +36,7 @@ class URIRuleTest {
             exactly(URI)
         }
 
-        assertThat(rule.validate("fail")).isFailure(
+        assertThatResult(rule.validate("fail")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be '$URI' but is 'fail'",

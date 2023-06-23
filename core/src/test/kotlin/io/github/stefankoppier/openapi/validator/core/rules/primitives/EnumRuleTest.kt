@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.primitives
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import kotlin.test.Test
 
@@ -13,7 +13,7 @@ class EnumRuleTest {
             either(Color.RED, Color.GREEN)
         }
 
-        assertThat(rule.validate(Color.RED)).isSuccess()
+        assertThatResult(rule.validate(Color.RED)).isSuccess()
     }
 
     @Test
@@ -22,7 +22,7 @@ class EnumRuleTest {
             either(Color.RED, Color.GREEN)
         }
 
-        assertThat(rule.validate(Color.BLUE)).isFailure(
+        assertThatResult(rule.validate(Color.BLUE)).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be one of 'RED, GREEN' but is 'BLUE'",

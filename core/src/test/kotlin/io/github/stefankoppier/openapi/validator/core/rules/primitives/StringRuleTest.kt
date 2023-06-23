@@ -1,7 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.rules.primitives
 
 import io.github.stefankoppier.openapi.validator.core.ValidationFailure
-import io.github.stefankoppier.openapi.validator.core.assertThat
+import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import kotlin.test.Test
 
@@ -13,7 +13,7 @@ class StringRuleTest {
             matches(Regex("[0-9]+"))
         }
 
-        assertThat(rule.validate("01")).isSuccess()
+        assertThatResult(rule.validate("01")).isSuccess()
     }
 
     @Test
@@ -22,7 +22,7 @@ class StringRuleTest {
             matches(Regex("[0-9]+"))
         }
 
-        assertThat(rule.validate("a")).isFailure(
+        assertThatResult(rule.validate("a")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to match '[0-9]+' but is 'a'",
@@ -36,7 +36,7 @@ class StringRuleTest {
             lowercase()
         }
 
-        assertThat(rule.validate("string")).isSuccess()
+        assertThatResult(rule.validate("string")).isSuccess()
     }
 
     @Test
@@ -45,7 +45,7 @@ class StringRuleTest {
             lowercase()
         }
 
-        assertThat(rule.validate("a b")).isSuccess()
+        assertThatResult(rule.validate("a b")).isSuccess()
     }
 
     @Test
@@ -54,7 +54,7 @@ class StringRuleTest {
             lowercase()
         }
 
-        assertThat(rule.validate("STRING")).isFailure(
+        assertThatResult(rule.validate("STRING")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be lowercase but is 'STRING'",
@@ -68,7 +68,7 @@ class StringRuleTest {
             uppercase()
         }
 
-        assertThat(rule.validate("STRING")).isSuccess()
+        assertThatResult(rule.validate("STRING")).isSuccess()
     }
 
     @Test
@@ -77,7 +77,7 @@ class StringRuleTest {
             uppercase()
         }
 
-        assertThat(rule.validate("A B")).isSuccess()
+        assertThatResult(rule.validate("A B")).isSuccess()
     }
 
     @Test
@@ -86,7 +86,7 @@ class StringRuleTest {
             uppercase()
         }
 
-        assertThat(rule.validate("string")).isFailure(
+        assertThatResult(rule.validate("string")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be uppercase but is 'string'",
@@ -100,7 +100,7 @@ class StringRuleTest {
             alpha()
         }
 
-        assertThat(rule.validate("string")).isSuccess()
+        assertThatResult(rule.validate("string")).isSuccess()
     }
 
     @Test
@@ -109,7 +109,7 @@ class StringRuleTest {
             alpha()
         }
 
-        assertThat(rule.validate("1")).isFailure(
+        assertThatResult(rule.validate("1")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be alphabetic but is '1'",
@@ -123,7 +123,7 @@ class StringRuleTest {
             numeric()
         }
 
-        assertThat(rule.validate("1")).isSuccess()
+        assertThatResult(rule.validate("1")).isSuccess()
     }
 
     @Test
@@ -132,7 +132,7 @@ class StringRuleTest {
             numeric()
         }
 
-        assertThat(rule.validate("string")).isFailure(
+        assertThatResult(rule.validate("string")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be numeric but is 'string'",
@@ -146,7 +146,7 @@ class StringRuleTest {
             alphanumeric()
         }
 
-        assertThat(rule.validate("string1")).isSuccess()
+        assertThatResult(rule.validate("string1")).isSuccess()
     }
 
     @Test
@@ -155,7 +155,7 @@ class StringRuleTest {
             alphanumeric()
         }
 
-        assertThat(rule.validate("string_1")).isFailure(
+        assertThatResult(rule.validate("string_1")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be alphanumeric but is 'string_1'",
@@ -169,7 +169,7 @@ class StringRuleTest {
             kebabcase()
         }
 
-        assertThat(rule.validate("kebab-case")).isSuccess()
+        assertThatResult(rule.validate("kebab-case")).isSuccess()
     }
 
     @Test
@@ -178,7 +178,7 @@ class StringRuleTest {
             kebabcase()
         }
 
-        assertThat(rule.validate("kebab case")).isFailure(
+        assertThatResult(rule.validate("kebab case")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be kebab case but is 'kebab case'",
@@ -192,7 +192,7 @@ class StringRuleTest {
             snakecase()
         }
 
-        assertThat(rule.validate("snake_case")).isSuccess()
+        assertThatResult(rule.validate("snake_case")).isSuccess()
     }
 
     @Test
@@ -201,7 +201,7 @@ class StringRuleTest {
             snakecase()
         }
 
-        assertThat(rule.validate("snake case")).isFailure(
+        assertThatResult(rule.validate("snake case")).isFailure(
             ValidationFailure(
                 RuleGroup.named("rule", "", RuleGroup.Category.FIELD),
                 "Was supposed to be snake case but is 'snake case'",

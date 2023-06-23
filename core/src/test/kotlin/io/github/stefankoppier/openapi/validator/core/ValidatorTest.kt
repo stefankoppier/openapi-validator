@@ -12,7 +12,7 @@ class ValidatorTest {
     fun `validate yaml success`() {
         val validator = Validator(OpenAPIRule())
 
-        assertThat(validator.validate(document.readText(Charsets.UTF_8)))
+        assertThatResult(validator.validate(document.readText(Charsets.UTF_8)))
             .isSuccess()
     }
 
@@ -20,7 +20,7 @@ class ValidatorTest {
     fun `validate yaml fail`() {
         val validator = Validator(OpenAPIRule())
 
-        assertThat(validator.validate("invalid yaml")).isFailure(
+        assertThatResult(validator.validate("invalid yaml")).isFailure(
             ValidationFailure(
                 RuleGroup.named("", "", RuleGroup.Category.EXCEPTION, null),
                 "Failed to parse yaml",
@@ -32,7 +32,7 @@ class ValidatorTest {
     fun `validate path`() {
         val validator = Validator(OpenAPIRule())
 
-        assertThat(validator.validate(document.toURI()))
+        assertThatResult(validator.validate(document.toURI()))
             .isSuccess()
     }
 
@@ -41,7 +41,7 @@ class ValidatorTest {
         val validator = Validator(OpenAPIRule())
 
         val path = Path(".").toUri()
-        assertThat(validator.validate(path)).isFailure(
+        assertThatResult(validator.validate(path)).isFailure(
             ValidationFailure(
                 RuleGroup.named("", "", RuleGroup.Category.EXCEPTION, null),
                 "Failed to parse contents from '$path'",
