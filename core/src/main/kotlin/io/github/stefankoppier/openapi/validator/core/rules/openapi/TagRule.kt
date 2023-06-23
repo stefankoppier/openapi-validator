@@ -5,7 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.tags.Tag
 
-class TagRule internal constructor(group: RuleGroup) : ValidationRule<Tag>(group) {
+class TagRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Tag>(group) {
 
     init {
         name { required() }
