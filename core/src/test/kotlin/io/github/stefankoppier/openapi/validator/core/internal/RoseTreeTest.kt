@@ -1,6 +1,7 @@
 package io.github.stefankoppier.openapi.validator.core.internal
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.assertThrows
 import kotlin.test.Test
 
 class RoseTreeTest {
@@ -71,5 +72,13 @@ class RoseTreeTest {
                     ),
                 ),
             )
+    }
+
+    @Test
+    fun `merge two nodes with different roots`() {
+        val left = RoseTree(1)
+        val right = RoseTree(2)
+
+        assertThrows<IllegalArgumentException> { left.merge(right) }
     }
 }
