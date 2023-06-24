@@ -21,12 +21,12 @@ dependencies {
 
 allprojects {
     plugins.withId("org.jetbrains.kotlin.jvm") {
-        apply(plugin = "org.jetbrains.dokka")
         apply(plugin = "jvm-test-suite")
         apply(plugin = "jacoco")
-        apply(plugin = "com.diffplug.spotless")
         apply(plugin = "maven-publish")
         apply(plugin = "signing")
+        apply(plugin = libs.plugins.dokka.get().pluginId)
+        apply(plugin = libs.plugins.spotless.get().pluginId)
 
         kotlin {
             jvmToolchain {
