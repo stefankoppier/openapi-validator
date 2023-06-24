@@ -30,7 +30,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Stage on Maven Central
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@2.4.2
         with:
           arguments: > 
             publishAllPublicationsToOSSRHRepository
