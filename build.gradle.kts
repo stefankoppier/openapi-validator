@@ -20,6 +20,10 @@ dependencies {
 }
 
 allprojects {
+    repositories {
+        mavenCentral()
+    }
+
     plugins.withId("org.jetbrains.kotlin.jvm") {
         apply(plugin = "jvm-test-suite")
         apply(plugin = "jacoco")
