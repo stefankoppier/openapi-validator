@@ -3,8 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
 }
 
-description = "Core module of the OpenAPI validator project."
-
 dependencies {
     api(libs.swagger.models)
 
