@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
+    id("publication-convention")
 }
 
 description = "JUnit integration for the OpenAPI validator project."
