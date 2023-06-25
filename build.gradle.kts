@@ -161,13 +161,13 @@ allprojects {
 //                }
 //            }
 //
-//            signing {
-//                val key = findProperty("signing.key") as String
-//                val password = findProperty("signing.password") as String
-//                useInMemoryPgpKeys(key, password)
-//                sign(publishing.publications)
-//            }
-//        }
+            signing {
+                val key = findProperty("signing.key") as String
+                val password = findProperty("signing.password") as String
+                useInMemoryPgpKeys(key, password)
+                sign(publishing.publications)
+            }
+        }
     }
 }
 
