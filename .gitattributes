@@ -1,0 +1,9 @@
+text eol=lf
+
+*.kt text
+*.kts text
+*.md text
+*.json text
+*.yaml text
+*.yml text
+*.properties text
