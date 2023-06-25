@@ -183,7 +183,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun ref(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("title", RuleGroup.Category.FIELD, description, group)))
+                rule(StringRule(RuleGroup.named("ref", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.`$ref`)
             }
         }
@@ -240,7 +240,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun items(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
-                rule(SchemaRule(RuleGroup.named("items", RuleGroup.Category.FIELD, description, group)))
+                rule(SchemaRule(RuleGroup.named("items", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.items)
             }
         }
@@ -281,7 +281,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
         apply {
             add {
                 rule(SchemasRule(RuleGroup.named("anyOf", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.oneOf?.map { schema -> schema.name to schema })
+                    .validate(it?.anyOf?.map { schema -> schema.name to schema })
             }
         }
 }
