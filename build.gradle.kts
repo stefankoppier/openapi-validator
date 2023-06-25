@@ -95,12 +95,12 @@ allprojects {
         }
 
         if (project != rootProject) {
-            val dokkaHtml by tasks.getting(DokkaTask::class)
-            val javadocJar by tasks.registering(Jar::class) {
-                dependsOn(dokkaHtml)
-                archiveClassifier.set("javadoc")
-                from(dokkaHtml.outputDirectory)
-            }
+//            val dokkaHtml by tasks.getting(DokkaTask::class)
+//            val javadocJar by tasks.registering(Jar::class) {
+//                dependsOn(dokkaHtml)
+//                archiveClassifier.set("javadoc")
+//                from(dokkaHtml.outputDirectory)
+//            }
 
             publishing {
                 repositories {
@@ -119,7 +119,7 @@ allprojects {
                     create<MavenPublication>(project.name) {
                         from(components["kotlin"])
                         artifact(tasks.named("kotlinSourcesJar").get())
-                        artifact(javadocJar)
+//                        artifact(javadocJar)
                         groupId = rootProject.group.toString()
                         artifactId = project.name
                         version = rootProject.version.toString()
