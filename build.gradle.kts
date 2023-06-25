@@ -35,6 +35,7 @@ allprojects {
         kotlin {
             jvmToolchain {
                 languageVersion.set(JavaLanguageVersion.of(javaVersion))
+                vendor.set(JvmVendorSpec.matching("Eclipse Adoptium"))
             }
         }
 
