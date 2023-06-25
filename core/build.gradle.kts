@@ -1,6 +1,6 @@
 plugins {
     id("java-test-fixtures")
-    id("org.jetbrains.kotlin.jvm") version "1.8.22"
+    alias(libs.plugins.kotlin.jvm)
 }
 
 description = "Core module of the OpenAPI validator project."
