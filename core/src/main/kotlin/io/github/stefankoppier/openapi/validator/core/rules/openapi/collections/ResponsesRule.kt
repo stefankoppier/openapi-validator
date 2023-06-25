@@ -13,7 +13,7 @@ class ResponsesRule internal constructor(group: RuleGroup = RuleGroup.unknown())
                 ResponseRule(
                     RuleGroup.named(
                         "response '${response.first}'",
-                        RuleGroup.Category.OBJECT,
+                        RuleGroup.Category.GROUP,
                         description,
                         group,
                     ),
@@ -26,7 +26,7 @@ class ResponsesRule internal constructor(group: RuleGroup = RuleGroup.unknown())
         apply {
             add { responses ->
                 val response = responses?.find { it.first == named }
-                rule(ResponseRule(RuleGroup.named("response '$named'", RuleGroup.Category.OBJECT, description, group)))
+                rule(ResponseRule(RuleGroup.named("response '$named'", RuleGroup.Category.GROUP, description, group)))
                     .validate(response?.second)
             }
         }

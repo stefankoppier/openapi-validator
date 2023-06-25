@@ -13,7 +13,7 @@ class EncodingsRule internal constructor(group: RuleGroup = RuleGroup.unknown())
                 EncodingRule(
                     RuleGroup.named(
                         "encoding '${encoding.first}'",
-                        RuleGroup.Category.OBJECT,
+                        RuleGroup.Category.GROUP,
                         description,
                         group,
                     ),
@@ -26,7 +26,7 @@ class EncodingsRule internal constructor(group: RuleGroup = RuleGroup.unknown())
         apply {
             add { encodings ->
                 val encoding = encodings?.find { it.first == named }
-                rule(EncodingRule(RuleGroup.named("encoding '$named'", RuleGroup.Category.OBJECT, description, group)))
+                rule(EncodingRule(RuleGroup.named("encoding '$named'", RuleGroup.Category.GROUP, description, group)))
                     .validate(encoding?.second)
             }
         }

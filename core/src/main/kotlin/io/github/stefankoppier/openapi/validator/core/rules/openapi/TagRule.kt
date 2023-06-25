@@ -34,7 +34,7 @@ class TagRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Val
                     ExternalDocumentationRule(
                         RuleGroup.named(
                             "externalDocs",
-                            RuleGroup.Category.OBJECT,
+                            RuleGroup.Category.GROUP,
                             description,
                             group,
                         ),

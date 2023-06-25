@@ -10,7 +10,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.EnumRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.headers.Header
 
-class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
+class HeaderRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Header>(group) {
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
@@ -55,7 +55,7 @@ class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
     fun schema(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
-                rule(SchemaRule(RuleGroup.named("schema", RuleGroup.Category.OBJECT, description, group)))
+                rule(SchemaRule(RuleGroup.named("schema", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.schema)
             }
         }
@@ -71,7 +71,7 @@ class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
     fun examples(description: String = "", rule: ExamplesRule.() -> ExamplesRule) =
         apply {
             add {
-                rule(ExamplesRule(RuleGroup.named("examples", RuleGroup.Category.FIELD, description, group)))
+                rule(ExamplesRule(RuleGroup.named("examples", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.examples?.toList())
             }
         }
@@ -79,7 +79,7 @@ class HeaderRule(group: RuleGroup) : ValidationRule<Header>(group) {
     fun content(description: String = "", rule: ContentRule.() -> ContentRule) =
         apply {
             add {
-                rule(ContentRule(RuleGroup.named("content", RuleGroup.Category.OBJECT, description, group)))
+                rule(ContentRule(RuleGroup.named("content", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.content?.toList())
             }
         }

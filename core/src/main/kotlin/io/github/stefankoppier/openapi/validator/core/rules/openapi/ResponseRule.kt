@@ -19,7 +19,7 @@ class ResponseRule internal constructor(group: RuleGroup = RuleGroup.unknown()) 
     fun content(description: String = "", rule: ContentRule.() -> ContentRule) =
         apply {
             add {
-                rule(ContentRule(RuleGroup.named("content", RuleGroup.Category.OBJECT, description, group)))
+                rule(ContentRule(RuleGroup.named("content", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.content?.toList())
             }
         }

@@ -21,7 +21,7 @@ class EncodingRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Enco
     fun headers(description: String = "", rule: HeadersRule.() -> HeadersRule) =
         apply {
             add {
-                rule(HeadersRule(RuleGroup.named("headers", RuleGroup.Category.OBJECT, description, group)))
+                rule(HeadersRule(RuleGroup.named("headers", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.headers?.toList())
             }
         }

@@ -26,7 +26,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun info(description: String = "", rule: InfoRule.() -> InfoRule) =
         apply {
             add {
-                rule(InfoRule(RuleGroup.named("info", RuleGroup.Category.OBJECT, description, group)))
+                rule(InfoRule(RuleGroup.named("info", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.info)
             }
         }
@@ -38,7 +38,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun paths(description: String = "", rule: PathsRule.() -> PathsRule) =
         apply {
             add {
-                rule(PathsRule(RuleGroup.named("paths", RuleGroup.Category.OBJECT, description, group)))
+                rule(PathsRule(RuleGroup.named("paths", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.paths?.toList())
             }
         }
@@ -48,7 +48,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun components(description: String = "", rule: ComponentsRule.() -> ComponentsRule) =
         apply {
             add {
-                rule(ComponentsRule(RuleGroup.named("components", RuleGroup.Category.OBJECT, description, group)))
+                rule(ComponentsRule(RuleGroup.named("components", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.components)
             }
         }
@@ -56,7 +56,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun security(description: String = "", rule: SecurityRequirementsRule.() -> SecurityRequirementsRule) =
         apply {
             add {
-                rule(SecurityRequirementsRule(RuleGroup.named("security", RuleGroup.Category.OBJECT, description, group)))
+                rule(SecurityRequirementsRule(RuleGroup.named("security", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.security)
             }
         }
@@ -64,7 +64,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun tags(description: String = "", rule: TagsRule.() -> TagsRule) =
         apply {
             add {
-                rule(TagsRule(RuleGroup.named("tags", RuleGroup.Category.OBJECT, description, group)))
+                rule(TagsRule(RuleGroup.named("tags", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.tags)
             }
         }
@@ -76,7 +76,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
                     ExternalDocumentationRule(
                         RuleGroup.named(
                             "externalDocs",
-                            RuleGroup.Category.OBJECT,
+                            RuleGroup.Category.GROUP,
                             description,
                             group,
                         ),
@@ -88,5 +88,5 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
 }
 
 fun openAPI(description: String = "", rule: OpenAPIRule.() -> OpenAPIRule): OpenAPIRule {
-    return rule(OpenAPIRule(RuleGroup.named("document", RuleGroup.Category.OBJECT, description)))
+    return rule(OpenAPIRule(RuleGroup.named("document", RuleGroup.Category.GROUP, description)))
 }

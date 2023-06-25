@@ -67,7 +67,7 @@ class PathRuleTest {
 
         assertThatResult(rule.validate(fixture))
             .isFailure(
-                RuleGroup.named("servers", RuleGroup.Category.OBJECT, "", RuleGroup.unknown()),
+                RuleGroup.named("servers", RuleGroup.Category.GROUP, "", RuleGroup.unknown()),
             )
     }
 
@@ -85,7 +85,7 @@ class PathRuleTest {
             .parameters { exactly(listOf(Parameter().apply { name = "parameter" })) }
 
         assertThatResult(rule.validate(fixture))
-            .isFailure(RuleGroup.named("parameters", RuleGroup.Category.OBJECT, "", RuleGroup.unknown()))
+            .isFailure(RuleGroup.named("parameters", RuleGroup.Category.GROUP, "", RuleGroup.unknown()))
     }
 
     companion object {

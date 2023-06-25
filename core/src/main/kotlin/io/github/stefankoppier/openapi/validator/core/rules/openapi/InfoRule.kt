@@ -47,7 +47,7 @@ class InfoRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     fun contact(description: String = "", rule: ContactRule.() -> ContactRule) =
         apply {
             add {
-                rule(ContactRule(RuleGroup.named("contact", RuleGroup.Category.OBJECT, description, group)))
+                rule(ContactRule(RuleGroup.named("contact", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.contact)
             }
         }
@@ -55,7 +55,7 @@ class InfoRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     fun licence(description: String = "", rule: LicenceRule.() -> LicenceRule) =
         apply {
             add {
-                rule(LicenceRule(RuleGroup.named("licence", RuleGroup.Category.OBJECT, description, group)))
+                rule(LicenceRule(RuleGroup.named("licence", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.license)
             }
         }

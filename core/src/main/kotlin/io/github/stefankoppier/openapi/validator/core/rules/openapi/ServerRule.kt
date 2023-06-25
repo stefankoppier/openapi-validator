@@ -32,7 +32,7 @@ class ServerRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun variables(description: String = "", rule: ServerVariablesRule.() -> ServerVariablesRule) =
         apply {
             add {
-                rule(ServerVariablesRule(RuleGroup.named("variables", RuleGroup.Category.OBJECT, description, group)))
+                rule(ServerVariablesRule(RuleGroup.named("variables", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.variables?.toList())
             }
         }

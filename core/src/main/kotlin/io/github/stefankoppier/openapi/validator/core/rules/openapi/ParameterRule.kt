@@ -95,7 +95,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun schema(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
-                rule(SchemaRule(RuleGroup.named("schema", RuleGroup.Category.OBJECT, description, group)))
+                rule(SchemaRule(RuleGroup.named("schema", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.schema)
             }
         }
@@ -119,7 +119,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun content(description: String = "", rule: ContentRule.() -> ContentRule) =
         apply {
             add {
-                rule(ContentRule(RuleGroup.named("content", RuleGroup.Category.OBJECT, description, group)))
+                rule(ContentRule(RuleGroup.named("content", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.content?.toList())
             }
         }

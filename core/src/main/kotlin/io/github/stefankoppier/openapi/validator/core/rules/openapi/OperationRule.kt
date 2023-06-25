@@ -44,7 +44,7 @@ class OperationRule internal constructor(group: RuleGroup = RuleGroup.unknown())
                     ExternalDocumentationRule(
                         RuleGroup.named(
                             "externalDocs",
-                            RuleGroup.Category.OBJECT,
+                            RuleGroup.Category.GROUP,
                             description,
                             group,
                         ),
@@ -65,7 +65,7 @@ class OperationRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun parameters(description: String = "", rule: ParametersRule.() -> ParametersRule) =
         apply {
             add {
-                rule(ParametersRule(RuleGroup.named("parameters", RuleGroup.Category.OBJECT, description, group)))
+                rule(ParametersRule(RuleGroup.named("parameters", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.parameters)
             }
         }
@@ -73,7 +73,7 @@ class OperationRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun requestBody(description: String = "", rule: RequestBodyRule.() -> RequestBodyRule) =
         apply {
             add {
-                rule(RequestBodyRule(RuleGroup.named("requestBody", RuleGroup.Category.OBJECT, description, group)))
+                rule(RequestBodyRule(RuleGroup.named("requestBody", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.requestBody)
             }
         }
@@ -81,7 +81,7 @@ class OperationRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun responses(description: String = "", rule: ResponsesRule.() -> ResponsesRule) =
         apply {
             add {
-                rule(ResponsesRule(RuleGroup.named("responses", RuleGroup.Category.OBJECT, description, group)))
+                rule(ResponsesRule(RuleGroup.named("responses", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.responses?.toList())
             }
         }
@@ -99,7 +99,7 @@ class OperationRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun security(description: String = "", rule: SecurityRequirementsRule.() -> SecurityRequirementsRule) =
         apply {
             add {
-                rule(SecurityRequirementsRule(RuleGroup.named("security", RuleGroup.Category.OBJECT, description, group)))
+                rule(SecurityRequirementsRule(RuleGroup.named("security", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.security)
             }
         }
@@ -107,7 +107,7 @@ class OperationRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun servers(description: String = "", rule: ServersRule.() -> ServersRule) =
         apply {
             add {
-                rule(ServersRule(RuleGroup.named("servers", RuleGroup.Category.OBJECT, description, group)))
+                rule(ServersRule(RuleGroup.named("servers", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.servers)
             }
         }

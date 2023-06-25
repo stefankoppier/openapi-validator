@@ -13,7 +13,7 @@ class ContentRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
                 MediaTypeRule(
                     RuleGroup.named(
                         "mediaType '${mediaType.first}'",
-                        RuleGroup.Category.OBJECT,
+                        RuleGroup.Category.GROUP,
                         description,
                         group,
                     ),
@@ -26,7 +26,7 @@ class ContentRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
         apply {
             add { encodings ->
                 val encoding = encodings?.find { it.first == named }
-                rule(MediaTypeRule(RuleGroup.named("mediaType '$named'", RuleGroup.Category.OBJECT, description, group)))
+                rule(MediaTypeRule(RuleGroup.named("mediaType '$named'", RuleGroup.Category.GROUP, description, group)))
                     .validate(encoding?.second)
             }
         }

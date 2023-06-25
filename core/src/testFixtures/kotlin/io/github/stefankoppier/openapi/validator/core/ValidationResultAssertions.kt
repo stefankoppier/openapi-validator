@@ -19,7 +19,7 @@ class ValidationResultAssertions(actual: AtomicReference<ValidationResult>) : Ob
                     |$group
                     |But was
                     |${actual.failures.joinToString(separator = System.lineSeparator()) { it.group.toString() }}
-                    """.trimIndent()
+                    """.trimMargin()
                 }
                     .usingRecursiveComparison()
                     .isEqualTo(ValidationResult.failure(*actual.failures.map { it.copy(group = group) }.toTypedArray()))

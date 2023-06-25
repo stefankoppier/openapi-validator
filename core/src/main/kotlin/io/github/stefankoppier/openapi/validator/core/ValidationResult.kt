@@ -31,7 +31,7 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
                     append((0 until level).joinToString(separator = "") { "    " })
                     append(
                         when (it.category) {
-                            RuleGroup.Category.OBJECT -> "For ${it.content}:"
+                            RuleGroup.Category.GROUP -> "For ${it.content}:"
                             RuleGroup.Category.FIELD -> "Field '${it.content}' does not comply:"
                             RuleGroup.Category.MESSAGE -> "- ${it.content}"
                             RuleGroup.Category.EXCEPTION -> "An exception occurred: ${it.content}"

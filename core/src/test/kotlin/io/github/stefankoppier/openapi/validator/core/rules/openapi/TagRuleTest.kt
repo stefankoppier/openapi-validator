@@ -73,7 +73,7 @@ class TagRuleTest {
             .externalDocs { exactly(ExternalDocumentation()) }
 
         assertThatResult(rule.validate(fixture)).isFailure(
-            RuleGroup.named("externalDocs", RuleGroup.Category.OBJECT, "", RuleGroup.unknown()),
+            RuleGroup.named("externalDocs", RuleGroup.Category.GROUP, "", RuleGroup.unknown()),
         )
     }
     companion object {

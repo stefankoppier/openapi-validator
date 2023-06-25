@@ -8,7 +8,7 @@ class ValidationResultTest {
 
     @Test
     fun `summarize contains correct values`() {
-        val obj = RuleGroup.named("object", RuleGroup.Category.OBJECT)
+        val obj = RuleGroup.named("object", RuleGroup.Category.GROUP)
         val field = RuleGroup.named("field", RuleGroup.Category.FIELD, "", obj)
         val message = RuleGroup.named("message", RuleGroup.Category.MESSAGE, "", field)
         val exception = RuleGroup.named("exception", RuleGroup.Category.EXCEPTION, "", obj)

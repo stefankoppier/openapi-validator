@@ -9,7 +9,7 @@ class ExamplesRule internal constructor(group: RuleGroup = RuleGroup.unknown()) 
 
     fun all(description: String = "", rule: ExampleRule.() -> ExampleRule) =
         all { example ->
-            rule(ExampleRule(RuleGroup.named("example '${example.first}'", RuleGroup.Category.OBJECT, description, group)))
+            rule(ExampleRule(RuleGroup.named("example '${example.first}'", RuleGroup.Category.GROUP, description, group)))
                 .validate(example.second)
         }
 
@@ -17,7 +17,7 @@ class ExamplesRule internal constructor(group: RuleGroup = RuleGroup.unknown()) 
         apply {
             add { examples ->
                 val example = examples?.find { it.first == named }
-                rule(ExampleRule(RuleGroup.named("example '$named'", RuleGroup.Category.OBJECT, description, group)))
+                rule(ExampleRule(RuleGroup.named("example '$named'", RuleGroup.Category.GROUP, description, group)))
                     .validate(example?.second)
             }
         }

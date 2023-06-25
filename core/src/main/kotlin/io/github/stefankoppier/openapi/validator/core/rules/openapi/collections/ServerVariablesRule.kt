@@ -13,7 +13,7 @@ class ServerVariablesRule internal constructor(group: RuleGroup = RuleGroup.unkn
                 ServerVariableRule(
                     RuleGroup.named(
                         "serverVariable '${serverVariables.first}'",
-                        RuleGroup.Category.OBJECT,
+                        RuleGroup.Category.GROUP,
                         description,
                         group,
                     ),
@@ -30,7 +30,7 @@ class ServerVariablesRule internal constructor(group: RuleGroup = RuleGroup.unkn
                     ServerVariableRule(
                         RuleGroup.named(
                             "serverVariable '$named'",
-                            RuleGroup.Category.OBJECT,
+                            RuleGroup.Category.GROUP,
                             description,
                             group,
                         ),

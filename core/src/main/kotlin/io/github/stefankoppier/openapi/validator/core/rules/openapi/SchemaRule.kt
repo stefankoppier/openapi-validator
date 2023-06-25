@@ -151,7 +151,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun not(description: String = "", rule: SchemaRule.() -> SchemaRule) =
         apply {
             add {
-                rule(SchemaRule(RuleGroup.named("not", RuleGroup.Category.OBJECT, description, group)))
+                rule(SchemaRule(RuleGroup.named("not", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.not)
             }
         }
@@ -159,7 +159,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun properties(description: String = "", rule: SchemasRule.() -> SchemasRule) =
         apply {
             add {
-                rule(SchemasRule(RuleGroup.named("properties", RuleGroup.Category.OBJECT, description, group)))
+                rule(SchemasRule(RuleGroup.named("properties", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.properties?.toList())
             }
         }
@@ -219,7 +219,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
                     ExternalDocumentationRule(
                         RuleGroup.named(
                             "externalDocs",
-                            RuleGroup.Category.OBJECT,
+                            RuleGroup.Category.GROUP,
                             description,
                             group,
                         ),
@@ -248,7 +248,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun xml(description: String = "", rule: XMLRule.() -> XMLRule) =
         apply {
             add {
-                rule(XMLRule(RuleGroup.named("xml", RuleGroup.Category.OBJECT, description, group)))
+                rule(XMLRule(RuleGroup.named("xml", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.xml)
             }
         }
@@ -256,7 +256,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun discriminator(description: String = "", rule: DiscriminatorRule.() -> DiscriminatorRule) =
         apply {
             add {
-                rule(DiscriminatorRule(RuleGroup.named("discriminator", RuleGroup.Category.OBJECT, description, group)))
+                rule(DiscriminatorRule(RuleGroup.named("discriminator", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.discriminator)
             }
         }
@@ -264,7 +264,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun allOf(description: String = "", rule: SchemasRule.() -> SchemasRule) =
         apply {
             add {
-                rule(SchemasRule(RuleGroup.named("allOf", RuleGroup.Category.OBJECT, description, group)))
+                rule(SchemasRule(RuleGroup.named("allOf", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.allOf?.map { schema -> schema.name to schema })
             }
         }
@@ -272,7 +272,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun oneOf(description: String = "", rule: SchemasRule.() -> SchemasRule) =
         apply {
             add {
-                rule(SchemasRule(RuleGroup.named("oneOf", RuleGroup.Category.OBJECT, description, group)))
+                rule(SchemasRule(RuleGroup.named("oneOf", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.oneOf?.map { schema -> schema.name to schema })
             }
         }
@@ -280,7 +280,7 @@ class SchemaRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun anyOf(description: String = "", rule: SchemasRule.() -> SchemasRule) =
         apply {
             add {
-                rule(SchemasRule(RuleGroup.named("anyOf", RuleGroup.Category.OBJECT, description, group)))
+                rule(SchemasRule(RuleGroup.named("anyOf", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.oneOf?.map { schema -> schema.name to schema })
             }
         }

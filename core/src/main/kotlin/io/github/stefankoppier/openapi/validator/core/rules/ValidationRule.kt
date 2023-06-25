@@ -4,7 +4,7 @@ import io.github.stefankoppier.openapi.validator.core.ValidationFailure
 import io.github.stefankoppier.openapi.validator.core.ValidationResult
 import java.time.LocalDate
 
-abstract class ValidationRule<T : Any> protected constructor(protected val group: RuleGroup = RuleGroup.unknown()) {
+abstract class ValidationRule<T> protected constructor(protected val group: RuleGroup = RuleGroup.unknown()) {
 
     private val rules: MutableList<Pair<(T?) -> Boolean, (T?) -> ValidationResult>> = mutableListOf()
 

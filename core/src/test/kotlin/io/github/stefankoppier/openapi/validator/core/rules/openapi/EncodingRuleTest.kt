@@ -44,7 +44,7 @@ class EncodingRuleTest {
             .headers { exactly(listOf("Fail" to Header())) }
 
         assertThatResult(rule.validate(fixture)).isFailure(
-            RuleGroup.named("headers", RuleGroup.Category.OBJECT, "", RuleGroup.unknown()),
+            RuleGroup.named("headers", RuleGroup.Category.GROUP, "", RuleGroup.unknown()),
         )
     }
 

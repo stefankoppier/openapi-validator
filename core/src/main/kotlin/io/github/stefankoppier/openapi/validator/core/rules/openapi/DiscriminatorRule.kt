@@ -5,7 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.media.Discriminator
 
-class DiscriminatorRule(group: RuleGroup) : ValidationRule<Discriminator>(group) {
+class DiscriminatorRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Discriminator>(group) {
 
     fun propertyName(description: String = "", rule: StringRule.() -> StringRule) =
         apply {

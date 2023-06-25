@@ -13,7 +13,7 @@ class ParametersRule internal constructor(group: RuleGroup = RuleGroup.unknown()
                 ParameterRule(
                     RuleGroup.named(
                         "parameter '${parameter.name}'",
-                        RuleGroup.Category.OBJECT,
+                        RuleGroup.Category.GROUP,
                         description,
                         group,
                     ),
@@ -26,7 +26,7 @@ class ParametersRule internal constructor(group: RuleGroup = RuleGroup.unknown()
         apply {
             add { parameters ->
                 val parameter = parameters?.find { it.name == named }
-                rule(ParameterRule(RuleGroup.named("parameter '$named'", RuleGroup.Category.OBJECT, description, group)))
+                rule(ParameterRule(RuleGroup.named("parameter '$named'", RuleGroup.Category.GROUP, description, group)))
                     .validate(parameter)
             }
         }
