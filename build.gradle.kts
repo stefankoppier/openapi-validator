@@ -95,27 +95,26 @@ allprojects {
         }
 
         if (project != rootProject) {
-//            val dokkaHtml by tasks.getting(DokkaTask::class)
-//            val javadocJar by tasks.registering(Jar::class) {
-//                dependsOn(dokkaHtml)
-//                archiveClassifier.set("javadoc")
-//                from(dokkaHtml.outputDirectory)
-//            }
+            val dokkaHtml by tasks.getting(DokkaTask::class)
+            val javadocJar by tasks.registering(Jar::class) {
+                dependsOn(dokkaHtml)
+                archiveClassifier.set("javadoc")
+                from(dokkaHtml.outputDirectory)
+            }
 
             publishing {
+                repositories {
+                    maven {
+                        name = "OSSRH"
+                        url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
 
+                        credentials {
+                            username = properties["ossrhUsername"] as String
+                            password = properties["ossrhPassword"] as String
+                        }
+                    }
+                }
             }
-//                repositories {
-//                    maven {
-//                        name = "OSSRH"
-//                        url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-//
-//                        credentials {
-//                            username = properties["ossrhUsername"] as String
-//                            password = properties["ossrhPassword"] as String
-//                        }
-//                    }
-//                }
 
 //                publications {
 //                    create<MavenPublication>(project.name) {
@@ -159,15 +158,14 @@ allprojects {
 //                        }
 //                    }
 //                }
-            }
 
-//            signing {
-//                val key = findProperty("signing.key") as String
-//                val password = findProperty("signing.password") as String
-//                useInMemoryPgpKeys(key, password)
-//                sign(publishing.publications)
-//            }
-//        }
+            signing {
+                val key = findProperty("signing.key") as String
+                val password = findProperty("signing.password") as String
+                useInMemoryPgpKeys(key, password)
+                sign(publishing.publications)
+            }
+        }
     }
 }
 
