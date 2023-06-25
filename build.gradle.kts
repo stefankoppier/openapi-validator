@@ -102,18 +102,18 @@ allprojects {
 //                from(dokkaHtml.outputDirectory)
 //            }
 
-            publishing {
-                repositories {
-                    maven {
-                        name = "OSSRH"
-                        url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-
-                        credentials {
-                            username = properties["ossrhUsername"] as String
-                            password = properties["ossrhPassword"] as String
-                        }
-                    }
-                }
+//            publishing {
+//                repositories {
+//                    maven {
+//                        name = "OSSRH"
+//                        url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+//
+//                        credentials {
+//                            username = properties["ossrhUsername"] as String
+//                            password = properties["ossrhPassword"] as String
+//                        }
+//                    }
+//                }
 
 //                publications {
 //                    create<MavenPublication>(project.name) {
@@ -165,7 +165,7 @@ allprojects {
 //                useInMemoryPgpKeys(key, password)
 //                sign(publishing.publications)
 //            }
-        }
+//        }
     }
 }
 
