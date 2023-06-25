@@ -94,7 +94,7 @@ allprojects {
             }
         }
 
-//        if (project != rootProject) {
+        if (project != rootProject) {
 //            afterEvaluate {
 //                val dokkaHtml by tasks.getting(DokkaTask::class)
 //                val javadocJar by tasks.registering(Jar::class) {
