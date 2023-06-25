@@ -102,7 +102,9 @@ allprojects {
 //                from(dokkaHtml.outputDirectory)
 //            }
 
-//            publishing {
+            publishing {
+
+            }
 //                repositories {
 //                    maven {
 //                        name = "OSSRH"
