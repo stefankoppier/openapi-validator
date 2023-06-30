@@ -76,6 +76,7 @@ class TagRuleTest {
             RuleGroup.named("externalDocs", RuleGroup.Category.GROUP, "", RuleGroup.unknown()),
         )
     }
+
     companion object {
         val fixture = Tag().apply {
             name = "Name"

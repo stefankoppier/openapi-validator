@@ -39,7 +39,7 @@ class InfoRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     fun termsOfService(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
-                rule(StringRule(RuleGroup.named("Terms of Service", RuleGroup.Category.FIELD, description, group)))
+                rule(StringRule(RuleGroup.named("termsOfService", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.termsOfService)
             }
         }
