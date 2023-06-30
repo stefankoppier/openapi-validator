@@ -6,7 +6,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.BooleanRu
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.media.XML
 
-class XMLRule(group: RuleGroup) : ValidationRule<XML>(group) {
+class XMLRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<XML>(group) {
 
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
