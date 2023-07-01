@@ -71,7 +71,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun style(description: String = "", rule: EnumRule<Parameter.StyleEnum>.() -> EnumRule<Parameter.StyleEnum>) =
         apply {
             add {
-                rule(EnumRule(RuleGroup.named("style", RuleGroup.Category.FIELD, description)))
+                rule(EnumRule(RuleGroup.named("style", RuleGroup.Category.FIELD, description, group)))
                     .validate(it?.style)
             }
         }
@@ -111,7 +111,7 @@ class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun examples(description: String = "", rule: ExamplesRule.() -> ExamplesRule) =
         apply {
             add {
-                rule(ExamplesRule(RuleGroup.named("examples", RuleGroup.Category.FIELD, description, group)))
+                rule(ExamplesRule(RuleGroup.named("examples", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.examples?.toList())
             }
         }
