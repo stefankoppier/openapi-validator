@@ -1,6 +1,10 @@
-rootProject.name = "openapi-validator"
-
 dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            from(files("../../../gradle/libs.versions.toml"))
+        }
+    }
+
     repositories {
         mavenLocal()
         mavenCentral()
@@ -13,8 +17,3 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-
-include(":core")
-//include(":generator")
-include(":integration-junit")
-include(":integration-gradle")

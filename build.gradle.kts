@@ -93,7 +93,7 @@ allprojects {
             }
         }
 
-        if (project != rootProject) {
+        if (project != rootProject && project != project(":integration-gradle")) {
             val dokkaHtml by tasks.getting(DokkaTask::class)
             val javadocJar by tasks.registering(Jar::class) {
                 dependsOn(dokkaHtml)
@@ -157,13 +157,13 @@ allprojects {
                     }
                 }
             }
-        }
 
-        signing {
-            val key = findProperty("signing.key") as? String
-            val password = findProperty("signing.password") as? String
-            useInMemoryPgpKeys(key, password)
-            sign(publishing.publications)
+            signing {
+                val key = findProperty("signing.key") as? String
+                val password = findProperty("signing.password") as? String
+                useInMemoryPgpKeys(key, password)
+                sign(publishing.publications)
+            }
         }
     }
 }
