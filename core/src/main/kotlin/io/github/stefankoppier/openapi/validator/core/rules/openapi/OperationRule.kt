@@ -40,16 +40,7 @@ class OperationRule internal constructor(group: RuleGroup = RuleGroup.unknown())
     fun externalDocs(description: String = "", rule: ExternalDocumentationRule.() -> ExternalDocumentationRule) =
         apply {
             add {
-                rule(
-                    ExternalDocumentationRule(
-                        RuleGroup.named(
-                            "externalDocs",
-                            RuleGroup.Category.GROUP,
-                            description,
-                            group,
-                        ),
-                    ),
-                )
+                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.externalDocs)
             }
         }
@@ -86,7 +77,7 @@ class OperationRule internal constructor(group: RuleGroup = RuleGroup.unknown())
             }
         }
 
-    // callbacks
+    // TODO: callbacks
 
     fun deprecated(description: String = "", rule: BooleanRule.() -> BooleanRule) =
         apply {

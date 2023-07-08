@@ -32,7 +32,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
             }
         }
 
-    // jsonSchemaDialect
+    // TODO jsonSchemaDialect
 
     fun servers(description: String = "", rule: ServersRule.() -> ServersRule) =
         apply {
@@ -50,7 +50,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
             }
         }
 
-    // webhooks
+    // TODO webhooks
 
     fun components(description: String = "", rule: ComponentsRule.() -> ComponentsRule) =
         apply {
