@@ -5,6 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ComponentsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.PathsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.SecurityRequirementsRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ServersRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.TagsRule
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.OpenAPI
@@ -33,7 +34,13 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
 
     // jsonSchemaDialect
 
-    // servers
+    fun servers(description: String = "", rule: ServersRule.() -> ServersRule) =
+        apply {
+            add {
+                rule(ServersRule(RuleGroup.named("servers", RuleGroup.Category.GROUP, description, group)))
+                    .validate(it?.servers)
+            }
+        }
 
     fun paths(description: String = "", rule: PathsRule.() -> PathsRule) =
         apply {
@@ -72,16 +79,7 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     fun externalDocs(description: String = "", rule: ExternalDocumentationRule.() -> ExternalDocumentationRule) =
         apply {
             add {
-                rule(
-                    ExternalDocumentationRule(
-                        RuleGroup.named(
-                            "externalDocs",
-                            RuleGroup.Category.GROUP,
-                            description,
-                            group,
-                        ),
-                    ),
-                )
+                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", RuleGroup.Category.GROUP, description, group)))
                     .validate(it?.externalDocs)
             }
         }
