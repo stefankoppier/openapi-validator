@@ -1,17 +1,17 @@
 [versions]
-kotlin = "1.8.22"
+kotlin = "1.9.0"
 dokka = "1.8.20"
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-swagger-models = { module = "io.swagger.core.v3:swagger-models", version = "2.2.13" }
-swagger-parser = { module = "io.swagger.parser.v3:swagger-parser", version = "2.1.15" }
+swagger-models = { module = "io.swagger.core.v3:swagger-models", version = "2.2.15" }
+swagger-parser = { module = "io.swagger.parser.v3:swagger-parser", version = "2.1.16" }
 kotlinpoet = { module = "com.squareup:kotlinpoet", version = "1.14.2" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.9.3" }
 assertj-core = { module = "org.assertj:assertj-core", version = "3.24.2" }
 dokka-versioning-plugin = { module = "org.jetbrains.dokka:versioning-plugin", version.ref = "dokka" }
-guava = { module = "com.google.guava:guava", version = "32.0.1-jre" }
+guava = { module = "com.google.guava:guava", version = "32.1.1-jre" }
 
 [bundles]
 testing = ["kotlin-test", "assertj-core"]
