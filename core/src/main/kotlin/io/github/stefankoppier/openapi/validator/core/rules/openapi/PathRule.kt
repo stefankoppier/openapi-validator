@@ -28,6 +28,8 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     fun operations(description: String = "", rule: OperationRule.() -> OperationRule) =
         apply {
             optional({ it?.get }) { get(description, rule) }
+            optional({ it?.put }) { put(description, rule) }
+            optional({ it?.post }) { put(description, rule) }
             optional({ it?.delete }) { delete(description, rule) }
             optional({ it?.options }) { options(description, rule) }
             optional({ it?.head }) { head(description, rule) }
