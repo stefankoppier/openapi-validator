@@ -1,7 +1,12 @@
-package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
+package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ExamplesRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.HeadersRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ParametersRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ResponsesRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.SchemasRule
 import io.swagger.v3.oas.models.Components
 
 class ComponentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Components>(group) {
@@ -38,7 +43,7 @@ class ComponentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()
             }
         }
 
-    // Request bodies
+// TODO requestBodies
 
     fun headers(description: String = "", rule: HeadersRule.() -> HeadersRule) =
         apply {
@@ -48,11 +53,8 @@ class ComponentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()
             }
         }
 
-    // Security schemas
-
-    // links
-
-    // callbacks
-
-    // extensions
+// TODO Security schemas
+// TODO links
+// TODO callbacks
+// TODO extensions
 }

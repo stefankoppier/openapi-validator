@@ -2,7 +2,6 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
-import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ComponentsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.PathsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.SecurityRequirementsRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ServersRule
@@ -32,7 +31,13 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
             }
         }
 
-    // TODO jsonSchemaDialect
+    fun jsonSchemaDialect(description: String = "", rule: StringRule.() -> StringRule) =
+        apply {
+            add {
+                rule(StringRule(RuleGroup.named("jsonSchemaDialect", RuleGroup.Category.FIELD, description, group)))
+                    .validate(it?.jsonSchemaDialect)
+            }
+        }
 
     fun servers(description: String = "", rule: ServersRule.() -> ServersRule) =
         apply {
@@ -50,7 +55,13 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
             }
         }
 
-    // TODO webhooks
+    fun webhooks(description: String = "", rule: PathsRule.() -> PathsRule) =
+        apply {
+            add {
+                rule(PathsRule(RuleGroup.named("webhooks", RuleGroup.Category.GROUP, description, group)))
+                    .validate(it?.webhooks?.toList())
+            }
+        }
 
     fun components(description: String = "", rule: ComponentsRule.() -> ComponentsRule) =
         apply {
