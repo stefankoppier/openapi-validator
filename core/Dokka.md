@@ -1,3 +1,3 @@
 # Module core
 
-Test
+Contains the rules for all OpenAPI definitions and primitives.

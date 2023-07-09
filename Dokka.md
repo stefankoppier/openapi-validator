@@ -1,3 +1,1 @@
 # OpenAPI Validator
-
-Test

@@ -1,3 +1,3 @@
 # Module integration-junit
 
-Test
+Contains the infrastructure for integration with JUnit.
