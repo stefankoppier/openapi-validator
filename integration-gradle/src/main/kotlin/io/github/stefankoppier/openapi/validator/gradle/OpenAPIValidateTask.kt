@@ -3,6 +3,7 @@ package io.github.stefankoppier.openapi.validator.gradle
 import io.github.stefankoppier.openapi.validator.core.Validator
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.OpenAPIRule
 import org.gradle.api.DefaultTask
+import org.gradle.api.GradleException
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
@@ -20,7 +21,7 @@ abstract class OpenAPIValidateTask : DefaultTask() {
             .validate(document.get())
 
         if (validator.isFailure) {
-            logger.error(validator.summarize())
+            throw GradleException(validator.summarize())
         } else {
             logger.info("No errors found")
         }
