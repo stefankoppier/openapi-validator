@@ -101,7 +101,7 @@ specify the location of the specification. For example
 class OpenAPIValidationExtensionTest {
 
     @Test
-    fun `my test`() {
+    fun `my petstore test`() {
         assertDocumentIsValidFor {
             openAPI("My specification") {
                 info {
