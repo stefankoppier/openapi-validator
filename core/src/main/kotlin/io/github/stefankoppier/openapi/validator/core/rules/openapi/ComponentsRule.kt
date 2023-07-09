@@ -2,6 +2,7 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.CallbacksRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ExamplesRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.HeadersRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ParametersRule
@@ -62,6 +63,14 @@ class ComponentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()
 
 // TODO Security schemas
 // TODO links
-// TODO callbacks
+
+    fun callbacks(description: String = "", rule: CallbacksRule.() -> CallbacksRule) =
+        apply {
+            add {
+                rule(CallbacksRule(RuleGroup.named("callbacks", RuleGroup.Category.GROUP, description, group)))
+                    .validate(it?.callbacks?.toList())
+            }
+        }
+
 // TODO extensions
 }

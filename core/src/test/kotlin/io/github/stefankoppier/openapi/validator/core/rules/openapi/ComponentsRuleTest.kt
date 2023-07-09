@@ -3,6 +3,7 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi
 import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.swagger.v3.oas.models.Components
+import io.swagger.v3.oas.models.callbacks.Callback
 import io.swagger.v3.oas.models.examples.Example
 import io.swagger.v3.oas.models.headers.Header
 import io.swagger.v3.oas.models.media.Schema
@@ -121,6 +122,24 @@ class ComponentsRuleTest {
         )
     }
 
+    @Test
+    fun `callbacks succeeds`() {
+        val rule = ComponentsRule()
+            .callbacks { exactly(listOf("callback" to Callback())) }
+
+        assertThatResult(rule.validate(fixture)).isSuccess()
+    }
+
+    @Test
+    fun `callbacks fails`() {
+        val rule = ComponentsRule()
+            .callbacks { exactly(listOf()) }
+
+        assertThatResult(rule.validate(fixture)).isFailure(
+            RuleGroup.named("callbacks", RuleGroup.Category.GROUP, "", RuleGroup.unknown()),
+        )
+    }
+
     companion object {
         val fixture = Components().apply {
             schemas = mapOf("schema" to Schema<String>())
@@ -129,6 +148,7 @@ class ComponentsRuleTest {
             examples = mapOf("example" to Example())
             requestBodies = mapOf("requestBody" to RequestBody())
             headers = mapOf("header" to Header())
+            callbacks = mapOf("callback" to Callback())
         }
     }
 }
