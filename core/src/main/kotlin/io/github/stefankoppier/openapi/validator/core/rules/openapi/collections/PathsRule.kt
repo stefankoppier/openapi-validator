@@ -9,7 +9,7 @@ class PathsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : I
 
     fun all(description: String = "", rule: PathRule.() -> PathRule) =
         all { path ->
-            rule(PathRule(RuleGroup.named("path '${path.first}", RuleGroup.Category.GROUP, description, group)))
+            rule(PathRule(RuleGroup.named("path '${path.first}'", RuleGroup.Category.GROUP, description, group)))
                 .validate(path.second)
         }
 

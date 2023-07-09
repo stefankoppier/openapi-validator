@@ -7,6 +7,7 @@ import io.swagger.v3.oas.models.examples.Example
 import io.swagger.v3.oas.models.headers.Header
 import io.swagger.v3.oas.models.media.Schema
 import io.swagger.v3.oas.models.parameters.Parameter
+import io.swagger.v3.oas.models.parameters.RequestBody
 import io.swagger.v3.oas.models.responses.ApiResponse
 import kotlin.test.Test
 
@@ -85,6 +86,24 @@ class ComponentsRuleTest {
     }
 
     @Test
+    fun `requestBodies succeeds`() {
+        val rule = ComponentsRule()
+            .requestBodies { exactly(listOf("requestBody" to RequestBody())) }
+
+        assertThatResult(rule.validate(fixture)).isSuccess()
+    }
+
+    @Test
+    fun `requestBodies fails`() {
+        val rule = ComponentsRule()
+            .requestBodies { exactly(listOf()) }
+
+        assertThatResult(rule.validate(fixture)).isFailure(
+            RuleGroup.named("requestBodies", RuleGroup.Category.GROUP, "", RuleGroup.unknown()),
+        )
+    }
+
+    @Test
     fun `headers succeeds`() {
         val rule = ComponentsRule()
             .headers { exactly(listOf("header" to Header())) }
@@ -108,6 +127,7 @@ class ComponentsRuleTest {
             responses = mapOf("response" to ApiResponse())
             parameters = mapOf("parameter" to Parameter())
             examples = mapOf("example" to Example())
+            requestBodies = mapOf("requestBody" to RequestBody())
             headers = mapOf("header" to Header())
         }
     }

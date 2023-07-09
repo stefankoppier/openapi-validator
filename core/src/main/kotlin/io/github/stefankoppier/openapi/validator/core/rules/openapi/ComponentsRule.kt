@@ -5,6 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ExamplesRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.HeadersRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ParametersRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.RequestBodiesRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ResponsesRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.SchemasRule
 import io.swagger.v3.oas.models.Components
@@ -43,7 +44,13 @@ class ComponentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()
             }
         }
 
-// TODO requestBodies
+    fun requestBodies(description: String = "", rule: RequestBodiesRule.() -> RequestBodiesRule) =
+        apply {
+            add { components ->
+                rule(RequestBodiesRule(RuleGroup.named("requestBodies", RuleGroup.Category.GROUP, description, group)))
+                    .validate(components?.requestBodies?.toList())
+            }
+        }
 
     fun headers(description: String = "", rule: HeadersRule.() -> HeadersRule) =
         apply {
