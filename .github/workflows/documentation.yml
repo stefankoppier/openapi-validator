@@ -28,13 +28,13 @@ jobs:
           distribution: 'temurin'
 
       - name: Generate documentation
-        uses: gradle/gradle-build-action@v2.5.1
+        uses: gradle/gradle-build-action@v2.6.0
         with:
           arguments: dokkaHtmlMultiModule
           gradle-version: wrapper
 
       - name: Upload documentation
-        uses: JamesIves/github-pages-deploy-action@v4.4.2
+        uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
           folder: build/dokka/htmlMultiModule
           branch: main
