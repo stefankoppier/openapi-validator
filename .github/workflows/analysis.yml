@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -23,7 +23,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Analyze
-        uses: gradle/gradle-build-action@v2.5.1
+        uses: gradle/gradle-build-action@v2.9.0
         with:
           arguments: build sonar
           gradle-version: wrapper
