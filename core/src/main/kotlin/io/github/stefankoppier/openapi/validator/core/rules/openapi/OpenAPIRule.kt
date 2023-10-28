@@ -16,83 +16,63 @@ class OpenAPIRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     }
 
     fun openapi(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("openapi", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.openapi)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("openapi", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.openapi)
         }
 
     fun info(description: String = "", rule: InfoRule.() -> InfoRule) =
-        apply {
-            add {
-                rule(InfoRule(RuleGroup.named("info", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.info)
-            }
+        add {
+            rule(InfoRule(RuleGroup.named("info", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.info)
         }
 
     fun jsonSchemaDialect(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("jsonSchemaDialect", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.jsonSchemaDialect)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("jsonSchemaDialect", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.jsonSchemaDialect)
         }
 
     fun servers(description: String = "", rule: ServersRule.() -> ServersRule) =
-        apply {
-            add {
-                rule(ServersRule(RuleGroup.named("servers", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.servers)
-            }
+        add {
+            rule(ServersRule(RuleGroup.named("servers", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.servers)
         }
 
     fun paths(description: String = "", rule: PathsRule.() -> PathsRule) =
-        apply {
-            add {
-                rule(PathsRule(RuleGroup.named("paths", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.paths?.toList())
-            }
+        add {
+            rule(PathsRule(RuleGroup.named("paths", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.paths?.toList())
         }
 
     fun webhooks(description: String = "", rule: PathsRule.() -> PathsRule) =
-        apply {
-            add {
-                rule(PathsRule(RuleGroup.named("webhooks", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.webhooks?.toList())
-            }
+        add {
+            rule(PathsRule(RuleGroup.named("webhooks", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.webhooks?.toList())
         }
 
     fun components(description: String = "", rule: ComponentsRule.() -> ComponentsRule) =
-        apply {
-            add {
-                rule(ComponentsRule(RuleGroup.named("components", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.components)
-            }
+        add {
+            rule(ComponentsRule(RuleGroup.named("components", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.components)
         }
 
     fun security(description: String = "", rule: SecurityRequirementsRule.() -> SecurityRequirementsRule) =
-        apply {
-            add {
-                rule(SecurityRequirementsRule(RuleGroup.named("security", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.security)
-            }
+        add {
+            rule(SecurityRequirementsRule(RuleGroup.named("security", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.security)
         }
 
     fun tags(description: String = "", rule: TagsRule.() -> TagsRule) =
-        apply {
-            add {
-                rule(TagsRule(RuleGroup.named("tags", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.tags)
-            }
+        add {
+            rule(TagsRule(RuleGroup.named("tags", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.tags)
         }
 
     fun externalDocs(description: String = "", rule: ExternalDocumentationRule.() -> ExternalDocumentationRule) =
-        apply {
-            add {
-                rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.externalDocs)
-            }
+        add {
+            rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.externalDocs)
         }
 }
 

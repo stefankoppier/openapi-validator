@@ -23,11 +23,9 @@ class ContentRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
         }
 
     fun mediaType(description: String = "", named: String, rule: MediaTypeRule.() -> MediaTypeRule) =
-        apply {
-            add { encodings ->
-                val encoding = encodings?.find { it.first == named }
-                rule(MediaTypeRule(RuleGroup.named("mediaType '$named'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(encoding?.second)
-            }
+        add { encodings ->
+            val encoding = encodings?.find { it.first == named }
+            rule(MediaTypeRule(RuleGroup.named("mediaType '$named'", RuleGroup.Category.GROUP, description, group)))
+                .validate(encoding?.second)
         }
 }

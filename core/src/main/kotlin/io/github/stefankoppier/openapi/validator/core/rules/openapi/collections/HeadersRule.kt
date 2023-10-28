@@ -14,11 +14,9 @@ class HeadersRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
         }
 
     fun header(description: String = "", named: String, rule: HeaderRule.() -> HeaderRule) =
-        apply {
-            add { examples ->
-                val example = examples?.find { it.first == named }
-                rule(HeaderRule(RuleGroup.named("header '$named'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(example?.second)
-            }
+        add { examples ->
+            val example = examples?.find { it.first == named }
+            rule(HeaderRule(RuleGroup.named("header '$named'", RuleGroup.Category.GROUP, description, group)))
+                .validate(example?.second)
         }
 }

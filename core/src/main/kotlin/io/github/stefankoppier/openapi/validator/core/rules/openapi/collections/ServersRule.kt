@@ -14,11 +14,9 @@ class ServersRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
         }
 
     fun server(description: String = "", url: String, rule: ServerRule.() -> ServerRule) =
-        apply {
-            add { servers ->
-                val server = servers?.find { it.url == url }
-                rule(ServerRule(RuleGroup.named("server '$url'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(server)
-            }
+        add { servers ->
+            val server = servers?.find { it.url == url }
+            rule(ServerRule(RuleGroup.named("server '$url'", RuleGroup.Category.GROUP, description, group)))
+                .validate(server)
         }
 }

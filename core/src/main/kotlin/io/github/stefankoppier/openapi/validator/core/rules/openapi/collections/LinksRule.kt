@@ -14,11 +14,9 @@ class LinksRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : I
         }
 
     fun link(description: String = "", named: String, rule: LinkRule.() -> LinkRule) =
-        apply {
-            add { links ->
-                val link = links?.find { it.first == named }
-                rule(LinkRule(RuleGroup.named("link '$named'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(link?.second)
-            }
+        add { links ->
+            val link = links?.find { it.first == named }
+            rule(LinkRule(RuleGroup.named("link '$named'", RuleGroup.Category.GROUP, description, group)))
+                .validate(link?.second)
         }
 }

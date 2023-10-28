@@ -23,11 +23,9 @@ class EncodingsRule internal constructor(group: RuleGroup = RuleGroup.unknown())
         }
 
     fun encoding(description: String = "", named: String, rule: EncodingRule.() -> EncodingRule) =
-        apply {
-            add { encodings ->
-                val encoding = encodings?.find { it.first == named }
-                rule(EncodingRule(RuleGroup.named("encoding '$named'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(encoding?.second)
-            }
+        add { encodings ->
+            val encoding = encodings?.find { it.first == named }
+            rule(EncodingRule(RuleGroup.named("encoding '$named'", RuleGroup.Category.GROUP, description, group)))
+                .validate(encoding?.second)
         }
 }

@@ -14,11 +14,9 @@ class ExamplesRule internal constructor(group: RuleGroup = RuleGroup.unknown()) 
         }
 
     fun example(description: String = "", named: String, rule: ExampleRule.() -> ExampleRule) =
-        apply {
-            add { examples ->
-                val example = examples?.find { it.first == named }
-                rule(ExampleRule(RuleGroup.named("example '$named'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(example?.second)
-            }
+        add { examples ->
+            val example = examples?.find { it.first == named }
+            rule(ExampleRule(RuleGroup.named("example '$named'", RuleGroup.Category.GROUP, description, group)))
+                .validate(example?.second)
         }
 }

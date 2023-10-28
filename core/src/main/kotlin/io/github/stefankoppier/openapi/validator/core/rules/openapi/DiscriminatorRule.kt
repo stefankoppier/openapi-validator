@@ -8,11 +8,9 @@ import io.swagger.v3.oas.models.media.Discriminator
 class DiscriminatorRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Discriminator>(group) {
 
     fun propertyName(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("propertyName", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.propertyName)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("propertyName", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.propertyName)
         }
 
 //    TODO

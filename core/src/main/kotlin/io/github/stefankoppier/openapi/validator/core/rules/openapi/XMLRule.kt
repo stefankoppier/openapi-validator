@@ -9,42 +9,32 @@ import io.swagger.v3.oas.models.media.XML
 class XMLRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<XML>(group) {
 
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("name", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.name)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("name", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.name)
         }
 
     fun namespace(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("namespace", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.namespace)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("namespace", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.namespace)
         }
 
     fun prefix(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("prefix", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.prefix)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("prefix", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.prefix)
         }
 
     fun attribute(description: String = "", rule: BooleanRule.() -> BooleanRule) =
-        apply {
-            add {
-                rule(BooleanRule(RuleGroup.named("attribute", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.attribute)
-            }
+        add {
+            rule(BooleanRule(RuleGroup.named("attribute", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.attribute)
         }
 
     fun wrapped(description: String = "", rule: BooleanRule.() -> BooleanRule) =
-        apply {
-            add {
-                rule(BooleanRule(RuleGroup.named("wrapped", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.wrapped)
-            }
+        add {
+            rule(BooleanRule(RuleGroup.named("wrapped", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.wrapped)
         }
 }

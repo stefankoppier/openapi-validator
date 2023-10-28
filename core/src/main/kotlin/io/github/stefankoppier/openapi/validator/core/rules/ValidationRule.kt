@@ -49,13 +49,6 @@ abstract class ValidationRule<T> protected constructor(protected val group: Rule
             }
         }
 
-//    TODO
-//    fun <R : ValidationRule<T>> R.not(rule: R.() -> R): R =
-//        rule().apply {
-//            val last = rules.last()
-//            rules[rules.size - 1] = last.copy(second = { last.second(it).negate()  })
-//        }
-
     /**
      * Validate [rule] only if [date] has been in the past.
      *
@@ -116,7 +109,7 @@ abstract class ValidationRule<T> protected constructor(protected val group: Rule
             it in option
         }
 
-    protected fun add(rule: (T?) -> ValidationResult): ValidationRule<T> {
+    protected fun <R : ValidationRule<T>> R.add(rule: (T?) -> ValidationResult): R {
         rules.add({ _: T? -> true } to { fixture -> rule(fixture) })
         return this
     }

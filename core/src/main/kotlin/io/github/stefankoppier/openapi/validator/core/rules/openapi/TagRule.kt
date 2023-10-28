@@ -14,35 +14,20 @@ class TagRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Val
     }
 
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("name", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.name)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("name", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.name)
         }
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.description)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.description)
         }
 
     fun externalDocs(description: String = "", rule: ExternalDocumentationRule.() -> ExternalDocumentationRule) =
-        apply {
-            add {
-                rule(
-                    ExternalDocumentationRule(
-                        RuleGroup.named(
-                            "externalDocs",
-                            RuleGroup.Category.GROUP,
-                            description,
-                            group,
-                        ),
-                    ),
-                )
-                    .validate(it?.externalDocs)
-            }
+        add {
+            rule(ExternalDocumentationRule(RuleGroup.named("externalDocs", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.externalDocs)
         }
 }

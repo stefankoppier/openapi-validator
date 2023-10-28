@@ -10,34 +10,26 @@ import io.swagger.v3.oas.models.examples.Example
 class ExampleRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Example>(group) {
 
     fun summary(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("summary", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.summary)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("summary", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.summary)
         }
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.description)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.description)
         }
 
     fun value(description: String = "", rule: AnyRule.() -> AnyRule) =
-        apply {
-            add {
-                rule(AnyRule(RuleGroup.named("value", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.value)
-            }
+        add {
+            rule(AnyRule(RuleGroup.named("value", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.value)
         }
 
     fun externalValue(description: String = "", rule: URIRule.() -> URIRule) =
-        apply {
-            add {
-                rule(URIRule(RuleGroup.named("externalValue", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.externalValue)
-            }
+        add {
+            rule(URIRule(RuleGroup.named("externalValue", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.externalValue)
         }
 }

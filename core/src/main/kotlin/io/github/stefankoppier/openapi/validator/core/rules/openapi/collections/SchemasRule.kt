@@ -14,11 +14,9 @@ class SchemasRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
         }
 
     fun schema(description: String = "", named: String, rule: SchemaRule.() -> SchemaRule) =
-        apply {
-            add { schemas ->
-                val schema = schemas?.find { it.first == named }
-                rule(SchemaRule(RuleGroup.named("schema '$named'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(schema?.second)
-            }
+        add { schemas ->
+            val schema = schemas?.find { it.first == named }
+            rule(SchemaRule(RuleGroup.named("schema '$named'", RuleGroup.Category.GROUP, description, group)))
+                .validate(schema?.second)
         }
 }

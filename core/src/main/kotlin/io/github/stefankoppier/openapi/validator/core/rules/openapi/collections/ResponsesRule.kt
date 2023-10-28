@@ -23,11 +23,9 @@ class ResponsesRule internal constructor(group: RuleGroup = RuleGroup.unknown())
         }
 
     fun response(description: String = "", named: String, rule: ResponseRule.() -> ResponseRule) =
-        apply {
-            add { responses ->
-                val response = responses?.find { it.first == named }
-                rule(ResponseRule(RuleGroup.named("response '$named'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(response?.second)
-            }
+        add { responses ->
+            val response = responses?.find { it.first == named }
+            rule(ResponseRule(RuleGroup.named("response '$named'", RuleGroup.Category.GROUP, description, group)))
+                .validate(response?.second)
         }
 }

@@ -7,51 +7,35 @@ import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRul
 class OperationPathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : StringRule(group) {
 
     fun segments(rule: OperationPathSegmentsRule.() -> OperationPathSegmentsRule) =
-        apply {
-            add { segments ->
-                rule(OperationPathSegmentsRule(group)).validate(segments?.split('/')?.filter { it.isNotEmpty() })
-            }
+        add { segments ->
+            rule(OperationPathSegmentsRule(group)).validate(segments?.split('/')?.filter { it.isNotEmpty() })
         }
 
     fun fixed(rule: OperationPathSegmentsRule.() -> OperationPathSegmentsRule) =
-        apply {
-            add { segments ->
-                rule(OperationPathSegmentsRule(group))
-                    .validate(
-                        segments?.split('/')
-                            ?.filter { !it.startsWith('{') && !it.endsWith('}') },
-                    )
-            }
+        add { segments ->
+            rule(OperationPathSegmentsRule(group))
+                .validate(segments?.split('/')?.filter { !it.startsWith('{') && !it.endsWith('}') })
         }
 
     fun templates(rule: OperationPathSegmentsRule.() -> OperationPathSegmentsRule) =
-        apply {
-            add { segments ->
-                rule(OperationPathSegmentsRule(group))
-                    .validate(
-                        segments?.split('/')
-                            ?.filter { it.startsWith('{') && it.endsWith('}') },
-                    )
-            }
+        add { segments ->
+            rule(OperationPathSegmentsRule(group))
+                .validate(segments?.split('/')?.filter { it.startsWith('{') && it.endsWith('}') })
         }
 }
 
 class OperationPathSegmentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<String>(group) {
 
     fun first(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add { segments ->
-                rule(StringRule(RuleGroup.named("first segment '${segments?.firstOrNull()}'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(segments?.firstOrNull())
-            }
+        add { segments ->
+            rule(StringRule(RuleGroup.named("first segment '${segments?.firstOrNull()}'", RuleGroup.Category.GROUP, description, group)))
+                .validate(segments?.firstOrNull())
         }
 
     fun last(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add { segments ->
-                rule(StringRule(RuleGroup.named("last segment '${segments?.firstOrNull()}'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(segments?.lastOrNull())
-            }
+        add { segments ->
+            rule(StringRule(RuleGroup.named("last segment '${segments?.firstOrNull()}'", RuleGroup.Category.GROUP, description, group)))
+                .validate(segments?.lastOrNull())
         }
 
     fun all(description: String = "", rule: StringRule.() -> StringRule) =

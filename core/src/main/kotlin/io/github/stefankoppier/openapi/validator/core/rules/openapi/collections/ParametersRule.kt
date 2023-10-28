@@ -23,11 +23,9 @@ class ParametersRule internal constructor(group: RuleGroup = RuleGroup.unknown()
         }
 
     fun parameter(description: String = "", named: String, rule: ParameterRule.() -> ParameterRule) =
-        apply {
-            add { parameters ->
-                val parameter = parameters?.find { it.name == named }
-                rule(ParameterRule(RuleGroup.named("parameter '$named'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(parameter)
-            }
+        add { parameters ->
+            val parameter = parameters?.find { it.name == named }
+            rule(ParameterRule(RuleGroup.named("parameter '$named'", RuleGroup.Category.GROUP, description, group)))
+                .validate(parameter)
         }
 }

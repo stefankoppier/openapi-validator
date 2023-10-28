@@ -14,11 +14,9 @@ class PathsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : I
         }
 
     fun path(description: String = "", named: String, rule: PathRule.() -> PathRule) =
-        apply {
-            add { paths ->
-                val path = paths?.find { it.first == named }
-                rule(PathRule(RuleGroup.named("path '$named'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(path)
-            }
+        add { paths ->
+            val path = paths?.find { it.first == named }
+            rule(PathRule(RuleGroup.named("path '$named'", RuleGroup.Category.GROUP, description, group)))
+                .validate(path)
         }
 }

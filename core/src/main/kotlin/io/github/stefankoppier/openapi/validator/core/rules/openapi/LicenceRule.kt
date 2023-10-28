@@ -15,26 +15,20 @@ class LicenceRule internal constructor(group: RuleGroup = RuleGroup.unknown()) :
     }
 
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("name", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.name)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("name", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.name)
         }
 
     fun identifier(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("identifier", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.identifier)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("identifier", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.identifier)
         }
 
     fun url(description: String = "", rule: URLRule.() -> URLRule) =
-        apply {
-            add {
-                rule(URLRule(RuleGroup.named("url", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.url)
-            }
+        add {
+            rule(URLRule(RuleGroup.named("url", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.url)
         }
 }

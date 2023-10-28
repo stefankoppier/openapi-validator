@@ -10,27 +10,21 @@ import io.swagger.v3.oas.models.PathItem
 class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Pair<String, PathItem>>(group) {
 
     fun path(rule: OperationPathRule.() -> OperationPathRule) =
-        apply {
-            add {
-                rule(OperationPathRule(group))
-                    .validate(it?.first)
-            }
+        add {
+            rule(OperationPathRule(group))
+                .validate(it?.first)
         }
 
     fun summary(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("summary", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.second?.summary)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("summary", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.second?.summary)
         }
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.second?.description)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.second?.description)
         }
 
     fun operations(description: String = "", rule: OperationRule.() -> OperationRule) =
@@ -45,83 +39,63 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             optional({ it?.second?.trace }) { trace(description, rule) }
         }
 
-    fun get(description: String = "", rule: OperationRule.() -> OperationRule) =
-        apply {
-            add {
-                rule(OperationRule(RuleGroup.named("get", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.second?.get)
-            }
+fun get(description: String = "", rule: OperationRule.() -> OperationRule) =
+        add {
+            rule(OperationRule(RuleGroup.named("get", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.second?.get)
         }
 
     fun put(description: String = "", rule: OperationRule.() -> OperationRule) =
-        apply {
-            add {
-                rule(OperationRule(RuleGroup.named("put", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.second?.put)
-            }
+        add {
+            rule(OperationRule(RuleGroup.named("put", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.second?.put)
         }
 
     fun post(description: String = "", rule: OperationRule.() -> OperationRule) =
-        apply {
-            add {
-                rule(OperationRule(RuleGroup.named("post", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.second?.post)
-            }
+        add {
+            rule(OperationRule(RuleGroup.named("post", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.second?.post)
         }
 
     fun delete(description: String = "", rule: OperationRule.() -> OperationRule) =
-        apply {
-            add {
-                rule(OperationRule(RuleGroup.named("delete", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.second?.delete)
-            }
+        add {
+            rule(OperationRule(RuleGroup.named("delete", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.second?.delete)
         }
 
     fun options(description: String = "", rule: OperationRule.() -> OperationRule) =
-        apply {
-            add {
-                rule(OperationRule(RuleGroup.named("options", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.second?.options)
-            }
+        add {
+            rule(OperationRule(RuleGroup.named("options", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.second?.options)
         }
 
     fun head(description: String = "", rule: OperationRule.() -> OperationRule) =
-        apply {
-            add {
-                rule(OperationRule(RuleGroup.named("head", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.second?.head)
-            }
+        add {
+            rule(OperationRule(RuleGroup.named("head", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.second?.head)
         }
 
     fun patch(description: String = "", rule: OperationRule.() -> OperationRule) =
-        apply {
-            add {
-                rule(OperationRule(RuleGroup.named("patch", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.second?.patch)
-            }
+        add {
+            rule(OperationRule(RuleGroup.named("patch", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.second?.patch)
         }
 
     fun trace(description: String = "", rule: OperationRule.() -> OperationRule) =
-        apply {
-            add {
-                rule(OperationRule(RuleGroup.named("trace", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.second?.trace)
-            }
+        add {
+            rule(OperationRule(RuleGroup.named("trace", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.second?.trace)
         }
 
     fun servers(description: String = "", rule: ServersRule.() -> ServersRule) =
-        apply {
-            add {
-                rule(ServersRule(RuleGroup.named("servers", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.second?.servers)
-            }
+        add {
+            rule(ServersRule(RuleGroup.named("servers", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.second?.servers)
         }
 
     fun parameters(description: String = "", rule: ParametersRule.() -> ParametersRule) =
-        apply {
-            add {
-                rule(ParametersRule(RuleGroup.named("parameters", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.second?.parameters)
-            }
+        add {
+            rule(ParametersRule(RuleGroup.named("parameters", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.second?.parameters)
         }
 }

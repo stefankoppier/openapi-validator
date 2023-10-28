@@ -20,26 +20,20 @@ class ServerVariableRule internal constructor(group: RuleGroup = RuleGroup.unkno
     }
 
     fun enum(description: String = "", rule: IterableStringRule.() -> IterableStringRule) =
-        apply {
-            add {
-                rule(IterableStringRule(RuleGroup.named("enum", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.enum)
-            }
+        add {
+            rule(IterableStringRule(RuleGroup.named("enum", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.enum)
         }
 
     fun default(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("default", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.default)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("default", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.default)
         }
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.description)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.description)
         }
 }

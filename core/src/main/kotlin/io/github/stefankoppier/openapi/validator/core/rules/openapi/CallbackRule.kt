@@ -8,10 +8,8 @@ import io.swagger.v3.oas.models.callbacks.Callback
 class CallbackRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Callback>(group) {
 
     fun ref(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("ref", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.`$ref`)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("ref", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.`$ref`)
         }
 }

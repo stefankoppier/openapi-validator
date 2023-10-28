@@ -11,42 +11,32 @@ import io.swagger.v3.oas.models.media.Encoding
 class EncodingRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Encoding>(group) {
 
     fun contentType(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("contentType", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.contentType)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("contentType", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.contentType)
         }
 
     fun headers(description: String = "", rule: HeadersRule.() -> HeadersRule) =
-        apply {
-            add {
-                rule(HeadersRule(RuleGroup.named("headers", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.headers?.toList())
-            }
+        add {
+            rule(HeadersRule(RuleGroup.named("headers", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.headers?.toList())
         }
 
     fun style(description: String = "", rule: EnumRule<Encoding.StyleEnum>.() -> EnumRule<Encoding.StyleEnum>) =
-        apply {
-            add {
-                rule(EnumRule(RuleGroup.named("style", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.style)
-            }
+        add {
+            rule(EnumRule(RuleGroup.named("style", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.style)
         }
 
     fun explode(description: String = "", rule: BooleanRule.() -> BooleanRule) =
-        apply {
-            add {
-                rule(BooleanRule(RuleGroup.named("explode", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.explode)
-            }
+        add {
+            rule(BooleanRule(RuleGroup.named("explode", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.explode)
         }
 
     fun allowReserved(description: String = "", rule: BooleanRule.() -> BooleanRule) =
-        apply {
-            add {
-                rule(BooleanRule(RuleGroup.named("allowReserved", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.allowReserved)
-            }
+        add {
+            rule(BooleanRule(RuleGroup.named("allowReserved", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.allowReserved)
         }
 }

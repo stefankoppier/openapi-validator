@@ -15,18 +15,14 @@ class ExternalDocumentationRule internal constructor(group: RuleGroup = RuleGrou
     }
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.description)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.description)
         }
 
     fun url(description: String = "", rule: URLRule.() -> URLRule) =
-        apply {
-            add {
-                rule(URLRule(RuleGroup.named("url", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.url)
-            }
+        add {
+            rule(URLRule(RuleGroup.named("url", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.url)
         }
 }

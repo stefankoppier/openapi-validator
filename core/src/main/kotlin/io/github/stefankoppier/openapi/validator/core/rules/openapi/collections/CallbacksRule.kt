@@ -14,11 +14,9 @@ class CallbacksRule internal constructor(group: RuleGroup = RuleGroup.unknown())
         }
 
     fun callback(description: String = "", named: String, rule: CallbackRule.() -> CallbackRule) =
-        apply {
-            add { callbacks ->
-                val callback = callbacks?.find { it.first == named }
-                rule(CallbackRule(RuleGroup.named("callback '$named'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(callback?.second)
-            }
+        add { callbacks ->
+            val callback = callbacks?.find { it.first == named }
+            rule(CallbackRule(RuleGroup.named("callback '$named'", RuleGroup.Category.GROUP, description, group)))
+                .validate(callback?.second)
         }
 }

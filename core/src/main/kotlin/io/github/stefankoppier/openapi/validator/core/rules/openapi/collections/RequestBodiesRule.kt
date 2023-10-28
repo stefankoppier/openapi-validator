@@ -14,11 +14,9 @@ class RequestBodiesRule(group: RuleGroup = RuleGroup.unknown()) : IterableRule<P
         }
 
     fun requestBody(description: String = "", named: String, rule: RequestBodyRule.() -> RequestBodyRule) =
-        apply {
-            add { paths ->
-                val requestBodies = paths?.find { it.first == named }
-                rule(RequestBodyRule(RuleGroup.named("requestBody '$named'", RuleGroup.Category.GROUP, description, group)))
-                    .validate(requestBodies?.second)
-            }
+        add { paths ->
+            val requestBodies = paths?.find { it.first == named }
+            rule(RequestBodyRule(RuleGroup.named("requestBody '$named'", RuleGroup.Category.GROUP, description, group)))
+                .validate(requestBodies?.second)
         }
 }

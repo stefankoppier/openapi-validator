@@ -13,58 +13,44 @@ class InfoRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
     }
 
     fun title(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("title", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.title)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("title", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.title)
         }
 
     fun summary(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("summary", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.summary)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("summary", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.summary)
         }
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.description)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.description)
         }
 
     fun termsOfService(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("termsOfService", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.termsOfService)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("termsOfService", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.termsOfService)
         }
 
     fun contact(description: String = "", rule: ContactRule.() -> ContactRule) =
-        apply {
-            add {
-                rule(ContactRule(RuleGroup.named("contact", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.contact)
-            }
+        add {
+            rule(ContactRule(RuleGroup.named("contact", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.contact)
         }
 
     fun licence(description: String = "", rule: LicenceRule.() -> LicenceRule) =
-        apply {
-            add {
-                rule(LicenceRule(RuleGroup.named("licence", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.license)
-            }
+        add {
+            rule(LicenceRule(RuleGroup.named("licence", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.license)
         }
 
     fun version(description: String = "", rule: StringRule.() -> StringRule) =
-        apply {
-            add {
-                rule(StringRule(RuleGroup.named("version", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.version)
-            }
+        add {
+            rule(StringRule(RuleGroup.named("version", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.version)
         }
 }
