@@ -18,7 +18,7 @@ gradlePlugin {
             id = "io.github.stefankoppier.openapi.validator"
             displayName = "openapi-validator"
             version = project.version
-            tags.set(listOf("OpenAPI", "api", "specification", "validation"))
+            tags = listOf("OpenAPI", "api", "specification", "validation")
             implementationClass = "io.github.stefankoppier.openapi.validator.gradle.OpenAPIValidatorPlugin"
         }
     }
