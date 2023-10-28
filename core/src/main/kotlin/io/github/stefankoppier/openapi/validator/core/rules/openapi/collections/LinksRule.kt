@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.links.Link
 class LinksRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, Link>>(group) {
 
     fun all(description: String = "", rule: LinkRule.() -> LinkRule) =
-        addForAll { link ->
+        addForEach { link ->
             rule(LinkRule(RuleGroup.named("link '${link.first}'", RuleGroup.Category.GROUP, description, group)))
                 .validate(link.second)
         }

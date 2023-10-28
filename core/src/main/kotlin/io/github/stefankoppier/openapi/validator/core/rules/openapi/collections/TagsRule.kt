@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.tags.Tag
 class TagsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Tag>(group) {
 
     fun all(description: String = "", rule: TagRule.() -> TagRule) =
-        addForAll { tag ->
+        addForEach { tag ->
             rule(TagRule(RuleGroup.named("tag '${tag.name}'", RuleGroup.Category.GROUP, description, group)))
                 .validate(tag)
         }

@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.parameters.RequestBody
 class RequestBodiesRule(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, RequestBody>>(group) {
 
     fun all(description: String = "", rule: RequestBodyRule.() -> RequestBodyRule) =
-        addForAll { requestBody ->
+        addForEach { requestBody ->
             rule(RequestBodyRule(RuleGroup.named("requestBody '${requestBody.first}'", RuleGroup.Category.GROUP, description, group)))
                 .validate(requestBody.second)
         }

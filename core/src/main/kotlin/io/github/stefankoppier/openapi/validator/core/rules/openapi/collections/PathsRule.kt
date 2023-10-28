@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.PathItem
 class PathsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, PathItem>>(group) {
 
     fun all(description: String = "", rule: PathRule.() -> PathRule) =
-        addForAll { path ->
+        addForEach { path ->
             rule(PathRule(RuleGroup.named("path '${path.first}'", RuleGroup.Category.GROUP, description, group)))
                 .validate(path)
         }
