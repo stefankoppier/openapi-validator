@@ -39,7 +39,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
             optional({ it?.second?.trace }) { trace(description, rule) }
         }
 
-fun get(description: String = "", rule: OperationRule.() -> OperationRule) =
+    fun get(description: String = "", rule: OperationRule.() -> OperationRule) =
         add {
             rule(OperationRule(RuleGroup.named("get", RuleGroup.Category.GROUP, description, group)))
                 .validate(it?.second?.get)

@@ -29,10 +29,10 @@ class LinkRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Link>(gr
 //        }
 
     fun requestBody(description: String = "", rule: AnyRule.() -> AnyRule) =
-            add {
-                rule(AnyRule(RuleGroup.named("requestBody", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.requestBody)
-            }
+        add {
+            rule(AnyRule(RuleGroup.named("requestBody", RuleGroup.Category.FIELD, description, group)))
+                .validate(it?.requestBody)
+        }
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
         add {
@@ -41,8 +41,8 @@ class LinkRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Link>(gr
         }
 
     fun server(description: String = "", rule: ServerRule.() -> ServerRule) =
-            add {
-                rule(ServerRule(RuleGroup.named("server", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.server)
-            }
+        add {
+            rule(ServerRule(RuleGroup.named("server", RuleGroup.Category.GROUP, description, group)))
+                .validate(it?.server)
+        }
 }
