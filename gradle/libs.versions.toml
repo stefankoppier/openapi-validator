@@ -1,17 +1,17 @@
 [versions]
-kotlin = "1.9.0"
-dokka = "1.8.20"
+kotlin = "1.9.10"
+dokka = "1.9.10"
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-swagger-models = { module = "io.swagger.core.v3:swagger-models", version = "2.2.15" }
-swagger-parser = { module = "io.swagger.parser.v3:swagger-parser", version = "2.1.16" }
+swagger-models = { module = "io.swagger.core.v3:swagger-models", version = "2.2.18" }
+swagger-parser = { module = "io.swagger.parser.v3:swagger-parser", version = "2.1.18" }
 kotlinpoet = { module = "com.squareup:kotlinpoet", version = "1.14.2" }
-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.9.3" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.10.0" }
 assertj-core = { module = "org.assertj:assertj-core", version = "3.24.2" }
 dokka-versioning-plugin = { module = "org.jetbrains.dokka:versioning-plugin", version.ref = "dokka" }
-guava = { module = "com.google.guava:guava", version = "32.1.1-jre" }
+guava = { module = "com.google.guava:guava", version = "32.1.3-jre" }
 
 [bundles]
 testing = ["kotlin-test", "assertj-core"]
@@ -19,5 +19,5 @@ testing = ["kotlin-test", "assertj-core"]
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-sonarqube = { id = "org.sonarqube", version = "4.2.1.3168" }
-spotless = { id = "com.diffplug.spotless", version = "6.19.0" }
+sonarqube = { id = "org.sonarqube", version = "4.4.1.3373" }
+spotless = { id = "com.diffplug.spotless", version = "6.22.0" }
