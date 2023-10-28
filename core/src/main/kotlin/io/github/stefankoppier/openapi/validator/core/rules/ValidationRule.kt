@@ -49,6 +49,13 @@ abstract class ValidationRule<T> protected constructor(protected val group: Rule
             }
         }
 
+//    TODO
+//    fun <R : ValidationRule<T>> R.not(rule: R.() -> R): R =
+//        rule().apply {
+//            val last = rules.last()
+//            rules[rules.size - 1] = last.copy(second = { last.second(it).negate()  })
+//        }
+
     /**
      * Validate [rule] only if [date] has been in the past.
      *
@@ -79,6 +86,16 @@ abstract class ValidationRule<T> protected constructor(protected val group: Rule
     fun <R : ValidationRule<T>> R.required() =
         holds({ "Was required but is not given" }) {
             it != null
+        }
+
+    /**
+     * Validate that the element is not set.
+     *
+     * @return The original rule on which this method has been invoked.
+     */
+    fun <R : ValidationRule<T>> R.unspecified() =
+        holds({ "Was required but is not given" }) {
+            it == null
         }
 
     /**

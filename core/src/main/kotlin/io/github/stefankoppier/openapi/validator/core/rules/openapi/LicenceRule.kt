@@ -9,7 +9,9 @@ import io.swagger.v3.oas.models.info.License
 class LicenceRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<License>(group) {
 
     init {
-        name { required() }
+        given({ it != null }) {
+            name { required() }
+        }
     }
 
     fun name(description: String = "", rule: StringRule.() -> StringRule) =

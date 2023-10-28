@@ -7,13 +7,21 @@ import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.
 import io.github.stefankoppier.openapi.validator.core.rules.primitives.StringRule
 import io.swagger.v3.oas.models.PathItem
 
-class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<PathItem>(group) {
+class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Pair<String, PathItem>>(group) {
+
+    fun path(rule: OperationPathRule.() -> OperationPathRule) =
+        apply {
+            add {
+                rule(OperationPathRule(group))
+                    .validate(it?.first)
+            }
+        }
 
     fun summary(description: String = "", rule: StringRule.() -> StringRule) =
         apply {
             add {
                 rule(StringRule(RuleGroup.named("summary", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.summary)
+                    .validate(it?.second?.summary)
             }
         }
 
@@ -21,27 +29,27 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
         apply {
             add {
                 rule(StringRule(RuleGroup.named("description", RuleGroup.Category.FIELD, description, group)))
-                    .validate(it?.description)
+                    .validate(it?.second?.description)
             }
         }
 
     fun operations(description: String = "", rule: OperationRule.() -> OperationRule) =
         apply {
-            optional({ it?.get }) { get(description, rule) }
-            optional({ it?.put }) { put(description, rule) }
-            optional({ it?.post }) { put(description, rule) }
-            optional({ it?.delete }) { delete(description, rule) }
-            optional({ it?.options }) { options(description, rule) }
-            optional({ it?.head }) { head(description, rule) }
-            optional({ it?.patch }) { patch(description, rule) }
-            optional({ it?.trace }) { trace(description, rule) }
+            optional({ it?.second?.get }) { get(description, rule) }
+            optional({ it?.second?.put }) { put(description, rule) }
+            optional({ it?.second?.post }) { put(description, rule) }
+            optional({ it?.second?.delete }) { delete(description, rule) }
+            optional({ it?.second?.options }) { options(description, rule) }
+            optional({ it?.second?.head }) { head(description, rule) }
+            optional({ it?.second?.patch }) { patch(description, rule) }
+            optional({ it?.second?.trace }) { trace(description, rule) }
         }
 
     fun get(description: String = "", rule: OperationRule.() -> OperationRule) =
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("get", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.get)
+                    .validate(it?.second?.get)
             }
         }
 
@@ -49,7 +57,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("put", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.put)
+                    .validate(it?.second?.put)
             }
         }
 
@@ -57,7 +65,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("post", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.post)
+                    .validate(it?.second?.post)
             }
         }
 
@@ -65,7 +73,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("delete", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.delete)
+                    .validate(it?.second?.delete)
             }
         }
 
@@ -73,7 +81,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("options", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.options)
+                    .validate(it?.second?.options)
             }
         }
 
@@ -81,7 +89,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("head", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.head)
+                    .validate(it?.second?.head)
             }
         }
 
@@ -89,7 +97,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("patch", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.patch)
+                    .validate(it?.second?.patch)
             }
         }
 
@@ -97,7 +105,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
         apply {
             add {
                 rule(OperationRule(RuleGroup.named("trace", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.trace)
+                    .validate(it?.second?.trace)
             }
         }
 
@@ -105,7 +113,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
         apply {
             add {
                 rule(ServersRule(RuleGroup.named("servers", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.servers)
+                    .validate(it?.second?.servers)
             }
         }
 
@@ -113,7 +121,7 @@ class PathRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : Va
         apply {
             add {
                 rule(ParametersRule(RuleGroup.named("parameters", RuleGroup.Category.GROUP, description, group)))
-                    .validate(it?.parameters)
+                    .validate(it?.second?.parameters)
             }
         }
 }

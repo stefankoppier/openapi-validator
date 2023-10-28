@@ -2,10 +2,10 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.CallbackRule
-import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableRule
 import io.swagger.v3.oas.models.callbacks.Callback
 
-class CallbacksRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, Callback>>(group) {
+class CallbacksRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, Callback>>(group) {
 
     fun all(description: String = "", rule: CallbackRule.() -> CallbackRule) =
         all { callback ->

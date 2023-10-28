@@ -34,7 +34,7 @@ allprojects {
 
         kotlin {
             jvmToolchain {
-                languageVersion.set(JavaLanguageVersion.of(javaVersion))
+                languageVersion = JavaLanguageVersion.of(javaVersion)
             }
         }
 
@@ -78,10 +78,10 @@ allprojects {
             dokkaSourceSets {
                 configureEach {
                     includes.from("$projectDir/Dokka.md")
-                    jdkVersion.set(javaVersion)
+                    jdkVersion = javaVersion
                     sourceLink {
-                        localDirectory.set(file("$projectDir/src/main/kotlin"))
-                        remoteUrl.set(URL("https://github.com/stefankoppier/openapi-validator/tree/main/${project.name}/src/main/kotlin"))
+                        localDirectory = file("$projectDir/src/main/kotlin")
+                        remoteUrl = URL("https://github.com/stefankoppier/openapi-validator/tree/main/${project.name}/src/main/kotlin")
                     }
                 }
             }
@@ -97,7 +97,7 @@ allprojects {
             val dokkaHtml by tasks.getting(DokkaTask::class)
             val javadocJar by tasks.registering(Jar::class) {
                 dependsOn(dokkaHtml)
-                archiveClassifier.set("javadoc")
+                archiveClassifier = "javadoc"
                 from(dokkaHtml.outputDirectory)
             }
 
@@ -124,34 +124,34 @@ allprojects {
                         version = rootProject.version.toString()
 
                         pom {
-                            name.set("$group:${rootProject.name}-${project.name}")
-                            description.set(project.description)
-                            url.set("https://github.com/stefankoppier/openapi-validator")
+                            name = "$group:${rootProject.name}-${project.name}"
+                            description = project.description
+                            url = "https://github.com/stefankoppier/openapi-validator"
                             developers {
                                 developer {
-                                    id.set("stefankoppier")
-                                    name.set("Stefan Koppier")
-                                    email.set("stefan.koppier@outlook.com")
-                                    url.set("https://github.com/stefankoppier")
+                                    id = "stefankoppier"
+                                    name = "Stefan Koppier"
+                                    email = "stefan.koppier@outlook.com"
+                                    url = "https://github.com/stefankoppier"
                                 }
                             }
 
                             scm {
-                                connection.set("scm:git:git@github.com/stefankoppier/openapi-validator.git")
-                                developerConnection.set("scm:git:git@github.com/stefankoppier/openapi-validator.git")
-                                url.set("https://github.com/stefankoppier/openapi-validator/tree/main")
+                                connection = "scm:git:git@github.com/stefankoppier/openapi-validator.git"
+                                developerConnection = "scm:git:git@github.com/stefankoppier/openapi-validator.git"
+                                url = "https://github.com/stefankoppier/openapi-validator/tree/main"
                             }
 
                             licenses {
                                 license {
-                                    name.set("The Apache License, Version 2.0")
-                                    url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                                    name = "The Apache License, Version 2.0"
+                                    url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
                                 }
                             }
 
                             issueManagement {
-                                system.set("GitHub")
-                                url.set("https://github.com/stefankoppier/openapi-validator/issues")
+                                system = "GitHub"
+                                url = "https://github.com/stefankoppier/openapi-validator/issues"
                             }
                         }
                     }

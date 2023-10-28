@@ -9,9 +9,13 @@ import io.swagger.v3.oas.models.servers.ServerVariable
 class ServerVariableRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<ServerVariable>(group) {
 
     init {
-        default { required() }
-        given({ it != null && it.enum != null && it.enum.isNotEmpty() }) {
-            holds({ "Should contain '${it?.default}' but is '${it?.enum}'" }) { it?.enum?.contains(it.default) ?: true }
+        given({ it != null }) {
+            default { required() }
+            given({ it != null && it.enum != null && it.enum.isNotEmpty() }) {
+                holds({ "Should contain '${it?.default}' but is '${it?.enum}'" }) {
+                    it?.enum?.contains(it.default) ?: true
+                }
+            }
         }
     }
 

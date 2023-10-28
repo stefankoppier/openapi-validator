@@ -2,10 +2,10 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.EncodingRule
-import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableRule
 import io.swagger.v3.oas.models.media.Encoding
 
-class EncodingsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, Encoding>>(group) {
+class EncodingsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, Encoding>>(group) {
 
     fun all(description: String = "", rule: EncodingRule.() -> EncodingRule) =
         all { encoding ->

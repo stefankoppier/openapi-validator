@@ -3,7 +3,7 @@ package io.github.stefankoppier.openapi.validator.core.rules.primitives
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 
-class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<String>(group) {
+open class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<String>(group) {
 
     /**
      * Validate that the element matches [regex].
@@ -83,5 +83,18 @@ class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : 
     fun snakecase() =
         holds({ "Was supposed to be snake case but is '$it'" }) {
             it == null || it.all { c -> c.isLetterOrDigit() || c == '_' }
+        }
+
+    /**
+     * Validate that the element ends with a given [suffix].
+     *
+     * @param suffix The suffix the element should end with.
+     * @param ignoreCase Ignore distinction between upper- and lowercase if true.
+     *
+     * @return The rule on which this method has been invoked.
+     */
+    fun endsWith(suffix: String, ignoreCase: Boolean = false) =
+        holds({ "Was supposed to end with '$suffix' but is '$it'" }) {
+            it == null || it.endsWith(suffix, ignoreCase)
         }
 }

@@ -10,7 +10,9 @@ import io.swagger.v3.oas.models.parameters.RequestBody
 class RequestBodyRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<RequestBody>(group) {
 
     init {
-        content { required() }
+        given({ it != null }) {
+            content { required() }
+        }
     }
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =
