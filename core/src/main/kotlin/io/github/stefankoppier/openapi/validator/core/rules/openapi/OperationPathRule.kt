@@ -17,8 +17,10 @@ class OperationPathRule internal constructor(group: RuleGroup = RuleGroup.unknow
         apply {
             add { segments ->
                 rule(OperationPathSegmentsRule(group))
-                    .validate(segments?.split('/')
-                    ?.filter { !it.startsWith('{') && !it.endsWith('}') })
+                    .validate(
+                        segments?.split('/')
+                            ?.filter { !it.startsWith('{') && !it.endsWith('}') },
+                    )
             }
         }
 
@@ -26,8 +28,10 @@ class OperationPathRule internal constructor(group: RuleGroup = RuleGroup.unknow
         apply {
             add { segments ->
                 rule(OperationPathSegmentsRule(group))
-                    .validate(segments?.split('/')
-                        ?.filter { it.startsWith('{') && it.endsWith('}') })
+                    .validate(
+                        segments?.split('/')
+                            ?.filter { it.startsWith('{') && it.endsWith('}') },
+                    )
             }
         }
 }
