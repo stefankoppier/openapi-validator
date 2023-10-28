@@ -10,7 +10,9 @@ import io.swagger.v3.oas.models.servers.Server
 class ServerRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Server>(group) {
 
     init {
-        url { required() }
+        given({ it != null }) {
+            url { required() }
+        }
     }
 
     fun url(description: String = "", rule: URLRule.() -> URLRule) =

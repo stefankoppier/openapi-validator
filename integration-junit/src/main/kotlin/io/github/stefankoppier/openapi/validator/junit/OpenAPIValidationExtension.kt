@@ -42,7 +42,7 @@ class OpenAPIValidationExtension : Extension, BeforeAllCallback, AfterAllCallbac
                 return runCatching { URI(uri) }.getOrElse {
                     throw IllegalStateException(
                         """|Failed to parse URI '$uri'.
-                           |Make sure your class is annotated with @OpenAPITests or your test is annotated with @OpenAPITest")
+                           |Make sure your class or test is annotated with @ExtendWith(OpenAPIValidationExtension::class) and @OpenAPITest")
                         """.trimMargin(),
                         it,
                     )

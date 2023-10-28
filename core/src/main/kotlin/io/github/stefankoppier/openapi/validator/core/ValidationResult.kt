@@ -43,6 +43,10 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
             }.toString()
     }
 
+    fun negate(): ValidationResult {
+        return if (isSuccess) failure() else success()
+    }
+
     companion object {
         fun success(): ValidationResult {
             return ValidationResult(mutableListOf())

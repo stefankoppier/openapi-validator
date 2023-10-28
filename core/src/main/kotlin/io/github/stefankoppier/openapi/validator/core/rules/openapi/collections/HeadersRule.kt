@@ -2,10 +2,10 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.HeaderRule
-import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableRule
 import io.swagger.v3.oas.models.headers.Header
 
-class HeadersRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, Header>>(group) {
+class HeadersRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, Header>>(group) {
 
     fun all(description: String = "", rule: HeaderRule.() -> HeaderRule) =
         all { header ->

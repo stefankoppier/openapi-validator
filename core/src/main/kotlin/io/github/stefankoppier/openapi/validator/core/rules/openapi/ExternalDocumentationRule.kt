@@ -9,7 +9,9 @@ import io.swagger.v3.oas.models.ExternalDocumentation
 class ExternalDocumentationRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<ExternalDocumentation>(group) {
 
     init {
-        url { required() }
+        given({ it != null }) {
+            url { required() }
+        }
     }
 
     fun description(description: String = "", rule: StringRule.() -> StringRule) =

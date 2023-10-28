@@ -5,6 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.rules.ValidationRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.CallbacksRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ExamplesRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.HeadersRule
+import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.LinksRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ParametersRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.RequestBodiesRule
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.collections.ResponsesRule
@@ -61,8 +62,13 @@ class ComponentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()
             }
         }
 
-// TODO Security schemas
-// TODO links
+    fun links(description: String = "", rule: LinksRule.() -> LinksRule) =
+        apply {
+            add {
+                rule(LinksRule(RuleGroup.named("links", RuleGroup.Category.GROUP, description, group)))
+                    .validate(it?.links?.toList())
+            }
+        }
 
     fun callbacks(description: String = "", rule: CallbacksRule.() -> CallbacksRule) =
         apply {
@@ -71,6 +77,4 @@ class ComponentsRule internal constructor(group: RuleGroup = RuleGroup.unknown()
                     .validate(it?.callbacks?.toList())
             }
         }
-
-// TODO extensions
 }

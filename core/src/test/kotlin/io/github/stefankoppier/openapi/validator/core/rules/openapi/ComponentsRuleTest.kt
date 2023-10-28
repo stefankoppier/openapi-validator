@@ -6,6 +6,7 @@ import io.swagger.v3.oas.models.Components
 import io.swagger.v3.oas.models.callbacks.Callback
 import io.swagger.v3.oas.models.examples.Example
 import io.swagger.v3.oas.models.headers.Header
+import io.swagger.v3.oas.models.links.Link
 import io.swagger.v3.oas.models.media.Schema
 import io.swagger.v3.oas.models.parameters.Parameter
 import io.swagger.v3.oas.models.parameters.RequestBody
@@ -123,6 +124,24 @@ class ComponentsRuleTest {
     }
 
     @Test
+    fun `links succeeds`() {
+        val rule = ComponentsRule()
+            .links { exactly(listOf("link" to Link())) }
+
+        assertThatResult(rule.validate(fixture)).isSuccess()
+    }
+
+    @Test
+    fun `links fails`() {
+        val rule = ComponentsRule()
+            .links { exactly(listOf()) }
+
+        assertThatResult(rule.validate(fixture)).isFailure(
+            RuleGroup.named("links", RuleGroup.Category.GROUP, "", RuleGroup.unknown()),
+        )
+    }
+
+    @Test
     fun `callbacks succeeds`() {
         val rule = ComponentsRule()
             .callbacks { exactly(listOf("callback" to Callback())) }
@@ -148,6 +167,7 @@ class ComponentsRuleTest {
             examples = mapOf("example" to Example())
             requestBodies = mapOf("requestBody" to RequestBody())
             headers = mapOf("header" to Header())
+            links = mapOf("link" to Link())
             callbacks = mapOf("callback" to Callback())
         }
     }

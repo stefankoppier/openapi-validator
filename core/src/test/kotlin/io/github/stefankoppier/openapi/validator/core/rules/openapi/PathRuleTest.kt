@@ -65,7 +65,7 @@ class PathRuleTest {
                 }
             }
 
-        assertThatResult(rule.validate(PathItem())).isSuccess()
+        assertThatResult(rule.validate("url" to PathItem())).isSuccess()
     }
 
     @Test
@@ -268,7 +268,7 @@ class PathRuleTest {
     }
 
     companion object {
-        val fixture = PathItem().apply {
+        val fixture = "url" to PathItem().apply {
             summary = "summary"
             description = "description"
             get = Operation().apply { operationId = "get" }

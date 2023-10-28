@@ -2,10 +2,10 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.TagRule
-import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableRule
 import io.swagger.v3.oas.models.tags.Tag
 
-class TagsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Tag>(group) {
+class TagsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Tag>(group) {
 
     fun all(description: String = "", rule: TagRule.() -> TagRule) =
         all { tag ->

@@ -2,10 +2,10 @@ package io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.github.stefankoppier.openapi.validator.core.rules.openapi.RequestBodyRule
-import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableValidationRule
+import io.github.stefankoppier.openapi.validator.core.rules.primitives.IterableRule
 import io.swagger.v3.oas.models.parameters.RequestBody
 
-class RequestBodiesRule(group: RuleGroup = RuleGroup.unknown()) : IterableValidationRule<Pair<String, RequestBody>>(group) {
+class RequestBodiesRule(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, RequestBody>>(group) {
 
     fun all(description: String = "", rule: RequestBodyRule.() -> RequestBodyRule) =
         all { requestBody ->

@@ -13,10 +13,12 @@ import io.swagger.v3.oas.models.parameters.Parameter
 class ParameterRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Parameter>(group) {
 
     init {
-        name { required() }
-        `in` { required() }
-        given({ it != null && it.`in` == "path" }) {
-            required { required(); isTrue() }
+        given({ it != null }) {
+            name { required() }
+            `in` { required() }
+            given({ it != null && it.`in` == "path" }) {
+                required { required(); isTrue() }
+            }
         }
     }
 

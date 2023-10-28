@@ -8,7 +8,9 @@ import io.swagger.v3.oas.models.tags.Tag
 class TagRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Tag>(group) {
 
     init {
-        name { required() }
+        given({ it != null }) {
+            name { required() }
+        }
     }
 
     fun name(description: String = "", rule: StringRule.() -> StringRule) =
