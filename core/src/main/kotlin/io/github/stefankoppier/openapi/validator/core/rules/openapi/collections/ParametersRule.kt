@@ -9,16 +9,7 @@ class ParametersRule internal constructor(group: RuleGroup = RuleGroup.unknown()
 
     fun all(description: String = "", rule: ParameterRule.() -> ParameterRule) =
         addForAll { parameter ->
-            rule(
-                ParameterRule(
-                    RuleGroup.named(
-                        "parameter '${parameter.name}'",
-                        RuleGroup.Category.GROUP,
-                        description,
-                        group,
-                    ),
-                ),
-            )
+            rule(ParameterRule(RuleGroup.named("parameter '${parameter.name}'", RuleGroup.Category.GROUP, description, group)))
                 .validate(parameter)
         }
 
