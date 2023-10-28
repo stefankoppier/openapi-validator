@@ -12,7 +12,7 @@ plugins {
     alias(libs.plugins.sonarqube)
 }
 
-val javaVersion = 11
+val javaVersion = 17
 
 dependencies {
     implementation(project(":core"))
