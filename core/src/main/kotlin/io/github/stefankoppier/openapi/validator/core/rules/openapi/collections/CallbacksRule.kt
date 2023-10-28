@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.callbacks.Callback
 class CallbacksRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, Callback>>(group) {
 
     fun all(description: String = "", rule: CallbackRule.() -> CallbackRule) =
-        all { callback ->
+        addForAll { callback ->
             rule(CallbackRule(RuleGroup.named("callback '${callback.first}'", RuleGroup.Category.GROUP, description, group)))
                 .validate(callback.second)
         }

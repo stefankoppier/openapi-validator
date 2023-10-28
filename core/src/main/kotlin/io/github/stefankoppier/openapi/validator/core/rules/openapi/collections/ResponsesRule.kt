@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.responses.ApiResponse
 class ResponsesRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, ApiResponse>>(group) {
 
     fun all(description: String = "", rule: ResponseRule.() -> ResponseRule) =
-        all { response ->
+        addForAll { response ->
             rule(
                 ResponseRule(
                     RuleGroup.named(

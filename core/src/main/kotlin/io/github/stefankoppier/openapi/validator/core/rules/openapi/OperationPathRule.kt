@@ -39,7 +39,7 @@ class OperationPathSegmentsRule internal constructor(group: RuleGroup = RuleGrou
         }
 
     fun all(description: String = "", rule: StringRule.() -> StringRule) =
-        all { segment ->
+        addForAll { segment ->
             rule(StringRule(RuleGroup.named("segment '$segment'", RuleGroup.Category.GROUP, description, group)))
                 .validate(segment)
         }

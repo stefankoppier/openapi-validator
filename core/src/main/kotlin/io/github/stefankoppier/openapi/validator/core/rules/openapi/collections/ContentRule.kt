@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.media.MediaType
 class ContentRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, MediaType>>(group) {
 
     fun all(description: String = "", rule: MediaTypeRule.() -> MediaTypeRule) =
-        all { mediaType ->
+        addForAll { mediaType ->
             rule(
                 MediaTypeRule(
                     RuleGroup.named(

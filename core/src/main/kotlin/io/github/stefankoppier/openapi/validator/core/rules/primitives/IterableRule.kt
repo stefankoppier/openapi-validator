@@ -45,13 +45,11 @@ abstract class IterableRule<T : Any> internal constructor(group: RuleGroup = Rul
             it?.none(predicate) ?: false
         }
 
-    protected fun <R : IterableRule<T>> R.all(rule: (T) -> ValidationResult): R =
-        apply {
-            add { elements ->
-                elements
-                    ?.map { rule(it) }
-                    ?.reduce { left, right -> left.merge(right) }
-                    ?: ValidationResult.success()
-            }
+    protected fun <R : IterableRule<T>> R.addForAll(rule: (T) -> ValidationResult): R =
+        add { elements ->
+            elements
+                ?.map { rule(it) }
+                ?.reduce { left, right -> left.merge(right) }
+                ?: ValidationResult.success()
         }
 }

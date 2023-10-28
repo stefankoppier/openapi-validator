@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.parameters.Parameter
 class ParametersRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Parameter>(group) {
 
     fun all(description: String = "", rule: ParameterRule.() -> ParameterRule) =
-        all { parameter ->
+        addForAll { parameter ->
             rule(
                 ParameterRule(
                     RuleGroup.named(

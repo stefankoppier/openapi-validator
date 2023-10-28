@@ -43,10 +43,8 @@ abstract class ValidationRule<T> protected constructor(protected val group: Rule
      * @return The original rule on which this method has been invoked.
      */
     fun <R : ValidationRule<T>> R.holds(message: (T?) -> String = { "Was supposed to hold for '$it' but did not" }, predicate: (T?) -> Boolean) =
-        apply {
-            add {
-                ValidationResult.condition(ValidationFailure(group, message(it))) { predicate(it) }
-            }
+        add {
+            ValidationResult.condition(ValidationFailure(group, message(it))) { predicate(it) }
         }
 
     /**
@@ -109,10 +107,8 @@ abstract class ValidationRule<T> protected constructor(protected val group: Rule
             it in option
         }
 
-    protected fun <R : ValidationRule<T>> R.add(rule: (T?) -> ValidationResult): R {
-        rules.add({ _: T? -> true } to { fixture -> rule(fixture) })
-        return this
-    }
+    protected fun <R : ValidationRule<T>> R.add(rule: (T?) -> ValidationResult) =
+        apply { rules.add({ _: T? -> true } to { fixture -> rule(fixture) }) }
 
     private fun unit(): (T?) -> ValidationResult = { ValidationResult.success() }
 }

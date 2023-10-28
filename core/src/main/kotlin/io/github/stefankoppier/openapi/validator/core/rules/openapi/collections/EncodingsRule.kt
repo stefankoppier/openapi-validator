@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.media.Encoding
 class EncodingsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, Encoding>>(group) {
 
     fun all(description: String = "", rule: EncodingRule.() -> EncodingRule) =
-        all { encoding ->
+        addForAll { encoding ->
             rule(
                 EncodingRule(
                     RuleGroup.named(

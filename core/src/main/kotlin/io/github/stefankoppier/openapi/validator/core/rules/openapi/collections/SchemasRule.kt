@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.media.Schema
 class SchemasRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, Schema<*>>>(group) {
 
     fun all(description: String = "", rule: SchemaRule.() -> SchemaRule) =
-        all { schema ->
+        addForAll { schema ->
             rule(SchemaRule(RuleGroup.named("schema '${schema.first}'", RuleGroup.Category.GROUP, description, group)))
                 .validate(schema.second)
         }

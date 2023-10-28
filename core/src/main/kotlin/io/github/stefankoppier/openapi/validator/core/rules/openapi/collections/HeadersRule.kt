@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.headers.Header
 class HeadersRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, Header>>(group) {
 
     fun all(description: String = "", rule: HeaderRule.() -> HeaderRule) =
-        all { header ->
+        addForAll { header ->
             rule(HeaderRule(RuleGroup.named("header '${header.first}'", RuleGroup.Category.GROUP, description, group)))
                 .validate(header.second)
         }

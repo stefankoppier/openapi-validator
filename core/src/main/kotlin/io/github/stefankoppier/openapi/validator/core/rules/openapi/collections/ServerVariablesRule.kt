@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.servers.ServerVariable
 class ServerVariablesRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<Pair<String, ServerVariable>>(group) {
 
     fun all(description: String = "", rule: ServerVariableRule.() -> ServerVariableRule) =
-        all { serverVariables ->
+        addForAll { serverVariables ->
             rule(ServerVariableRule(RuleGroup.named("serverVariable '${serverVariables.first}'", RuleGroup.Category.GROUP, description, group)))
                 .validate(serverVariables.second)
         }
