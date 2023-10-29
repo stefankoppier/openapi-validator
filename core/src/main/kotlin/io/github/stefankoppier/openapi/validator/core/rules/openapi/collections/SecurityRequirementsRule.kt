@@ -6,5 +6,9 @@ import io.swagger.v3.oas.models.security.SecurityRequirement
 
 class SecurityRequirementsRule internal constructor(group: RuleGroup = RuleGroup.unknown()) : IterableRule<SecurityRequirement>(group) {
 
-    // TODO
+    fun all(description: String = "", rule: SecurityRequirementRule.() -> SecurityRequirementRule) =
+        addForEach { requirement ->
+            rule(SecurityRequirementRule(RuleGroup.named("securityRequirement '$requirement'", RuleGroup.Category.GROUP, description, group)))
+                .validate(requirement.toList())
+        }
 }
