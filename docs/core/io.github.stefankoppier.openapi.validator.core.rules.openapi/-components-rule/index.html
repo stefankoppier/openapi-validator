@@ -1,0 +1,345 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>ComponentsRule</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>openapi-validator</span>            </a>    </div>
+    <div>0.0.1
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":core:dokkaHtmlPartial/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="core::io.github.stefankoppier.openapi.validator.core.rules.openapi/ComponentsRule///PointingToDeclaration//537371977">
+  <div class="breadcrumbs"><a href="../../index.html">core</a><span class="delimiter">/</span><a href="../index.html">io.github.stefankoppier.openapi.validator.core.rules.openapi</a><span class="delimiter">/</span><span class="current">ComponentsRule</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Components</span><wbr><span><span>Rule</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">ComponentsRule</a> : <a href="../../io.github.stefankoppier.openapi.validator.core.rules/-validation-rule/index.html">ValidationRule</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">&gt; </span><span class="clearfix"><span class="floating-right">(<a href="https://github.com/stefankoppier/openapi-validator/tree/main/core/src/main/kotlin/io/github/stefankoppier/openapi/validator/core/rules/openapi/ComponentsRule.kt#L15">source</a>)</span></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="838807896%2FFunctions%2F537371977" anchor-label="callbacks" id="838807896%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="callbacks.html"><span><span>callbacks</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="838807896%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="callbacks.html"><span class="token function">callbacks</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">description<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span><span class="token punctuation">, </span></span><span class="parameter ">rule<span class="token operator">: </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-callbacks-rule/index.html">CallbacksRule</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-callbacks-rule/index.html">CallbacksRule</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ComponentsRule</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2113403504%2FFunctions%2F537371977" anchor-label="either" id="2113403504%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#2113403504%2FExtensions%2F537371977"><span><span>either</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2113403504%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html#2113403504%2FExtensions%2F537371977">R</a><span class="token operator"> : </span><a href="../../io.github.stefankoppier.openapi.validator.core.rules/-validation-rule/index.html">ValidationRule</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">&gt;</span><span class="token operator">&gt; </span><a href="index.html#2113403504%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><a href="index.html#2113403504%2FExtensions%2F537371977"><span class="token function">either</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>option<span class="token operator">: </span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html#2113403504%2FExtensions%2F537371977">R</a></div><div class="brief "><p class="paragraph">Validate that the element should be equal to one of the elements in <a href="index.html#2113403504%2FExtensions%2F537371977">option</a> <i>given that it is set</i>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1185337981%2FFunctions%2F537371977" anchor-label="exactly" id="1185337981%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1185337981%2FExtensions%2F537371977"><span><span>exactly</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1185337981%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html#1185337981%2FExtensions%2F537371977">R</a><span class="token operator"> : </span><a href="../../io.github.stefankoppier.openapi.validator.core.rules/-validation-rule/index.html">ValidationRule</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">&gt;</span><span class="token operator">&gt; </span><a href="index.html#1185337981%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><a href="index.html#1185337981%2FExtensions%2F537371977"><span class="token function">exactly</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html#1185337981%2FExtensions%2F537371977">R</a></div><div class="brief "><p class="paragraph">Validate that the element should be equal to <a href="index.html#1185337981%2FExtensions%2F537371977">value</a> <i>given that it is set</i>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2121230833%2FFunctions%2F537371977" anchor-label="examples" id="-2121230833%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="examples.html"><span><span>examples</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2121230833%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="examples.html"><span class="token function">examples</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">description<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span><span class="token punctuation">, </span></span><span class="parameter ">rule<span class="token operator">: </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-examples-rule/index.html">ExamplesRule</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-examples-rule/index.html">ExamplesRule</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ComponentsRule</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1962929853%2FFunctions%2F537371977" anchor-label="given" id="1962929853%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1962929853%2FExtensions%2F537371977"><span><span>given</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1962929853%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html#1962929853%2FExtensions%2F537371977">R</a><span class="token operator"> : </span><a href="../../io.github.stefankoppier.openapi.validator.core.rules/-validation-rule/index.html">ValidationRule</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">&gt;</span><span class="token operator">&gt; </span><a href="index.html#1962929853%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><a href="index.html#1962929853%2FExtensions%2F537371977"><span class="token function">given</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">precondition<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">rule<span class="token operator">: </span><span class="token keyword"></span><a href="index.html#1962929853%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="index.html#1962929853%2FExtensions%2F537371977">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html#1962929853%2FExtensions%2F537371977">R</a></div><div class="brief "><p class="paragraph">Validate <a href="index.html#1962929853%2FExtensions%2F537371977">rule</a> only if <a href="index.html#1962929853%2FExtensions%2F537371977">precondition</a> evaluates to true.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1570899248%2FFunctions%2F537371977" anchor-label="headers" id="-1570899248%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="headers.html"><span><span>headers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1570899248%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="headers.html"><span class="token function">headers</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">description<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span><span class="token punctuation">, </span></span><span class="parameter ">rule<span class="token operator">: </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-headers-rule/index.html">HeadersRule</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-headers-rule/index.html">HeadersRule</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ComponentsRule</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="452444727%2FFunctions%2F537371977" anchor-label="holds" id="452444727%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#452444727%2FExtensions%2F537371977"><span><span>holds</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="452444727%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html#452444727%2FExtensions%2F537371977">R</a><span class="token operator"> : </span><a href="../../io.github.stefankoppier.openapi.validator.core.rules/-validation-rule/index.html">ValidationRule</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">&gt;</span><span class="token operator">&gt; </span><a href="index.html#452444727%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><a href="index.html#452444727%2FExtensions%2F537371977"><span class="token function">holds</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">message<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span>{ "Was supposed to hold for '$it' but did not" }<span class="token punctuation">, </span></span><span class="parameter ">predicate<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html#452444727%2FExtensions%2F537371977">R</a></div><div class="brief "><p class="paragraph">Validate that <a href="index.html#452444727%2FExtensions%2F537371977">predicate</a> evaluates to true.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-146603869%2FFunctions%2F537371977" anchor-label="links" id="-146603869%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="links.html"><span><span>links</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-146603869%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="links.html"><span class="token function">links</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">description<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span><span class="token punctuation">, </span></span><span class="parameter ">rule<span class="token operator">: </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-links-rule/index.html">LinksRule</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-links-rule/index.html">LinksRule</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ComponentsRule</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1718648463%2FFunctions%2F537371977" anchor-label="not" id="-1718648463%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1718648463%2FExtensions%2F537371977"><span><span>not</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1718648463%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html#-1718648463%2FExtensions%2F537371977">R</a><span class="token operator"> : </span><a href="../../io.github.stefankoppier.openapi.validator.core.rules/-validation-rule/index.html">ValidationRule</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">&gt;</span><span class="token operator">&gt; </span><a href="index.html#-1718648463%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><a href="index.html#-1718648463%2FExtensions%2F537371977"><span class="token function">not</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">rule<span class="token operator">: </span><span class="token keyword"></span><a href="index.html#-1718648463%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="index.html#-1718648463%2FExtensions%2F537371977">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html#-1718648463%2FExtensions%2F537371977">R</a></div><div class="brief "><p class="paragraph">Validate that the rule does not hold.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1070710442%2FFunctions%2F537371977" anchor-label="optional" id="-1070710442%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1070710442%2FExtensions%2F537371977"><span><span>optional</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1070710442%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html#-1070710442%2FExtensions%2F537371977">V</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html#-1070710442%2FExtensions%2F537371977">R</a><span class="token operator"> : </span><a href="../../io.github.stefankoppier.openapi.validator.core.rules/-validation-rule/index.html">ValidationRule</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">&gt;</span><span class="token operator">&gt; </span><a href="index.html#-1070710442%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><a href="index.html#-1070710442%2FExtensions%2F537371977"><span class="token function">optional</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="index.html#-1070710442%2FExtensions%2F537371977">V</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">rule<span class="token operator">: </span><span class="token keyword"></span><a href="index.html#-1070710442%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="index.html#-1070710442%2FExtensions%2F537371977">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html#-1070710442%2FExtensions%2F537371977">R</a></div><div class="brief "><p class="paragraph">Validate <a href="index.html#-1070710442%2FExtensions%2F537371977">rule</a> only if the evaluated result of <a href="index.html#-1070710442%2FExtensions%2F537371977">value</a> is not null.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1861928846%2FFunctions%2F537371977" anchor-label="parameters" id="-1861928846%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="parameters.html"><span><span>parameters</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1861928846%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="parameters.html"><span class="token function">parameters</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">description<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span><span class="token punctuation">, </span></span><span class="parameter ">rule<span class="token operator">: </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-parameters-rule/index.html">ParametersRule</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-parameters-rule/index.html">ParametersRule</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ComponentsRule</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1534760999%2FFunctions%2F537371977" anchor-label="requestBodies" id="-1534760999%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="request-bodies.html"><span>request</span><wbr><span><span>Bodies</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1534760999%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="request-bodies.html"><span class="token function">requestBodies</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">description<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span><span class="token punctuation">, </span></span><span class="parameter ">rule<span class="token operator">: </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-request-bodies-rule/index.html">RequestBodiesRule</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-request-bodies-rule/index.html">RequestBodiesRule</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ComponentsRule</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2060489036%2FFunctions%2F537371977" anchor-label="required" id="-2060489036%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-2060489036%2FExtensions%2F537371977"><span><span>required</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2060489036%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html#-2060489036%2FExtensions%2F537371977">R</a><span class="token operator"> : </span><a href="../../io.github.stefankoppier.openapi.validator.core.rules/-validation-rule/index.html">ValidationRule</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">&gt;</span><span class="token operator">&gt; </span><a href="index.html#-2060489036%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><a href="index.html#-2060489036%2FExtensions%2F537371977"><span class="token function">required</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html#-2060489036%2FExtensions%2F537371977">R</a></div><div class="brief "><p class="paragraph">Validate that the element is set.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1152989860%2FFunctions%2F537371977" anchor-label="responses" id="-1152989860%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="responses.html"><span><span>responses</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1152989860%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="responses.html"><span class="token function">responses</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">description<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span><span class="token punctuation">, </span></span><span class="parameter ">rule<span class="token operator">: </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-responses-rule/index.html">ResponsesRule</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-responses-rule/index.html">ResponsesRule</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ComponentsRule</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1489521340%2FFunctions%2F537371977" anchor-label="schemas" id="1489521340%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="schemas.html"><span><span>schemas</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1489521340%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="schemas.html"><span class="token function">schemas</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">description<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span><span class="token punctuation">, </span></span><span class="parameter ">rule<span class="token operator">: </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-schemas-rule/index.html">SchemasRule</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="../../io.github.stefankoppier.openapi.validator.core.rules.openapi.collections/-schemas-rule/index.html">SchemasRule</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ComponentsRule</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1321383470%2FFunctions%2F537371977" anchor-label="since" id="-1321383470%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1321383470%2FExtensions%2F537371977"><span><span>since</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1321383470%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html#-1321383470%2FExtensions%2F537371977">R</a><span class="token operator"> : </span><a href="../../io.github.stefankoppier.openapi.validator.core.rules/-validation-rule/index.html">ValidationRule</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">&gt;</span><span class="token operator">&gt; </span><a href="index.html#-1321383470%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><a href="index.html#-1321383470%2FExtensions%2F537371977"><span class="token function">since</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">date<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/LocalDate.html">LocalDate</a><span class="token punctuation">, </span></span><span class="parameter ">rule<span class="token operator">: </span><span class="token keyword"></span><a href="index.html#-1321383470%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="index.html#-1321383470%2FExtensions%2F537371977">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html#-1321383470%2FExtensions%2F537371977">R</a></div><div class="brief "><p class="paragraph">Validate <a href="index.html#-1321383470%2FExtensions%2F537371977">rule</a> only if <a href="index.html#-1321383470%2FExtensions%2F537371977">date</a> has been in the past.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1985010098%2FFunctions%2F537371977" anchor-label="unspecified" id="1985010098%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1985010098%2FExtensions%2F537371977"><span><span>unspecified</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1985010098%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html#1985010098%2FExtensions%2F537371977">R</a><span class="token operator"> : </span><a href="../../io.github.stefankoppier.openapi.validator.core.rules/-validation-rule/index.html">ValidationRule</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">&gt;</span><span class="token operator">&gt; </span><a href="index.html#1985010098%2FExtensions%2F537371977">R</a><span class="token punctuation">.</span><a href="index.html#1985010098%2FExtensions%2F537371977"><span class="token function">unspecified</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html#1985010098%2FExtensions%2F537371977">R</a></div><div class="brief "><p class="paragraph">Validate that the element is not set.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1304253397%2FFunctions%2F537371977" anchor-label="validate" id="1304253397%2FFunctions%2F537371977" data-filterable-set=":core:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/main" data-filterable-set=":core:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1304253397%2FFunctions%2F537371977"><span><span>validate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1304253397%2FFunctions%2F537371977"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html#1304253397%2FFunctions%2F537371977"><span class="token function">validate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fixture<span class="token operator">: </span><span data-unresolved-link="io.swagger.v3.oas.models/Components///PointingToDeclaration/">Components</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../io.github.stefankoppier.openapi.validator.core/-validation-result/index.html">ValidationResult</a></div><div class="brief "><p class="paragraph">Execute the given rule(s) on the <a href="index.html#1304253397%2FFunctions%2F537371977">fixture</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+

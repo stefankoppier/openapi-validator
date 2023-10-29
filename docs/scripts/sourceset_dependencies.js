@@ -1,1 +1,1 @@
-sourceset_dependencies = '{":core:dokkaHtmlPartial/main":[],":integration-junit:dokkaHtmlPartial/main":[]}'
+sourceset_dependencies = '{":core:dokkaHtmlPartial/main":[],":integration-junit:dokkaHtmlPartial/main":[],":integration-gradle:dokkaHtmlPartial/main":[]}'

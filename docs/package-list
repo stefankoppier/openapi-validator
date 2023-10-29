@@ -7,5 +7,7 @@ io.github.stefankoppier.openapi.validator.core.rules
 io.github.stefankoppier.openapi.validator.core.rules.openapi
 io.github.stefankoppier.openapi.validator.core.rules.openapi.collections
 io.github.stefankoppier.openapi.validator.core.rules.primitives
+module:integration-gradle
+io.github.stefankoppier.openapi.validator.gradle
 module:integration-junit
 io.github.stefankoppier.openapi.validator.junit
