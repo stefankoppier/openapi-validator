@@ -184,7 +184,7 @@ class ValidationRuleTest {
     @Test
     fun `not succeeds`() {
         val rule = string {
-            not { exactly("string") }
+            not("message") { exactly("string") }
         }
 
         assertThatResult(rule.validate("fail")).isSuccess()
@@ -193,7 +193,7 @@ class ValidationRuleTest {
     @Test
     fun `not fails`() {
         val rule = string {
-            not { exactly("string") }
+            not("message") { exactly("string") }
         }
 
         assertThatResult(rule.validate("string")).isFailure()
@@ -202,7 +202,7 @@ class ValidationRuleTest {
     @Test
     fun `not not succeeds`() {
         val rule = string {
-            not { not { exactly("string") } }
+            not("message1") { not("message2") { exactly("string") } }
         }
 
         assertThatResult(rule.validate("string")).isSuccess()

@@ -9,7 +9,7 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
         get() = failures.isEmpty()
 
     val isFailure: Boolean
-        get() = failures.isNotEmpty()
+        get() = !isSuccess
 
     internal constructor(exception: Throwable) :
         this(

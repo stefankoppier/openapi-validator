@@ -13,6 +13,27 @@ import kotlin.test.Test
 class PathRuleTest {
 
     @Test
+    fun `path succeeds`() {
+        val rule = PathRule()
+            .path { exactly("url") }
+
+        assertThatResult(rule.validate(fixture)).isSuccess()
+    }
+
+    @Test
+    fun `path fails`() {
+        val rule = PathRule()
+            .summary { exactly("fail") }
+
+        assertThatResult(rule.validate(fixture)).isFailure(
+            ValidationFailure(
+                RuleGroup.named("summary", RuleGroup.Category.FIELD, "", RuleGroup.unknown()),
+                "Was supposed to be 'fail' but is 'summary'",
+            ),
+        )
+    }
+
+    @Test
     fun `summary succeeds`() {
         val rule = PathRule()
             .summary { exactly("summary") }
