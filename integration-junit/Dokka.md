@@ -2,7 +2,7 @@
 
 Contains the infrastructure for integration with JUnit.
 
-One can use the package by adding the dependency <TODO> and add a test. For example
+One can use the package by adding the dependency `io.github.stefankoppier.openapi.validator:integration-junit:x.y.z` and add a test. For example
 ```kotlin
 @ExtendWith(OpenAPIValidationExtension::class)
 @OpenAPITest(relativeUrl = "src/test/resources/petstore.yaml")
