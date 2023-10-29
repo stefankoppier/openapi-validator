@@ -86,6 +86,19 @@ open class StringRule internal constructor(group: RuleGroup = RuleGroup.unknown(
         }
 
     /**
+     * Validate that the element starts with a given [prefix].
+     *
+     * @param prefix The suffix the element should end with.
+     * @param ignoreCase Ignore distinction between upper- and lowercase if true.
+     *
+     * @return The rule on which this method has been invoked.
+     */
+    fun startsWith(prefix: String, ignoreCase: Boolean = false) =
+        holds({ "Was supposed to start with '$prefix' but is '$it'" }) {
+            it == null || it.startsWith(prefix, ignoreCase)
+        }
+
+    /**
      * Validate that the element ends with a given [suffix].
      *
      * @param suffix The suffix the element should end with.
