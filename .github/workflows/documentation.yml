@@ -5,8 +5,8 @@ on:
     branches: [main]
     paths:
       - ./**/Dokka.md
-      - ./core/src/main/**
-      - ./integration-junit/src/main/**
+      - core/src/main/**
+      - integration-junit/src/main/**
 
 permissions:
   contents: write
