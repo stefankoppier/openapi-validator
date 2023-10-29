@@ -181,6 +181,33 @@ class ValidationRuleTest {
         )
     }
 
+    @Test
+    fun `not succeeds`() {
+        val rule = string {
+            not { exactly("string") }
+        }
+
+        assertThatResult(rule.validate("fail")).isSuccess()
+    }
+
+    @Test
+    fun `not fails`() {
+        val rule = string {
+            not { exactly("string") }
+        }
+
+        assertThatResult(rule.validate("string")).isFailure()
+    }
+
+    @Test
+    fun `not not succeeds`() {
+        val rule = string {
+            not { not { exactly("string") } }
+        }
+
+        assertThatResult(rule.validate("string")).isSuccess()
+    }
+
     companion object {
         private fun string(rule: StringRule.() -> StringRule): StringRule {
             return rule(StringRule(RuleGroup.named("rule", RuleGroup.Category.FIELD)))

@@ -43,8 +43,8 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
             }.toString()
     }
 
-    fun negate(): ValidationResult {
-        return if (isSuccess) failure() else success()
+    fun negate(group: RuleGroup, message: String): ValidationResult {
+        return if (isSuccess) failure(ValidationFailure(group, message)) else success()
     }
 
     companion object {
@@ -53,6 +53,8 @@ class ValidationResult internal constructor(val failures: MutableList<Validation
         }
 
         fun failure(vararg failure: ValidationFailure): ValidationResult {
+            require(failure.isNotEmpty()) { "At least one failure must be given" }
+
             return ValidationResult(failure.toMutableList())
         }
 

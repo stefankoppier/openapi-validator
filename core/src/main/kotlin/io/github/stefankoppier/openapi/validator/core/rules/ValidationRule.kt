@@ -98,6 +98,17 @@ abstract class ValidationRule<T> protected constructor(protected val group: Rule
         holds({ "Was supposed to be '$value' but is '$it'" }) { it == value }
 
     /**
+     * Validate that the rule does not hold.
+     *
+     * @return The original rule on which this method has been invoked.
+     */
+    fun <R : ValidationRule<T>> R.not(message: String, rule: R.() -> R) =
+        rule().apply {
+            val last = rules.last()
+            rules[rules.size - 1] = last.copy(second = { last.second(it).negate(group, message) })
+        }
+
+    /**
      * Validate that the element should be equal to one of the elements in [option] *given that it is set*.
      *
      * @return The original rule on which this method has been invoked.
