@@ -83,7 +83,7 @@ The OpenAPI Validator allows for two ways to execute the validation: via Gradle 
 Apply the plugin
 ```kotlin
 plugins {
-    id("io.github.stefankoppier.openapi.validator") version "0.0.1"
+    id("io.github.stefankoppier.openapi.validator") version "x.y.z"
 }
 ```
 and then configure the document to be verified using the given rules using
