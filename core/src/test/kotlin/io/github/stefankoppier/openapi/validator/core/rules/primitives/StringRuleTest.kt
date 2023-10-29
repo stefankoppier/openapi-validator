@@ -209,6 +209,52 @@ class StringRuleTest {
         )
     }
 
+    @Test
+    fun `startsWith succeeds`() {
+        val rule = string {
+            startsWith("str")
+        }
+
+        assertThatResult(rule.validate("string")).isSuccess()
+    }
+
+    @Test
+    fun `startsWith fails`() {
+        val rule = string {
+            startsWith("str")
+        }
+
+        assertThatResult(rule.validate("fail")).isFailure(
+            ValidationFailure(
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
+                "Was supposed to start with 'str' but is 'fail'",
+            ),
+        )
+    }
+
+    @Test
+    fun `endsWith succeeds`() {
+        val rule = string {
+            endsWith("ing")
+        }
+
+        assertThatResult(rule.validate("string")).isSuccess()
+    }
+
+    @Test
+    fun `endsWith fails`() {
+        val rule = string {
+            endsWith("ing")
+        }
+
+        assertThatResult(rule.validate("fail")).isFailure(
+            ValidationFailure(
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
+                "Was supposed to end with 'ing' but is 'fail'",
+            ),
+        )
+    }
+
     companion object {
         private fun string(rule: StringRule.() -> StringRule): StringRule {
             return rule(StringRule(RuleGroup.named("rule", RuleGroup.Category.FIELD)))

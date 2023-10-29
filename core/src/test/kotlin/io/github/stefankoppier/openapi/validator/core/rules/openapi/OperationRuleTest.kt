@@ -5,6 +5,7 @@ import io.github.stefankoppier.openapi.validator.core.assertThatResult
 import io.github.stefankoppier.openapi.validator.core.rules.RuleGroup
 import io.swagger.v3.oas.models.ExternalDocumentation
 import io.swagger.v3.oas.models.Operation
+import io.swagger.v3.oas.models.callbacks.Callback
 import io.swagger.v3.oas.models.media.Content
 import io.swagger.v3.oas.models.parameters.Parameter
 import io.swagger.v3.oas.models.parameters.RequestBody
@@ -155,6 +156,24 @@ class OperationRuleTest {
     }
 
     @Test
+    fun `callbacks succeeds`() {
+        val rule = OperationRule()
+            .callbacks { exactly(listOf("callback" to Callback())) }
+
+        assertThatResult(rule.validate(fixture)).isSuccess()
+    }
+
+    @Test
+    fun `callbacks fails`() {
+        val rule = OperationRule()
+            .callbacks { exactly(listOf("fail" to Callback())) }
+
+        assertThatResult(rule.validate(fixture)).isFailure(
+            RuleGroup.named("callbacks", RuleGroup.Category.GROUP, "", RuleGroup.unknown()),
+        )
+    }
+
+    @Test
     fun `responses succeeds`() {
         val rule = OperationRule()
             .responses { exactly(emptyList()) }
@@ -239,6 +258,7 @@ class OperationRuleTest {
             parameters = listOf(Parameter())
             requestBody = RequestBody().apply { content = Content() }
             responses = ApiResponses()
+            callbacks = mapOf("callback" to Callback())
             deprecated = true
             security = listOf(SecurityRequirement())
             servers = listOf(Server())
