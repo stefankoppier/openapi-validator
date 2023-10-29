@@ -29,6 +29,60 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Get current version
+        id: currenttag
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+
+      - name: Get next versions
+        id: nexttag
+        uses: WyriHaximus/github-action-next-semvers@v1
+        with:
+          version: ${{ steps.currenttag.outputs.tag }}
+
+      - name: Determine release version
+        id: nextversion
+        run: |
+          case "${{ inputs.increment }}" in
+            Patch) 
+              echo "version=${{ steps.nexttag.outputs.patch }}" >> $GITHUB_OUTPUT
+              ;;
+            Minor) 
+              echo "version=${{ steps.nexttag.outputs.minor }}" >> $GITHUB_OUTPUT
+              ;;
+            Major) 
+              echo "version=${{ steps.nexttag.outputs.major }}" >> $GITHUB_OUTPUT
+              ;;
+          esac
+
+      - name: Update project version
+        run: |
+          sed -i 's/${{ steps.currenttag.outputs.tag }}/${{ steps.nextversion.outputs.version }}/g' ./gradle.properties
+
+      - name: Commit, push and tag
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Released version $VERSION"
+          git push
+          git tag $VERSION
+          git push origin $VERSION
+        env:
+          VERSION: ${{ steps.nextversion.outputs.version }}
+
+      - name: Github release
+        uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Gradle publish
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: publishPlugins -Dgradle.publish.key=${{ secrets.PUBLISH_KEY }} -Dgradle.publish.secret=${{ secrets.PUBLISH_SECRET }}
+          gradle-version: wrapper
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Stage on Maven Central
         uses: gradle/gradle-build-action@v2.5.1
         with:
