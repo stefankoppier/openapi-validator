@@ -8,7 +8,7 @@ class OperationPathRuleTest {
     @Test
     fun `segments selects correct segments`() {
         val rule = OperationPathRule()
-            .segments { all { holds { it in arrayOf("v1", "resource", "{resource_name") } } }
+            .segments { all { holds { it in arrayOf("v1", "resource", "{resource_name}") } } }
 
         assertThatResult(rule.validate(fixture))
             .isSuccess()
