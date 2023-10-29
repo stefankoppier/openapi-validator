@@ -26,3 +26,5 @@ annotations: `@ExtendWith(OpenAPIValidationExtension::class)` and
 `@OpenAPITest(relativeUrl = "src/test/resources/petstore.yaml")`. Note that `@OpenAPITest` can be written at both the
 class level and the function level. These two extensions together wil inject the OpenAPI specification into your tests,
 on which you can assert using `assertDocumentIsValidFor`, which takes a rule as an argument.
+
+The available rules can be found in the documentation of the core module.

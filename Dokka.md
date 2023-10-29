@@ -5,5 +5,5 @@ There is an extensive set of built-in rules and is extensible, as it allows you 
 
 The project is divided into three modules: `core`, `integration-gradle`, and `integration-junit`.  When rules validations, 
 you can use either Gradle or JUnit using the respective modules. As a user, the `core` module will be provided as a 
-transitive dependency and is less interesting.
+transitive dependency and contains all rules.
 
