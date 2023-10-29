@@ -33,6 +33,17 @@ openAPI {
 ```
 
 ### Quantifier Rules
+There is support for quntification on the relevant types. For example
+```kotlin
+openAPI {
+    paths {
+        all {
+            startsWith("prefix")
+        }
+    }
+}
+```
+states that all paths must start with the string `prefix`.
 
 ### Preconditions
 There is support for preconditions. The general precondition `given` validates a given rule only if
