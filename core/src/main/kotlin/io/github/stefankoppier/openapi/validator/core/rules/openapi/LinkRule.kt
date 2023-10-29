@@ -20,14 +20,6 @@ class LinkRule(group: RuleGroup = RuleGroup.unknown()) : ValidationRule<Link>(gr
                 .validate(it?.operationId)
         }
 
-//    fun parameters(description: String = "", rule: MapValidationRule<String, String>.() -> MapValidationRule<String, String>) =
-//        apply {
-//            add {
-//                rule(MapValidationRule(RuleGroup.named("parameters", RuleGroup.Category.GROUP, description, group)))
-//                    .validate(it?.parameters)
-//            }
-//        }
-
     fun requestBody(description: String = "", rule: AnyRule.() -> AnyRule) =
         add {
             rule(AnyRule(RuleGroup.named("requestBody", RuleGroup.Category.FIELD, description, group)))
