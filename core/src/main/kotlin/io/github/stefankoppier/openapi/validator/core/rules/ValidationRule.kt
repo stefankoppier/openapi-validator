@@ -85,7 +85,7 @@ abstract class ValidationRule<T> protected constructor(protected val group: Rule
      * @return The original rule on which this method has been invoked.
      */
     fun <R : ValidationRule<T>> R.unspecified() =
-        holds({ "Was required but is not given" }) {
+        holds({ "Was unspecified but is given" }) {
             it == null
         }
 

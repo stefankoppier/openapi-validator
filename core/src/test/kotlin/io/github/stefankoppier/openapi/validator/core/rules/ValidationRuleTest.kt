@@ -159,6 +159,29 @@ class ValidationRuleTest {
     }
 
     @Test
+    fun `unspecified on null value succeeds`() {
+        val rule = string {
+            unspecified()
+        }
+
+        assertThatResult(rule.validate(null)).isSuccess()
+    }
+
+    @Test
+    fun `unspecified on non-null value fails`() {
+        val rule = string {
+            unspecified()
+        }
+
+        assertThatResult(rule.validate("value")).isFailure(
+            ValidationFailure(
+                RuleGroup.named("rule", RuleGroup.Category.FIELD),
+                "Was unspecified but is given",
+            ),
+        )
+    }
+
+    @Test
     fun `exactly on value succeeds`() {
         val rule = string {
             exactly("string")
