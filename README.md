@@ -1,4 +1,5 @@
 [![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/io.github.stefankoppier.openapi.validator)](https://plugins.gradle.org/plugin/io.github.stefankoppier.openapi.validator)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.stefankoppier.openapi.validator/core)](https://mvnrepository.com/artifact/io.github.stefankoppier.openapi.validator)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=stefankoppier_openapi-validator&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=stefankoppier_openapi-validator)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=stefankoppier_openapi-validator&metric=coverage)](https://sonarcloud.io/summary/new_code?id=stefankoppier_openapi-validator)
 
