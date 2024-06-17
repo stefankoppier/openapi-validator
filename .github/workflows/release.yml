@@ -76,7 +76,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Gradle publish
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         with:
           arguments: publishPlugins -Dgradle.publish.key=${{ secrets.PUBLISH_KEY }} -Dgradle.publish.secret=${{ secrets.PUBLISH_SECRET }}
           gradle-version: wrapper
